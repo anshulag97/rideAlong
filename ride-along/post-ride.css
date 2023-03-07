@@ -1,0 +1,247 @@
+body {
+    margin: auto;
+    padding: 0;
+    max-width: 600px;
+}
+
+header {
+    background-color: #162EAC;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+}
+
+.header-title {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.header-title i, .header-title h3, header > i {
+    background-color: #5F69FF;
+    padding: .2rem 1rem;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+.header-title i {
+    border-radius: 7px;
+    padding: .3rem .4rem;
+}
+
+header > i {
+    border-radius: 5px;
+    padding: .3rem .5rem;
+}
+
+main {
+    text-align: center;
+    max-width: 80%;
+    margin: auto;
+}
+
+.enter-location {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.enter-location input:nth-of-type(1) {
+    padding: 1rem;
+    border: 1px solid #545454;
+    border-radius: 15px 15px 0 0;
+    width: 100%;
+}
+
+.enter-location input:nth-of-type(2) {
+    padding: 1rem;
+    border: 1px solid #545454;
+    border-radius: 0 0 15px 15px;
+    width: 100%;
+}
+
+.home, .work, .location {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: .5rem;
+}
+
+.home i, .work i, .location i {
+    color: #CB4452;
+}
+
+.ride-schedule {
+    margin: 1rem;
+    padding: 1rem 0;
+    display: grid;
+    text-align: left;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    border-top: 1px solid #535353;
+    border-bottom: 1px solid #535353;
+}
+
+.ride-schedule input {
+    background-color: #E1E1E1;
+    border: 1px solid #C5C5C5;
+    padding: 1rem .5rem;
+    border-radius: 10px;
+}
+
+.ride-schedule input:nth-of-type(3) {
+    background-color: #F2F2F2;
+    border: 1px dotted #777777;
+    padding: .6rem .5rem;
+}
+
+.ride-schedule h2 {
+    grid-column: span 2;
+    margin: 0;
+}
+
+.ride-schedule input:nth-of-type(3) {
+    grid-column: span 2;
+}
+
+.trip-preferences {
+    text-align: left;
+}
+
+.trip-preference-input {
+    background-color: #aba8a82f;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.luggage {
+    border-bottom: 1px solid #C1C1C1;
+}
+
+.luggage ul li,
+.buttons ul li {
+    list-style-type: none;
+    background-color: #E1E1E1;
+    padding: .5rem .8rem;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+.luggage ul {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 0;
+    justify-content: space-between;
+}
+
+.passengers {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #C1C1C1;
+}
+
+.input-group {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.input-group input {
+    background-color: transparent;
+    border: none;
+    width: 15%;
+    text-align: center;
+}
+
+.input-group-button button {
+    border: none;
+}
+
+.pets {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.buttons ul li{
+    display: inline-block;
+}
+
+.price {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.price input {
+    background-color: #E1E1E1;
+    border: 1px solid #D8DADC;
+    height: 90%;
+    width: 30%;
+    border-radius: 10px;
+    padding: .5rem .8rem;
+    font-size: 12px;
+}
+
+.trip-description {
+    border-top: 1px solid #535353;
+    border-bottom: 1px solid #535353;
+    margin-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.trip-description textarea {
+    background-color: #30303034;
+    border-radius: 10px;
+    padding: .5rem;
+}
+
+.vehicle-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+}
+
+.add-vehicle {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: .5rem;
+    justify-content: flex-end;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    align-self: center;
+}
+
+.vehicle {
+    grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr;
+    gap: .2rem;
+}
+
+.vehicle img {
+    grid-row: 1/3;
+}
+
+.vehicle p:nth-of-type(1) {
+    text-align: baseline;
+}
+
+.vehicle p:nth-of-type(3) {
+    grid-column: span 2;
+}
+
+#driver_licence, #driver_label {
+    justify-self: left;
+}

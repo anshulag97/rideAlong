@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="./sign-in.css">
+    <script type="module" src="./sign-in.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1 class="title">Sign In</h1>
+    </header>
+    <main>
+
+        <form>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="example@gmail.com" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="must be 8 characters" minlength="8" required>
+
+            <input type="submit" id="submit" value="Sign In">
+        </form>
+
+        <div class="register">
+            <h2>Or Sign In with</h2>
+            <div class="icons">
+                <i>Google</i>
+                <i>Microsoft</i>
+                <i>Apple</i>
+            </div>
+            <p>Don’t have an account Sign up and Create ? <a href="./sign-up.html">Sign up</a></p>
+        </div>
+    </main>
+    <footer>
+        <p>@2023 RideAlong. All Rights Reserved</p>
+    </footer>
+</body>
+
+</html>
