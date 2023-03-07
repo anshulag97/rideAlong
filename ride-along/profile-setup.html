@@ -33,14 +33,15 @@
                 </ul>
             </nav>
 
-            <input type="submit" id="capture-btn" value="Capture">
-            <video id="cameraFeed" width="400" height="400" style="display: none;"></video>
-            <canvas id="captured-img" src="" alt="Captured Image" style="display: none;"></canvas>
+            <input type="submit" id="capture-btn" value="Start Camera">
+            <input type="submit" id="snap-btn" value="Snap">
+            <video id="cameraFeed" width="400" height="400" autoplay></video>
+            <canvas id="captured-img" src="" alt="Captured Image"></canvas>
 
             <form id="uploadForm" enctype="multipart/form-data" method="post"></form>
-              <input type="file" id="imageInput" accept="image/*">
-              <input type="submit" id="uploadPicture" value="Upload Picture" />
-            </form> 
+            <input type="file" id="imageInput" accept="image/*">
+            <input type="submit" id="uploadPicture" value="Upload Picture" />
+            </form>
         </div>
 
         <img src=""  id="putImage" alt="">

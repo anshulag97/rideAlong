@@ -19,10 +19,6 @@ var storage =  getStorage(app);
 
 //  console.log(storage);
 
-var captureBtn = document.getElementById("capture-btn");
-var capturedImg = document.getElementById("captured-img");
-const cameraFeed = document.getElementById('cameraFeed');
-
 const urlSearchParams = new URLSearchParams(window.location.search);
 const user_id = urlSearchParams.get('id');
 console.log(user_id);
@@ -48,27 +44,49 @@ querySnapshot.forEach((doc) => {
 }
 console.log(document_id);
 
-    captureBtn.addEventListener('click', (e) => {
-     e.preventDefault();
-      navigator.mediaDevices.getUserMedia({ video: true })
-        .then((stream) => {
-          cameraFeed.srcObject = stream;
-          cameraFeed.style.display = 'block';
-          console.log(cameraFeed)
-          capturedImg.style.display = 'block';
-        })
-        .catch((error) => {
-          console.error('Error accessing camera:', error);
-        });
-    });
+    // captureBtn.addEventListener('click', (e) => {
+    //  e.preventDefault();
+    //   navigator.mediaDevices.getUserMedia({ video: true })
+    //     .then((stream) => {
+    //       cameraFeed.srcObject = stream;
+    //       cameraFeed.style.display = 'block';
+    //       console.log(cameraFeed)
+    //       capturedImg.style.display = 'block';
+    //     })
+    //     .catch((error) => {
+    //       console.error('Error accessing camera:', error);
+    //     });
+    // });
   
-    cameraFeed.addEventListener('loadedmetadata', () => {
-    capturedImg.getContext('2d').drawImage(cameraFeed, 0, 0, capturedImg.width, capturedImg.height);
-    capturedImg.setAttribute('src', capturedImg.toDataURL());
-    console.log(capturedImg);
-      cameraFeed.style.display = 'none';
+    // cameraFeed.addEventListener('loadedmetadata', () => {
+    // capturedImg.getContext('2d').drawImage(cameraFeed, 0, 0, capturedImg.width, capturedImg.height);
+    // capturedImg.setAttribute('src', capturedImg.toDataURL());
+    // console.log(capturedImg);
+    //   cameraFeed.style.display = 'none';
+    // });
+    const capturedImg = document.getElementById("captured-img");
+    const cameraFeed = document.getElementById('cameraFeed');
+    const context = capturedImg.getContext('2d');
+    context.scale(0.5, 0.5);
+    document.getElementById("capture-btn").addEventListener("click", function () {
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: true })
+        .then( (stream) => {
+          cameraFeed.srcObject = stream;
+        }).catch( (error) => {
+            console.log("failed to get media stream", error);
+        });
+    
+      } else {
+        console.log("media devices not available in this browser");
+      }
     });
-
+    
+    // Trigger photo take
+    document.getElementById("snap-btn").addEventListener("click",  () => {
+      context.drawImage(cameraFeed, 0, 0);
+      document.getElementById("putImage").value = capturedImg.toDataURL();
+    });
     
     
 // UPLOAD IMAGE USING EXISTING IMAGE
