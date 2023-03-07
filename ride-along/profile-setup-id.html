@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Setup</title>
+    <link rel="stylesheet" href="./profile-setup.css">
+    <script type="module" src="./profile-setup-id.js" defer></script>
+</head>
+<body>
+    <header>
+        <i style="display: block; text-align: left;">Back</i>
+        <h1>Profile Setup : 3</h1>
+    </header>
+
+    <main>
+        <div class="wrapper">
+            <h2>ID Verification</h2>
+            <h3>Enter your name as it appers on your ID.</h3>
+
+            <input type="text" id="fname" placeholder="Enter your first name." required>
+
+            <input type="text" id="lname" placeholder="Enter your last name." required>
+
+
+            <h3>Upload a photo ID</h3>
+            <p>
+                Please upload a high quality photo of your passport/ driver’s licence or nation ID card.
+            </p>
+
+            <!-- <p>
+                Please follow these Guidelines :
+            </p>
+
+            <nav>
+                <ul>
+                    <li>Clearly show your face.</li>
+                    <li>No sunglasses.</li>
+                    <li>Nogroup image.</li>
+                </ul>
+            </nav> -->
+            <!-- <i>Photo Icon</i> -->
+
+            <input type="file" id="imageInput" accept="image/*">
+            <input type="submit" id="uploadPicture" value="Upload Picture" />
+           
+            
+            <a href="./profile-completed.html"><input type="submit" id="submit" value="Next"></a>
+
+        </div>
+
+    </main>
+    <footer>
+        <p>@2023 RideAlong. All Rights Reserved</p>
+    </footer>
+</body>
+  
+</html>

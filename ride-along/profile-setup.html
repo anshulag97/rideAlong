@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Setup</title>
+    <link rel="stylesheet" href="./profile-setup.css">
+    <script type ="module" src="./profile-setup.js" defer></script>
+</head>
+<body>
+    <header>
+        <i style="display: block; text-align: left;">Back</i>
+        <h1>Profile Setup : 2</h1>
+    </header>
+
+    <main>
+        <div class="wrapper">
+            <h2>Add a Profile Picture</h2>
+            <p>
+                Please add a picture for identification so other members can easily recognize you.
+            </p>
+
+            <p>
+                Please follow these Guidelines :
+            </p>
+
+            <nav>
+                <ul>
+                    <li>Clearly show your face.</li>
+                    <li>No sunglasses.</li>
+                    <li>Nogroup image.</li>
+                </ul>
+            </nav>
+
+            <input type="submit" id="capture-btn" value="Capture">
+            <video id="cameraFeed" width="400" height="400" style="display: none;"></video>
+            <canvas id="captured-img" src="" alt="Captured Image" style="display: none;"></canvas>
+
+            <form id="uploadForm" enctype="multipart/form-data" method="post"></form>
+              <input type="file" id="imageInput" accept="image/*">
+              <input type="submit" id="uploadPicture" value="Upload Picture" />
+            </form> 
+        </div>
+
+        <img src=""  id="putImage" alt="">
+
+    </main>
+    <footer>
+        <p>@2023 RideAlong. All Rights Reserved</p>
+    </footer>
+</body>
+</html>
