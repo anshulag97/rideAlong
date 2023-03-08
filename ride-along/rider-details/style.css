@@ -1,0 +1,507 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style-type: none;
+}
+
+/* ======= fixed header footer  ===========*/
+
+header{
+    background-color: rgb(22, 46, 172);
+    height: 48px;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    align-items: center;
+    padding: 0 20px;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    background-color: rgb(49, 48, 53);
+    color:white;
+    width: 100%;
+    height: 41px;
+    display: flex;
+    align-items: center;
+}
+
+footer p{
+    font-weight: 300;
+    margin-left: 8%;
+}
+
+#menu-button{
+    background-color: rgb(95, 105, 255);
+    height: 24px;
+    padding: 6px 10px 0 10px;
+    line-height: 0;
+    border-radius: 5px;
+    justify-self: end;
+    grid-column: 2/3;
+}
+
+#menu-button:hover{
+    background-color: rgb(203, 68, 82);
+}
+
+#menu-button i{
+    color:white;
+    font-size: 1.2rem;
+}
+
+#menu{
+    background-color: rgba(22, 47, 172, 0.539);
+    position: fixed;
+    top: 48px;
+    height: 100%;
+    right: -100%;
+    width: 50%;
+    transition: right 0.4s ease;
+    z-index: 98;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    backdrop-filter: blur(7px) brightness(90%);
+}
+
+#menu.visible {
+    right: 0;
+}
+
+#menu a{
+    color:white;
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+}
+
+#menu li{
+    display: block;
+    width: 100%;
+}
+
+#menu ul{
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+    align-items: center;
+}
+
+#menu ul li a:hover{
+    background-color: rgb(203, 68, 82);
+}
+
+.back-button i, .back-button span{
+    background-color: rgb(95, 105, 255);
+    height: 24px;
+    line-height: 1.5;
+    color:white;
+    font-size: 1.2rem;
+}
+
+.back-button i{
+    border-radius: 5px;
+    padding: 1px 5px 5px 5px;
+}
+
+.back-button span{
+    border-radius: 10px;
+    padding: 2px 25px 5px 25px;
+    font-weight: 500;
+}
+
+.back-button{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    justify-self: start;
+}
+
+.back-button:hover i,
+.back-button:hover span{
+    background-color: rgb(203, 68, 82);
+}
+
+/* =============== rider-page1 ==================*/
+.nonvisible {
+    display: none;
+}
+
+#rider-page1 div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+    padding: 10% 30px;
+}
+
+#findRidebutton, #offerRidebutton{
+    width: 300px;
+    height: 63px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 35px;
+    font-size: 20px;
+    background-color: rgb(95, 105, 255);
+    color:white;
+    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+}
+
+#findRidebutton:hover, #offerRidebutton:hover{
+    background-color: rgb(203, 68, 82);
+}
+
+.icon{
+    display: flex;
+    justify-content: center;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.icon p{
+    font-size: 20px;
+    margin: 20px 0 30px 0;
+}
+
+
+/* ================= rider-page2================ */
+#rider-page2{
+    margin: 35px 20px;
+}
+
+.from-to-search{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.from-to-search .inputbox{
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.from-to-search .inputbox input{
+    border: 1px solid black;
+    padding: 15px 20px;
+    width: 341px;
+}
+
+.from-to-search .inputbox input:first-of-type{
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.from-to-search .inputbox input:last-of-type{
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.dotDeco{
+    display: flex;
+    flex-flow: column nowrap;
+    margin-right: 5px;
+}
+
+.dotDeco span{
+    transform: rotate(-90deg);
+    color:grey;
+}
+
+.dotDeco i{
+    margin-left: 18px;
+    margin-top: 8px;
+}
+
+.dotDeco p{
+    margin-left: 20px;
+    margin-top: 15px;
+}
+
+.quick-location{
+    margin-left: 50px;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 0.8rem;
+}
+
+.quick-location div{
+    display: flex;
+    gap: 1rem;
+}
+
+.quick-location i{
+    color: rgb(203, 68, 82);
+    flex-basis: 20px;
+}
+
+.divident-line{
+    width: 250px;
+    border-top: solid black 1px;
+    margin: 20px 0 20px 45px;
+}
+
+.ride-schedule{
+    margin: 20px 0 20px 50px;
+}
+
+.ride-schedule label{
+    display: block;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.ride-schedule input{
+    height: 56px;
+    background-color: rgb(225, 225, 225);
+    border: 1px gray solid;
+    border-radius: 10px;
+}
+
+.ride-schedule input:first-of-type{
+    width: 183px;
+}
+
+.ride-schedule input:last-of-type{
+    width: 148px;
+    margin-left: 20px;
+}
+
+.trip-preferences{
+    background-color: rgb(225, 225, 225);
+    margin: 20px 45px 20px 45px;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+#rider-page2 h3{
+    margin-left: 45px;
+    font-weight: normal;
+}
+
+.minus-btn,
+.plus-btn {
+    background-color: white;
+    border-radius: 50%;
+    border: none;
+    width: 20px;
+    height: 20px;
+    font-size: 1rem;
+}
+
+.numPassenger,
+.rider-lugguage {
+    margin-bottom: 30px;
+}
+
+#passenger-number {
+    background-color: rgba(255, 255, 255, 0);
+    border:none;
+    text-align: center;
+    margin-left: 15px;
+}
+
+#rider-post-ride-submit {
+    width: 360px;
+    height: 62px;
+    border: none;
+    padding: 10px 0;
+    font-size: 1.6rem;
+    border-radius: 10px;
+    background-color: rgb(95, 105, 255);
+    color: white;
+    margin: 20px 10%;
+}
+
+.rider-pets{
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+}
+
+.rider-pets button{
+    width: 100px;
+    height: 32px;
+    margin-left: 5px;
+    border: none;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.lugguage-icon{
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 10px;
+}
+
+.lugguage-icon span{
+    font-size: 1vw;
+    font-weight: 300;
+}
+
+.lugguage-icon button{
+    background-color: white;
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+}
+
+.lugguage-icon button:hover,
+.rider-pets button:hover{
+    background-color: rgb(203, 68, 82);
+}
+
+.large-luggage i{
+    font-size: 1.5rem;
+}
+
+.medium-luggage i{
+    font-size: 1.2rem;
+}
+
+.small-luggage i{
+    font-size: 0.8rem;
+}
+
+.numPassenger{
+    display: flex;
+    justify-content: space-between;
+}
+
+/* ================= rider-page3================ */
+#rider-page3{
+    margin: 20px 5%;
+}
+
+.sort-by{
+    background-color: rgb(225, 225, 225);
+    border-radius: 10px;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.sort-by button{
+    background-color: rgb(146, 146, 146);
+    padding: 5px 25px;
+    color:white;
+    border: none;
+    border-radius: 10px;
+}
+
+.sort-by button:hover{
+    background-color: rgb(203, 68, 82);
+}
+
+#map{
+    width: 100%;
+    height: 300px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;    
+    margin: 20px 0;
+}
+
+.rating span{
+    font-size: 24px;
+    color: rgb(146, 146, 146);
+}
+  
+span.checked {
+    color: rgb(203, 68, 82);
+}
+
+.driver-info img{
+    max-width: 50px;
+    max-height: auto;
+    border-radius: 50%;
+    border:2px solid black;
+}
+
+.driver-info{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    padding: 10px;
+    align-items: center;
+    border-bottom: 1px dashed black;
+}
+
+.driver-info .rating{
+    grid-column: 4/6;
+    justify-self: end;
+}
+
+.available-driver-cards{
+    background-color: rgb(225, 225, 225);
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+    margin-bottom: 40px;
+}
+
+.available-driver-cards:last-of-type{
+    margin-bottom: 80px;
+}
+
+.ride-info{
+    padding: 10px;
+}
+
+.rider-info-time,
+.rider-info-car-fee{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+}
+
+.rider-info-time p{
+    grid-column: 1/3;
+}
+
+.rider-info-time i{
+    grid-column: 6/7;
+}
+
+#ride-fee{
+    font-size: 1.5rem;
+    grid-column: 6/7;
+}
+
+.rider-info-car-fee i{
+    justify-self: center;
+}
+
+.from-to-info{
+    margin: 10px;
+    display: flex;
+}
+
+.from-to-info .dotDeco p,
+.from-to-info .dotDeco i{
+    margin: 0;
+}
+
+.from-to-info  .dotDeco{
+    display: none;
+}
+
+.rider-info-route p{
+    margin:10px 0;
+}
+

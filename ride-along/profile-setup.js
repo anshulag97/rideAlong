@@ -44,26 +44,6 @@ querySnapshot.forEach((doc) => {
 }
 console.log(document_id);
 
-    // captureBtn.addEventListener('click', (e) => {
-    //  e.preventDefault();
-    //   navigator.mediaDevices.getUserMedia({ video: true })
-    //     .then((stream) => {
-    //       cameraFeed.srcObject = stream;
-    //       cameraFeed.style.display = 'block';
-    //       console.log(cameraFeed)
-    //       capturedImg.style.display = 'block';
-    //     })
-    //     .catch((error) => {
-    //       console.error('Error accessing camera:', error);
-    //     });
-    // });
-  
-    // cameraFeed.addEventListener('loadedmetadata', () => {
-    // capturedImg.getContext('2d').drawImage(cameraFeed, 0, 0, capturedImg.width, capturedImg.height);
-    // capturedImg.setAttribute('src', capturedImg.toDataURL());
-    // console.log(capturedImg);
-    //   cameraFeed.style.display = 'none';
-    // });
     const capturedImg = document.getElementById("captured-img");
     const cameraFeed = document.getElementById('cameraFeed');
     const context = capturedImg.getContext('2d');
@@ -88,7 +68,7 @@ console.log(document_id);
       document.getElementById("putImage").value = capturedImg.toDataURL();
     });
     
-    
+
 // UPLOAD IMAGE USING EXISTING IMAGE
 const imageInput = document.getElementById('imageInput');
 const upload = document.getElementById('uploadPicture');

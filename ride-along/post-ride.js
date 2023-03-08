@@ -21,8 +21,6 @@ const urlSearchParams = new URLSearchParams(window.location.search);
 const document_id = urlSearchParams.get('doc-id');
 
 
-
-
 // adjust the number of luggage
 const plusBtn1 = document.getElementById("plus_btn1");
 const minusBtn1 = document.querySelector("#minus_btn1");
@@ -56,22 +54,6 @@ minusBtn2.addEventListener("click", () => {
     }
 });
 
-// console.log(userCredential);
-// const querySnapshot = await getDocs(collection(db, 'users'));
-// console.log(user_id);
-// querySnapshot.forEach((doc) => {
-//   // doc.data() is never undefined for query doc snapshots
-//   console.log(doc.id, " => ", doc.data());
-
-
-//   if(doc.data().uid === user_id){
-//     document_id = doc.id.toString();
-//   }
-
-// });
-
-//console.log(document_id);
-
 submit.addEventListener('click',async(e)=>{
 e.preventDefault();
 const origin = document.getElementById('origin').value;
@@ -87,10 +69,8 @@ const price = document.getElementById('price').value;
 const description = document.getElementById('description').value;
 
 try {
-  let count = 1;
   await setDoc(doc(db, "driver-details", document_id), {
     
-    trip_posted: {
       trip_details: {
         origin_detail: origin,
         destination_detail: destination,
@@ -102,29 +82,12 @@ try {
         price: price,
         description: description
     }
-  }
   }, {
     merge: true
   });
     console.log("Document successfully updated!");
-    count++;
-  } catch (error) {
+   } catch (error) {
     console.error("Error updating document: ", error);
   }
 });
-
-//console.log(setDoc(doc(db,"driver-details", document_id)));
-//await setDoc(doc(db,"driver-details", document_id),{
-       // origin_detail: origin,
-       // destination_detail: destination,
-        //date: date,
-        //time: time,
-        //luggage: luggage,
-       // passengers: passengers,
-        //pet: pet,
-        //price: price,
-       // description: descriptions
-//},{
-  //  merge: true
-//})
 
