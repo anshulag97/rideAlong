@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;800&display=swap" rel="stylesheet">
-    <script src="action.js" defer></script>
+    <script type="module" src="action.js" defer></script>
     <link rel="stylesheet" href="style.css">
 
 
@@ -38,31 +38,6 @@
             <span>Available</span>
         </a>
 
-        <a href="#rider-page3" id="back-button3" class="back-button visually-hidden">
-            <i class="fa-solid fa-left-long"></i>
-            <span>Driver Info</span>
-        </a>
-
-        <a href="#rider-page4" id="back-button4" class="back-button visually-hidden">
-            <i class="fa-solid fa-left-long"></i>
-            <span>Requested</span>
-        </a>
-
-        <a href="#rider-page5" id="back-button5" class="back-button visually-hidden">
-            <i class="fa-solid fa-left-long"></i>
-            <span>Trip Details</span>
-        </a>
-
-        <a href="#rider-page6" id="back-button6" class="back-button visually-hidden">
-            <i class="fa-solid fa-left-long"></i>
-            <span>Ride</span>
-        </a>
-
-        <a href="#rider-page7" id="back-button7" class="back-button visually-hidden">
-            <i class="fa-solid fa-left-long"></i>
-            <span>Ratings</span>
-        </a>
-
         <a href="#menu" id="menu-button">
             <i class="fa-solid fa-bars"></i>
             <span class="visually-hidden">Menu</span>
@@ -73,7 +48,7 @@
         <ul>
             <li><a href="#">USERNAME</a></li>
             <li><a href="#">TRIPS</a></li>
-            <li><a href="#">REQUEST</a></li>
+            <li id="request-page"><a>REQUEST</a></li>
             <li><a href="#">MESSAGES</a></li>
             <li><a href="#">SAFETY</a></li>
             <li><a href="#">CONTACT US</a></li>
@@ -160,6 +135,9 @@
 
     <div class="page nonvisible" id="rider-page3">
 
+
+
+
         <div class="sort-by">
             <span>Sort by:</span>
             <button id="sort-by-price">Price</button>
@@ -168,7 +146,10 @@
 
         <div id='map' class='map'></div>
 
-        <div class="available-driver-cards">
+        <div id="available" class="available-driver-cards">
+
+        </div>
+        <!-- <div class="available-driver-cards">
             <div class="driver-info">
                 <img src="https://www.seekpng.com/png/full/356-3562377_personal-user.png"
                     alt="portrait photo of the driver">
@@ -193,9 +174,9 @@
                 </div>
                 <button class="requestRide">Request</button>
             </div>
-        </div>
+        </div> -->
 
-        <div class="available-driver-cards">
+        <!-- <div class="available-driver-cards">
             <div class="driver-info">
                 <img src="https://www.seekpng.com/png/full/356-3562377_personal-user.png"
                     alt="portrait photo of the driver">
@@ -220,7 +201,7 @@
                 </div>
                 <button class="requestRide">Request</button>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <div class="page nonvisible" id="rider-page4">

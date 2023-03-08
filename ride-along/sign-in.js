@@ -1,5 +1,5 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
 import { collection, addDoc, getFirestore, getDocs } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js"
 const firebaseConfig = {
   apiKey: "AIzaSyA0l9LZ3lYZWsSyPFTsxRACc2ltACy2hsI",
@@ -48,7 +48,7 @@ submit.addEventListener('click', (event) => {
             }
           });
 
-          if (document_id == "") {
+          if (document_id == "" || document_id == null) {
             querySnapshot = await getDocs(collection(db, 'rider-details'));
             console.log(user_id);
             querySnapshot.forEach((doc) => {
@@ -59,7 +59,8 @@ submit.addEventListener('click', (event) => {
             });
           }
         }
-        window.location.href = `./post-ride.html?doc-id=${document_id}`;
+        console.log("document id",document_id);
+        window.location.href = `./rider-details/index.html?doc-id=${document_id}`;
       })
       .catch((error) => {
         const errorMessageText = error.message;
