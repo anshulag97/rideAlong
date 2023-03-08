@@ -19,6 +19,11 @@ const endRide = document.getElementById("endRide");
 const endrideSubmit = document.getElementById("endrideSubmit");
 const backButton1 = document.getElementById("back-button1");
 const backButton2 = document.getElementById("back-button2");
+const backButton3 = document.getElementById("back-button3");
+const backButton4 = document.getElementById("back-button4");
+const backButton5 = document.getElementById("back-button5");
+const backButton6 = document.getElementById("back-button6");
+const backButton7 = document.getElementById("back-button7");
 const riderPage1 = document.getElementById("rider-page1");
 const riderPage2 = document.getElementById("rider-page2");
 const riderPage3 = document.getElementById("rider-page3");
@@ -44,27 +49,38 @@ findrideButton.addEventListener("click", function () {
 requestRide.addEventListener("click", function () {
     riderPage3.classList.add("nonvisible");
     riderPage4.classList.remove("nonvisible");
+    backButton2.classList.add("visually-hidden");
+    backButton3.classList.remove("visually-hidden");
 });
 requestRide2.addEventListener("click", function () {
     riderPage4.classList.add("nonvisible");
     riderPage5.classList.remove("nonvisible");
+    backButton3.classList.add("visually-hidden");
+    backButton4.classList.remove("visually-hidden");
 });
 startRide1.addEventListener("click", function () {
     riderPage5.classList.add("nonvisible");
     riderPage6.classList.remove("nonvisible");
+    backButton4.classList.add("visually-hidden");
+    backButton5.classList.remove("visually-hidden");
 });
 startRide2.addEventListener("click", function () {
     riderPage6.classList.add("nonvisible");
     riderPage7.classList.remove("nonvisible");
+    backButton5.classList.add("visually-hidden");
+    backButton6.classList.remove("visually-hidden");
     initMap();
 });
 endRide.addEventListener("click", function () {
     riderPage7.classList.add("nonvisible");
     riderPage8.classList.remove("nonvisible");
+    backButton6.classList.add("visually-hidden");
+    backButton7.classList.remove("visually-hidden");
 });
 endrideSubmit.addEventListener("click", function () {
     riderPage8.classList.add("nonvisible");
     riderPage1.classList.remove("nonvisible");
+    backButton7.classList.add("visually-hidden");
 });
 
 backButton1.addEventListener("click", function () {
@@ -77,6 +93,36 @@ backButton2.addEventListener("click", function () {
     riderPage2.classList.remove("nonvisible");
     backButton2.classList.add("visually-hidden");
     backButton1.classList.remove("visually-hidden");
+});
+backButton3.addEventListener("click", function () {
+    riderPage4.classList.add("nonvisible");
+    riderPage3.classList.remove("nonvisible");
+    backButton3.classList.add("visually-hidden");
+    backButton2.classList.remove("visually-hidden");
+});
+backButton4.addEventListener("click", function () {
+    riderPage5.classList.add("nonvisible");
+    riderPage4.classList.remove("nonvisible");
+    backButton4.classList.add("visually-hidden");
+    backButton3.classList.remove("visually-hidden");
+});
+backButton5.addEventListener("click", function () {
+    riderPage6.classList.add("nonvisible");
+    riderPage5.classList.remove("nonvisible");
+    backButton5.classList.add("visually-hidden");
+    backButton4.classList.remove("visually-hidden");
+});
+backButton6.addEventListener("click", function () {
+    riderPage7.classList.add("nonvisible");
+    riderPage6.classList.remove("nonvisible");
+    backButton6.classList.add("visually-hidden");
+    backButton5.classList.remove("visually-hidden");
+});
+backButton7.addEventListener("click", function () {
+    riderPage8.classList.add("nonvisible");
+    riderPage7.classList.remove("nonvisible");
+    backButton7.classList.add("visually-hidden");
+    backButton6.classList.remove("visually-hidden");
 });
 
 
