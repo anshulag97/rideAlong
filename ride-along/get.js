@@ -18,7 +18,7 @@ const db = getFirestore(app);
 var storage =  getStorage(app);
 const link= "";
 
-const storageRef = ref(storage , 'images/zZdXEJ49id4fyeYbGHe2image.png');
+const storageRef = ref(storage , 'images/klJjwnJ9QBYPhm8lkQNTimage.png');
 // console.log(storageRef);
 const image = document.getElementById('image');
 console.log("hell")
