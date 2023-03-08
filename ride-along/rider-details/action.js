@@ -11,7 +11,7 @@ menuButton.addEventListener('click', function () {
 const findRide = document.getElementById("findRidebutton");
 const offerRideButton = document.getElementById("offerRidebutton");
 const findrideButton = document.getElementById("rider-post-ride-submit");
-const requestRide = document.getElementById("requestRide");
+const requestRide = document.querySelector(".requestRide");
 const requestRide2 = document.getElementById("requestRide2");
 const startRide1 = document.getElementById("startRide1");
 const startRide2 = document.getElementById("startRide2");
