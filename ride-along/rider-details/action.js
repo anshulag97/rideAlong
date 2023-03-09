@@ -273,20 +273,19 @@ async function submitRideRequest() {
       div.classList.add("driver-details");
       const availableDriver = document.getElementById('available');
 
-      div.innerHTML = `<br><br><br>
-
-      <p>Driver Name: ${tempArr[i].name}</p>
-        <p>Origin: ${tempArr[i].trip_details.origin_detail}</p>
-        <p>Destination: ${tempArr[i].trip_details.destination_detail}</p>
-        <p>Date: ${tempArr[i].trip_details.date}</p>
-        <p>Time: ${tempArr[i].trip_details.time}</p>
-        <p>Luggage: ${tempArr[i].trip_details.luggage}</p>
-        <p>Passengers: ${tempArr[i].trip_details.passengers}</p>
-        <p>Pet: ${tempArr[i].trip_details.pet}</p>
-        <p>Price: ${tempArr[i].trip_details.price}</p>
-        <p>Description: ${tempArr[i].trip_details.description}</p>
-        <input type="submit" id="request-driver-${i}" value="Request to Book">
-      `;
+      div.innerHTML = `<ul>
+        <li>Driver Name: <span>${tempArr[i].name}</span></li>
+        <li>Origin: <span>${tempArr[i].trip_details.origin_detail}</span></li>
+        <li>Destination: <span>${tempArr[i].trip_details.destination_detail}</span></li>
+        <li>Date: <span>${tempArr[i].trip_details.date}</span></li>
+        <li>Time: <span>${tempArr[i].trip_details.time}</span></li>
+        <li>Luggage: <span>${tempArr[i].trip_details.luggage}</span></li>
+        <li>Passengers: <span>${tempArr[i].trip_details.passengers}</span></li>
+        <li>Pet: <span>${tempArr[i].trip_details.pet}</span></li>
+        <li>Price: <span>${tempArr[i].trip_details.price}</span></li>
+        <li>Description: <span>${tempArr[i].trip_details.description}</span></li>
+        </ul>
+        <input type="submit" id="request-driver-${i}" value="Request to Book">`;
        availableDriver.appendChild(div);
 
        const requestDriver = document.getElementById(`request-driver-${i}`);
