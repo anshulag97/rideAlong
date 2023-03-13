@@ -65,7 +65,8 @@ const riderPage8 = document.getElementById("rider-page8");
 
 const requestPage = document.getElementById('request-page');
 
-requestPage.addEventListener('click',()=>{
+requestPage.addEventListener('click',(e)=>{
+    e.preventDefault();
     window.location.href = `../request.html?doc-id=${document_id}`;
 })
 
@@ -273,26 +274,57 @@ async function submitRideRequest() {
       div.classList.add("driver-details");
       const availableDriver = document.getElementById('available');
 
-      div.innerHTML = `<ul>
-        <li>Driver Name: <span>${tempArr[i].name}</span></li>
-        <li>Origin: <span>${tempArr[i].trip_details.origin_detail}</span></li>
-        <li>Destination: <span>${tempArr[i].trip_details.destination_detail}</span></li>
-        <li>Date: <span>${tempArr[i].trip_details.date}</span></li>
-        <li>Time: <span>${tempArr[i].trip_details.time}</span></li>
-        <li>Luggage: <span>${tempArr[i].trip_details.luggage}</span></li>
-        <li>Passengers: <span>${tempArr[i].trip_details.passengers}</span></li>
-        <li>Pet: <span>${tempArr[i].trip_details.pet}</span></li>
-        <li>Price: <span>${tempArr[i].trip_details.price}</span></li>
-        <li>Description: <span>${tempArr[i].trip_details.description}</span></li>
-        </ul>
-        <input type="submit" id="request-driver-${i}" value="Request to Book">`;
+
+      const docRider = doc(db, "rider-details", document_id);
+      const docSnapRider = await getDoc(docRider);
+      const dataRider = docSnapRider.data();
+      const requestDriver = [];
+
+      if(dataRider.trip_details.requested_driver === tempArr[i].email){
+
+        console.log("Already Requested to ", tempArr[i].name);
+        div.innerHTML = `<br><br><br>
+
+        <p>Driver Name: ${tempArr[i].name}</p>
+        <p>Origin: ${tempArr[i].trip_details.origin_detail}</p>
+        <p>Destination: ${tempArr[i].trip_details.destination_detail}</p>
+        <p>Date: ${tempArr[i].trip_details.date}</p>
+        <p>Time: ${tempArr[i].trip_details.time}</p>
+        <p>Luggage: ${tempArr[i].trip_details.luggage}</p>
+        <p>Passengers: ${tempArr[i].trip_details.passengers}</p>
+        <p>Pet: ${tempArr[i].trip_details.pet}</p>
+        <p>Price: ${tempArr[i].trip_details.price}</p>
+        <p>Description: ${tempArr[i].trip_details.description}</p>
+        <input type="submit" id="request-driver-${i}" value="Already Requested" disabled>
+        <p> Go to Requests page to see the status </p>
+      `;
        availableDriver.appendChild(div);
 
-       const requestDriver = document.getElementById(`request-driver-${i}`);
+      }
+      else{
 
-    requestDriver.addEventListener('click',async (e)=>{
+      div.innerHTML = `<br><br><br>
 
-        e.preventDefault();
+        <p>Driver Name: ${tempArr[i].name}</p>
+        <p>Origin: ${tempArr[i].trip_details.origin_detail}</p>
+        <p>Destination: ${tempArr[i].trip_details.destination_detail}</p>
+        <p>Date: ${tempArr[i].trip_details.date}</p>
+        <p>Time: ${tempArr[i].trip_details.time}</p>
+        <p>Luggage: ${tempArr[i].trip_details.luggage}</p>
+        <p>Passengers: ${tempArr[i].trip_details.passengers}</p>
+        <p>Pet: ${tempArr[i].trip_details.pet}</p>
+        <p>Price: ${tempArr[i].trip_details.price}</p>
+        <p>Description: ${tempArr[i].trip_details.description}</p>
+        <input type="submit" id="request-driver-${i}" value="Request to Book">
+      `;
+       availableDriver.appendChild(div);
+      }
+       requestDriver[i] = document.getElementById(`request-driver-${i}`);
+       console.log(requestDriver);
+    requestDriver[i].addEventListener('click',async (e)=>{
+
+        console.log(requestDriver);
+        //  e.preventDefault();
         console.log("Request Clicked");
 
         console.log(tempArr[i].email);
@@ -311,7 +343,9 @@ async function submitRideRequest() {
             }, {
               merge: true
             });
+            alert("Request Sent !")
               console.log("Document successfully updated!");
+              window.location.reload();
              } catch (error) {
               console.error("Error updating document: ", error);
             }

@@ -453,42 +453,6 @@ span.checked {
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
     margin-bottom: 40px;
-    padding: 20px;
-}
-
-.available-driver-cards ul li{
-    border-bottom: 1px rgb(60, 60, 60) dashed;
-    color: rgb(95, 105, 255);
-}
-
-.available-driver-cards ul li:last-of-type{
-    border-bottom: none;
-}
-
-.available-driver-cards ul li span{
-    font-size: 1.2rem;
-    color: rgb(60, 60, 60);
-}
-
-.available-driver-cards {
-    text-align: center;
-}
-
-.available-driver-cards ul{
-    text-align: left;
-}
-  
-.available-driver-cards input{
-    display: inline-block;
-    margin: 10px auto;
-    width: 360px;
-    height: 62px;
-    border: none;
-    padding: 10px 0;
-    font-size: 1.6rem;
-    border-radius: 10px;
-    background-color: rgb(95, 105, 255);
-    color: white;
 }
 
 .available-driver-cards:last-of-type{
