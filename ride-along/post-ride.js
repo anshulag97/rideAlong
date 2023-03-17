@@ -85,6 +85,7 @@ try {
   }, {
     merge: true
   });
+  alert("Ride Posted Successfully !");
     console.log("Document successfully updated!");
    } catch (error) {
     console.error("Error updating document: ", error);
