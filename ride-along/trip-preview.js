@@ -30,29 +30,6 @@ const docDriver = doc(db, "driver-details", document_id);
 const docSnapDriver = await getDoc(docDriver);
 const dataDriver = docSnapDriver.data();
 
-// let querySnapshot = await getDocs(collection(db, 'rider-details'));
-
-// // console.log(user_id);
-// querySnapshot.forEach((doc) => {
-
-//   //   console.log(doc.data().trip_posted.trip_details);
-//   if (doc.data().trip_details == undefined) {
-//     console.log("No trip Details")
-//   }
-//   else {
-//     console.log("in Else");
-//     console.log(doc.data().trip_details.requested_driver);
-
-//     if(doc.data().trip_details.requested_driver === dataDriver.email &&
-//     doc.data().trip_details.ride_approved == "true" ){
-
-//       console.log("true for ",doc.data().name);
-//       rider_id = doc.id;
-
-//     }
-//     }
-//   });
-
 const docRider = doc(db, "rider-details", rider_id);
 const docSnapRider = await getDoc(docRider);
 const dataRider = docSnapRider.data();
