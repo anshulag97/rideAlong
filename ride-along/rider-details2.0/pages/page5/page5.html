@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- fontawesome & google font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;800&display=swap" rel="stylesheet">
+
+
+    <!-- tomtom -->
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/maps/maps-web.min.js"></script>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/services/services-web.min.js"></script>
+    <link rel="stylesheet" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/maps/maps.css">
+
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+
+    <!-- css&js -->
+    <link rel="stylesheet" href="/ride-along/rider-details2.0/pages/globalstyle.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="action.js" defer></script>
+    <script src="/ride-along/rider-details2.0/pages/globalaction.js" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <a href="#rider-page1" id="back-button" class="back-button">
+            <i class="fa-solid fa-left-long"></i>
+            <span>Requested</span>
+        </a>
+
+        <a href="#menu" id="menu-button">
+            <i class="fa-solid fa-bars"></i>
+            <span class="visually-hidden">Menu</span>
+        </a>
+    </header>
+
+    <nav id="menu">
+        <ul>
+            <li><a href="#">USERNAME</a></li>
+            <li><a href="#">TRIPS</a></li>
+            <li><a href="#">REQUEST</a></li>
+            <li><a href="#">MESSAGES</a></li>
+            <li><a href="#">SAFETY</a></li>
+            <li><a href="#">CONTACT US</a></li>
+        </ul>
+    </nav>
+    <div id="rider-page5">
+        <div class="available-driver-cards">
+            <div class="ride-time">Feb 21, 2023 at 9:00PM</div>
+            <div class="from-to-search">
+                <div class="dotDeco">
+                    <p>•</p><span>..........</span><i class="fa-sharp fa-solid fa-location-dot"></i>
+                </div>
+                <div class="inputbox">
+                    <input type="text" name="text" id="fromlocation" placeholder="Enter the start location">
+                    <input type="text" name="text" id="tolocation" placeholder="Enter the destination">
+                </div>
+            </div>
+            <div class="driver-info">
+                <img src="https://www.seekpng.com/png/full/356-3562377_personal-user.png"
+                    alt="portrait photo of the driver">
+                <p id="driver-name">Driver 2</p>
+                <div class="driver-profile">Profile</div>
+                <div class="driver-review">Review</div>
+            </div>
+            <button id="startRide1"><a href="/pages/page6/page6.html">Start Ride</a></button>
+        </div>
+    </div>
+    <footer>
+        <p> &copy; 2023 RideAlong. All Right Reserved</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- fontawesome & google font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;800&display=swap" rel="stylesheet">
+
+
+    <!-- tomtom -->
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/maps/maps-web.min.js"></script>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/services/services-web.min.js"></script>
+    <link rel="stylesheet" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/maps/maps.css">
+
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+
+    <!-- css&js -->
+    <link rel="stylesheet" href="/ride-along/rider-details2.0/pages/globalstyle.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="action.js" defer></script>
+    <script src="/ride-along/rider-details2.0/pages/globalaction.js" defer></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <a href="#rider-page1" id="back-button" class="back-button">
+            <i class="fa-solid fa-left-long"></i>
+            <span>Find a ride</span>
+        </a>
+
+        <a href="#menu" id="menu-button">
+            <i class="fa-solid fa-bars"></i>
+            <span class="visually-hidden">Menu</span>
+        </a>
+    </header>
+
+    <nav id="menu">
+        <ul>
+            <li><a href="#">USERNAME</a></li>
+            <li><a href="#">TRIPS</a></li>
+            <li><a href="#">REQUEST</a></li>
+            <li><a href="#">MESSAGES</a></li>
+            <li><a href="#">SAFETY</a></li>
+            <li><a href="#">CONTACT US</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="page" id="rider-page2">
+            <div class="rider-box">
+                <div class="from-to-search">
+                    <div class="dotDeco">
+                        <p>•</p><span>..........</span><i class="fa-sharp fa-solid fa-location-dot"></i>
+                    </div>
+                    <div class="inputbox" style="position: relative;">
+                        <div class="inputs-wrapper">
+                            <input type="text" name="text" id="fromlocation" placeholder="Enter the start location">
+                            <input type="text" name="text" id="tolocation" placeholder="Enter the destination">
+                        </div>
+                        <div id="fromlocation-suggestions" class="location-suggestions"></div>
+                        <div id="tolocation-suggestions" class="location-suggestions"></div>
+                        <button id="switch-button" class="switch-button">
+                            <img src="/ride-along/rider-details2.0/icon/Group 1509-gray.svg" alt="Switch locations" />
+                        </button>
+                    </div>
+                </div>
+
+                <div id='map' class='map' style="height: 400px; width: 100%;"></div>
+
+                <div class="divident-line"></div>
+
+                <div class="ride-schedule">
+                    <label for="date">Ride Schedule</label>
+                    <input type="date" id="date" name="date">
+                    <input type="time" id="time" name="time">
+                </div>
+
+                <div class="divident-line"></div>
+
+                <h3>Trip Preferences</h3>
+                <div class="trip-preferences">
+                    <div class="numLuggage">
+                        <label for="luggage-number">No. of luggage</label>
+                        <div class="input-group">
+                            <button type="button" class="minus-btn1">-</button>
+                            <input type="number" id="luggage-number" name="luggage-number" min="0" max="100" value="0">
+                            <button type="button" class="plus-btn1">+</button>
+                        </div>
+                    </div>
+                    <div class="numPassenger">
+                        <label for="passenger-number">No. of passengers</label>
+                        <div class="input-group">
+                            <button type="button" class="minus-btn2">-</button>
+                            <input type="number" id="passenger-number" name="passenger-number" min="1" max="100"
+                                value="1">
+                            <button type="button" class="plus-btn2">+</button>
+                        </div>
+                    </div>
+                    <div class="rider-pets">
+                        <label for="pets">Pets</label>
+                        <input type="checkbox" id="pets" name="pets">
+                    </div>
+                </div>
+
+                <div class="rider-post-ride-submit">
+                    <button id="rider-post-ride-submit">Find a ride</button>
+                </div>
+                <a href="/icon/flag-checkered-solid.svg"></a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p> &copy; 2023 RideAlong. All Right Reserved</p>
+    </footer>
+</body>
+
+</html>

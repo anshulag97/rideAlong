@@ -1,0 +1,36 @@
+#rider-page1 div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+    padding: 10% 30px;
+}
+
+#findRidebutton, #offerRidebutton{
+    width: 300px;
+    height: 63px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 35px;
+    font-size: 20px;
+    background-color: rgb(95, 105, 255);
+    color:white;
+    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+}
+
+#findRidebutton:hover, #offerRidebutton:hover{
+    background-color: rgb(203, 68, 82);
+}
+
+.icon{
+    display: flex;
+    justify-content: center;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.icon p{
+    font-size: 20px;
+    margin: 20px 0 30px 0;
+}
+

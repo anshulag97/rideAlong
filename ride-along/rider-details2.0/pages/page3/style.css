@@ -1,0 +1,112 @@
+#rider-page3{
+    margin: 20px 5%;
+}
+
+.sort-by{
+    background-color: rgb(225, 225, 225);
+    border-radius: 10px;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.sort-by button{
+    background-color: rgb(146, 146, 146);
+    padding: 5px 25px;
+    color:white;
+    border: none;
+    border-radius: 10px;
+}
+
+.sort-by button:hover{
+    background-color: rgb(203, 68, 82);
+}
+
+.rating span{
+    font-size: 24px;
+    color: rgb(146, 146, 146);
+}
+  
+span.checked {
+    color: rgb(203, 68, 82);
+}
+
+.driver-info img{
+    max-width: 50px;
+    max-height: auto;
+    border-radius: 50%;
+    border:2px solid black;
+}
+
+.driver-info{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    padding: 10px;
+    align-items: center;
+    border-bottom: 1px dashed black;
+}
+
+.driver-info .rating{
+    grid-column: 4/6;
+    justify-self: end;
+}
+
+.available-driver-cards{
+    background-color: rgb(225, 225, 225);
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+    margin-bottom: 40px;
+}
+
+.available-driver-cards:last-of-type{
+    margin-bottom: 80px;
+}
+
+.ride-info{
+    padding: 10px;
+}
+
+.rider-info-time,
+.rider-info-car-fee{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+}
+
+.rider-info-time p{
+    grid-column: 1/3;
+}
+
+.rider-info-time i{
+    grid-column: 6/7;
+}
+
+#ride-fee{
+    font-size: 1.5rem;
+    grid-column: 6/7;
+}
+
+.rider-info-car-fee i{
+    justify-self: center;
+}
+
+.from-to-info{
+    margin: 10px;
+    display: flex;
+}
+
+.from-to-info .dotDeco p,
+.from-to-info .dotDeco i{
+    margin: 0;
+}
+
+.from-to-info  .dotDeco{
+    display: none;
+}
+
+.rider-info-route p{
+    margin:10px 0;
+}
+
