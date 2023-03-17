@@ -1,5 +1,9 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+<<<<<<< HEAD
 import { getStorage, uploadBytes } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-storage.js";
+=======
+import { getStorage, uploadBytes, getMetadata, ref , getDownloadURL } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-storage.js";
+>>>>>>> c15eb2eb851d9c657e2fff2af8a1ebb749f82ca3
 import { getFirestore, getDoc, getDocs, setDoc, collection, doc, addDoc, query, where } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js"
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
 
@@ -34,6 +38,11 @@ let email_temp;
 let tempArr = [];
 let docArr = [];
 let rider_id = [];
+<<<<<<< HEAD
+=======
+let imageArr = [];
+var link= "";
+>>>>>>> c15eb2eb851d9c657e2fff2af8a1ebb749f82ca3
 const acceptButton = [];
 const declineButton = [];
 let querySnapshot = await getDocs(collection(db, 'rider-details'));
@@ -55,6 +64,10 @@ querySnapshot.forEach((doc) => {
       console.log(doc.data().trip_details);
       tempArr.push(doc.data());
       docArr.push(doc.id);
+<<<<<<< HEAD
+=======
+      imageArr.push(doc.id);
+>>>>>>> c15eb2eb851d9c657e2fff2af8a1ebb749f82ca3
     }
   }
 
@@ -72,10 +85,42 @@ for (let i = 0; i < tempArr.length; i++) {
 
   console.log(tempArr[i]);
 
+<<<<<<< HEAD
+=======
+  const path = `images/${imageArr[i]}image.png`;
+      console.log(path);
+      const storageRef = ref(storage , path);
+      console.log(storageRef);
+
+    getDownloadURL(storageRef)
+    .then((url) => {
+        console.log(url);
+        getMetadata(storageRef)
+        .then((metadata) => {
+            const data = JSON.parse(metadata.customMetadata.metadata);
+            link = data.link;
+       console.log(link);
+       const image = document.getElementById(`image-${i}`);     
+       image.setAttribute('src' , link);
+    })
+  .catch((error) => {
+    console.log("Uh-oh, an error occurred!")
+  });
+     
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+
+>>>>>>> c15eb2eb851d9c657e2fff2af8a1ebb749f82ca3
   if(tempArr[i].trip_details.ride_approved == "true"){
 
     div.innerHTML = `<br><br><br>
 
+<<<<<<< HEAD
+=======
+    <img id="image-${i}" src="${link}" alt="" style="height:100px">
+>>>>>>> c15eb2eb851d9c657e2fff2af8a1ebb749f82ca3
     <p>Rider Name: ${tempArr[i].name}</p>
     <p>Origin: ${tempArr[i].trip_details.origin_detail}</p>
     <p>Destination: ${tempArr[i].trip_details.destination_detail}</p>
@@ -108,6 +153,10 @@ for (let i = 0; i < tempArr.length; i++) {
   else{
   div.innerHTML = `<br><br><br>
 
+<<<<<<< HEAD
+=======
+  <img id="image-${i}" src="${link}" alt="" style="height:100px">
+>>>>>>> c15eb2eb851d9c657e2fff2af8a1ebb749f82ca3
   <p>Rider Name: ${tempArr[i].name}</p>
     <p>Origin: ${tempArr[i].trip_details.origin_detail}</p>
     <p>Destination: ${tempArr[i].trip_details.destination_detail}</p>
@@ -178,6 +227,11 @@ const docSnap = await getDoc(docRef);
   user_email = data.email;
   let tempArr = [];
   let docArr = [];
+<<<<<<< HEAD
+=======
+  let imageArr = [];
+var link= "";
+>>>>>>> c15eb2eb851d9c657e2fff2af8a1ebb749f82ca3
 
 if(data.trip_details.ride_approved == "true"){
 
@@ -192,6 +246,10 @@ if(data.trip_details.ride_approved == "true"){
             console.log(doc.data().trip_details);
             tempArr.push(doc.data());
             docArr.push(doc.id);
+<<<<<<< HEAD
+=======
+            imageArr.push(doc.id);
+>>>>>>> c15eb2eb851d9c657e2fff2af8a1ebb749f82ca3
           }
       }
     });
@@ -202,10 +260,43 @@ if(data.trip_details.ride_approved == "true"){
     div.classList.add("driver-details");
     const availableDriver = document.getElementById('available');
 
+<<<<<<< HEAD
+=======
+    const path = `images/${imageArr[i]}image.png`;
+      console.log(path);
+      const storageRef = ref(storage , path);
+      console.log(storageRef);
+
+    getDownloadURL(storageRef)
+    .then((url) => {
+        console.log(url);
+        getMetadata(storageRef)
+        .then((metadata) => {
+            const data = JSON.parse(metadata.customMetadata.metadata);
+            link = data.link;
+       console.log(link);
+       const image = document.getElementById(`image-${i}`);     
+       image.setAttribute('src' , link);
+    })
+  .catch((error) => {
+    console.log("Uh-oh, an error occurred!")
+  });
+     
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+
+  console.log(i);
+>>>>>>> c15eb2eb851d9c657e2fff2af8a1ebb749f82ca3
       div.innerHTML = `
       <h2> Request Approved </h2>
       <br>
 
+<<<<<<< HEAD
+=======
+      <img id="image-${i}" src="${link}" alt="" style="height:100px">
+>>>>>>> c15eb2eb851d9c657e2fff2af8a1ebb749f82ca3
       <p>Driver Name: ${tempArr[i].name}</p>
       <p>Origin: ${tempArr[i].trip_details.origin_detail}</p>
       <p>Destination: ${tempArr[i].trip_details.destination_detail}</p>

@@ -1,5 +1,9 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+<<<<<<< HEAD
 import { getStorage, uploadBytes } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-storage.js";
+=======
+import { getStorage, uploadBytes, getMetadata, ref , getDownloadURL } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-storage.js";
+>>>>>>> c15eb2eb851d9c657e2fff2af8a1ebb749f82ca3
 import { getFirestore, getDoc, getDocs, setDoc, collection, doc, addDoc, query, where } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js"
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
 
@@ -18,6 +22,10 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 var storage = getStorage(app);
 const auth = getAuth(app);
+<<<<<<< HEAD
+=======
+var link = "";
+>>>>>>> c15eb2eb851d9c657e2fff2af8a1ebb749f82ca3
 
 console.log("Trip preview Entered");
 
@@ -29,6 +37,7 @@ const docDriver = doc(db, "driver-details", document_id);
 const docSnapDriver = await getDoc(docDriver);
 const dataDriver = docSnapDriver.data();
 
+<<<<<<< HEAD
 // let querySnapshot = await getDocs(collection(db, 'rider-details'));
 
 // // console.log(user_id);
@@ -52,6 +61,8 @@ const dataDriver = docSnapDriver.data();
 //     }
 //   });
 
+=======
+>>>>>>> c15eb2eb851d9c657e2fff2af8a1ebb749f82ca3
 const docRider = doc(db, "rider-details", rider_id);
 const docSnapRider = await getDoc(docRider);
 const dataRider = docSnapRider.data();
@@ -61,6 +72,59 @@ const div = document.createElement("div");
   div.id = "trip-details"
   const tripPreview = document.getElementById('trip-preview');
 
+<<<<<<< HEAD
+=======
+  const path_driver = `images/${document_id}image.png`;
+      console.log(path_driver);
+      const storageRef = ref(storage , path_driver);
+      console.log(storageRef);
+
+    getDownloadURL(storageRef)
+    .then((url) => {
+        console.log(url);
+        getMetadata(storageRef)
+        .then((metadata) => {
+            const data = JSON.parse(metadata.customMetadata.metadata);
+            link = data.link;
+       console.log(link);
+       const image_driver = document.getElementById(`image-driver`);     
+       image_driver.setAttribute('src' , link);
+    })
+  .catch((error) => {
+    console.log("Uh-oh, an error occurred!")
+  });
+     
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+
+  const path_rider = `images/${rider_id}image.png`;
+      console.log(path_rider);
+      const storageReff = ref(storage , path_rider);
+      console.log(storageReff);
+
+    getDownloadURL(storageReff)
+    .then((url) => {
+        console.log(url);
+        getMetadata(storageReff)
+        .then((metadata) => {
+            const data = JSON.parse(metadata.customMetadata.metadata);
+            link = data.link;
+       console.log(link);
+       const image_rider = document.getElementById(`image-rider`);     
+       image_rider.setAttribute('src' , link);
+    })
+  .catch((error) => {
+    console.log("Uh-oh, an error occurred!")
+  });
+     
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+
+>>>>>>> c15eb2eb851d9c657e2fff2af8a1ebb749f82ca3
   div.innerHTML = `<br><br><br>
 
   <input type="submit" id="start-ride" value="Start Ride" >
@@ -84,6 +148,10 @@ const div = document.createElement("div");
 
     <h2> Driver Details </h2>
 
+<<<<<<< HEAD
+=======
+    <img id="image-driver" src="${link}" alt="" style="height:100px">
+>>>>>>> c15eb2eb851d9c657e2fff2af8a1ebb749f82ca3
     <p>Driver Name: ${dataDriver.name}</p>
     <p> Car Name: ${dataDriver.car_details.car_name} </p> 
     <p> Car Model: ${dataDriver.car_details.car_model} </p> 
@@ -91,6 +159,10 @@ const div = document.createElement("div");
 
     
     <h2> Rider Details </h2>
+<<<<<<< HEAD
+=======
+    <img id="image-rider" src="${link}" alt="" style="height:100px">
+>>>>>>> c15eb2eb851d9c657e2fff2af8a1ebb749f82ca3
     <p>Rider Name: ${dataRider.name}</p>
   
     `;
@@ -118,10 +190,59 @@ start.addEventListener('click',(e)=>{
   <br><br>`;
 
   tripPreview.insertBefore(div, trip_details);
+<<<<<<< HEAD
 })
 
 end.addEventListener('click',()=>{
 
   // FLUSH TRIP DETAILS : For Rider and Driver 
+=======
+
+  const sos = document.getElementById('sos');
+  sos.addEventListener('click', (e)=>{
+    e.preventDefault();
+    console.log("SOS Clicked");
+    const emergencyNumber = "+1-6047796246";
+    window.open("tel:" + emergencyNumber);
+  });
+})
+
+
+end.addEventListener('click',async ()=>{
+
+  // FLUSH TRIP DETAILS : For Rider and Driver
+  const docRef = doc(db, "driver-details", document_id);
+const docSnap = await getDoc(docRef);
+if (docSnap.exists()) {
+  await setDoc(doc(db,"driver-details",document_id),{
+    trip_details: {}    
+        },{
+        merge: true
+    })
+} else{
+  await setDoc(doc(db,"rider-details",document_id),{
+    trip_details: {}    
+        },{
+        merge: true
+    })
+}
+
+const docReff = doc(db, "rider-details", rider_id);
+const docSnapp = await getDoc(docReff);
+if (docSnapp.exists()) {
+  await setDoc(doc(db,"rider-details",rider_id),{
+    trip_details: {}    
+        },{
+        merge: true
+    })
+} else{
+  await setDoc(doc(db,"driver-details",rider_id),{
+    trip_details: {}    
+        },{
+        merge: true
+    })
+}
+    
+>>>>>>> c15eb2eb851d9c657e2fff2af8a1ebb749f82ca3
   window.location.href = `./trip-completed.html?doc-id=${document_id}`;
 })

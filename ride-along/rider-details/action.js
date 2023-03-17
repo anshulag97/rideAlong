@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
-import { getStorage  , uploadBytes } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-storage.js";
+import { getStorage  , uploadBytes, getMetadata, ref , getDownloadURL } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-storage.js";
 import { getFirestore ,getDoc,getDocs, setDoc, collection ,doc, addDoc} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js"
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
 
@@ -238,6 +238,8 @@ class Ride {
     }
 }
 let tempArr = [];
+let imageArr = [];
+var link= "";
 async function submitRideRequest() {
     const ride = new Ride(fromLocation.value, toLocation.value, rideDate.value, rideTime.value, luggageNum.value, passengerNum.value, petChecked.checked ? true : false);
     requestrideArray.push(ride);
@@ -260,6 +262,7 @@ async function submitRideRequest() {
         if(fromLocation.value == origin_temp && toLocation.value == destination_temp){
             console.log(doc.data().trip_details);
             tempArr.push(doc.data());
+            imageArr.push(doc.id);
           }
       }
 
@@ -279,12 +282,51 @@ async function submitRideRequest() {
       const docSnapRider = await getDoc(docRider);
       const dataRider = docSnapRider.data();
       const requestDriver = [];
+<<<<<<< HEAD
 
       if(dataRider.trip_details.requested_driver === tempArr[i].email){
 
         console.log("Already Requested to ", tempArr[i].name);
         div.innerHTML = `<br><br><br>
 
+=======
+      
+
+      const path = `images/${imageArr[i]}image.png`;
+      console.log(path);
+      const storageRef = ref(storage , path);
+      console.log(storageRef);
+
+    getDownloadURL(storageRef)
+    .then((url) => {
+        console.log(url);
+        getMetadata(storageRef)
+        .then((metadata) => {
+            const data = JSON.parse(metadata.customMetadata.metadata);
+            link = data.link;
+       console.log(link);
+       const image = document.getElementById(`image-${i}`);     
+       image.setAttribute('src' , link);
+    })
+  .catch((error) => {
+    console.log("Uh-oh, an error occurred!")
+  });
+     
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+
+  console.log(link);
+
+      if( dataRider.trip_details.requested_driver === tempArr[i].email){
+
+        console.log("Already Requested to ", tempArr[i].name);
+        
+        div.innerHTML = `<br><br><br>
+
+        <img id="image-${i}" src="${link}" alt="" style="height:100px">
+>>>>>>> c15eb2eb851d9c657e2fff2af8a1ebb749f82ca3
         <p>Driver Name: ${tempArr[i].name}</p>
         <p>Origin: ${tempArr[i].trip_details.origin_detail}</p>
         <p>Destination: ${tempArr[i].trip_details.destination_detail}</p>
@@ -305,6 +347,10 @@ async function submitRideRequest() {
 
       div.innerHTML = `<br><br><br>
 
+<<<<<<< HEAD
+=======
+      <img id="image-${i}" src="${link}" alt="" style="height:100px">
+>>>>>>> c15eb2eb851d9c657e2fff2af8a1ebb749f82ca3
         <p>Driver Name: ${tempArr[i].name}</p>
         <p>Origin: ${tempArr[i].trip_details.origin_detail}</p>
         <p>Destination: ${tempArr[i].trip_details.destination_detail}</p>

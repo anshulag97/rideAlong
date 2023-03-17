@@ -65,7 +65,11 @@ createUserWithEmailAndPassword(auth, user_email, user_password)
          email: user_email,
          password: user_password,
         last_login: Date.now(),
-        uid: user.uid
+        uid: user.uid,
+
+        trip_details : {
+
+        }
        
         });
 
