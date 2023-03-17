@@ -28,6 +28,7 @@
 
     <!-- css&js -->
     <link rel="stylesheet" href="/ride-along/rider-details2.0/pages/globalstyle.css">
+    <link rel="stylesheet" href="../page2/style.css">
     <link rel="stylesheet" href="style.css">
     <script src="action.js" defer></script>
     <script src="/ride-along/rider-details2.0/pages/globalaction.js" defer></script>
@@ -61,11 +62,30 @@
 
         <div id="rider-page3">
 
+            <div class="from-to-search">
+                <div class="dotDeco">
+                    <p>•</p><span>..........</span><i class="fa-sharp fa-solid fa-location-dot"></i>
+                </div>
+                <div class="inputbox" style="position: relative;">
+                    <div class="inputs-wrapper">
+                        <input type="text" name="text" id="fromlocation" placeholder="Enter the start location" readonly>
+                        <input type="text" name="text" id="tolocation" placeholder="Enter the destination" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ride-schedule">
+                <input type="date" id="date" name="date" readonly>
+                <input type="time" id="time" name="time" readonly>
+            </div>
+
             <div class="sort-by">
                 <span>Sort by:</span>
                 <button id="sort-by-price">Price</button>
                 <button id="sort-by-rating">Rating</button>
             </div>
+
+            <div id='map' class='map' style="height: 400px; width: 100%;"></div>
 
             <div class="available-driver-cards">
                 <div class="driver-info">
@@ -117,7 +137,7 @@
                         <i class="fa-solid fa-car-side"></i>
                         <p id="ride-fee">$10</p>
                     </div>
-                    <button id="requestRide"><a href="/pages/page4/page4.html">Request</a></button>
+                    <button id="requestRide">Request</button>
                 </div>
             </div>
         </div>

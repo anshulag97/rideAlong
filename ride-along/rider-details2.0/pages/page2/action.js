@@ -87,9 +87,11 @@ function updateSubmitButton() {
         passengerNum.value
     ) {
         riderPostRideSubmit.style.backgroundColor = "rgb(95, 105, 255)";
+        riderPostRideSubmit.classList.add("enabled");
         riderPostRideSubmit.disabled = false;
     } else {
         riderPostRideSubmit.style.backgroundColor = "gray";
+        riderPostRideSubmit.classList.remove("enabled");
         riderPostRideSubmit.disabled = true;
     }
 }
@@ -104,12 +106,17 @@ passengerNum.addEventListener("input", updateSubmitButton);
 
 updateSubmitButton();
 
+
+
 let arrTemp = [];
+
 riderPostRideSubmit.addEventListener("click", function () {
     if (!riderPostRideSubmit.disabled) {
         const tempObj = {
-            fromLocation: fromLocationInput.value,
-            toLocation: toLocationInput.value,
+            fromLocation: fromLocation.position,
+            toLocation: toLocation.position,
+            fromLocationAddress: fromLocation.displayText,
+            toLocationAddress: toLocation.displayText,
             date: dateInput.value,
             time: timeInput.value,
             luggageNum: luggageNum.value,
@@ -126,18 +133,18 @@ riderPostRideSubmit.addEventListener("click", function () {
         docRef.update({
             trip_details: arrayUnion(tempObj)
         }).then(() => {
-            console.log('Trip details updated successfully');
+            console.log('Trip details updated');
+            window.location.href = `../page3/page3.html?doc-id=${document_id}`;
         }).catch((error) => {
-            console.error('Error updating trip details:', error);
+            console.error('Error', error);
         });
 
-        // window.location.href = `../page3/page3.html?doc-id=${document_id}`;
     }
 });
 
 
 
-//start and end point search and map routing 
+//start and end point search
 document.addEventListener('DOMContentLoaded', () => {
     const fromLocationSuggestions = document.getElementById('fromlocation-suggestions');
     handleLocationInput(fromLocationInput, fromLocationSuggestions, (position) => {
@@ -150,16 +157,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const toLocationSuggestions = document.getElementById('tolocation-suggestions');
     handleLocationInput(toLocationInput, toLocationSuggestions, (position) => {
         toLocation = position;
-        if (fromLocation && toLocation) {
-            drawRoute(fromLocation, toLocation);
-        }
     });
 });
 
 let fromLocation = null;
 let toLocation = null;
+let fromLocationAddress = null;
+let toLocationAddress = null;
 
-function handleLocationInput(inputElement, suggestionsElement, setLocation) {
+function handleLocationInput(inputElement, suggestionsElement, setLocation, setAddress = () => {}) {
     inputElement.addEventListener('input', (event) => {
         const query = event.target.value;
 
@@ -188,7 +194,8 @@ function handleLocationInput(inputElement, suggestionsElement, setLocation) {
                         inputElement.value = displayText;
                         suggestionsElement.innerHTML = '';
                         suggestionsElement.classList.remove('active');
-                        setLocation(result.position);
+                        setLocation({ displayText: displayText, position: result.position });
+                        setAddress(displayText); 
                     });
 
                     suggestionsElement.appendChild(suggestion);
@@ -208,79 +215,6 @@ function handleLocationInput(inputElement, suggestionsElement, setLocation) {
             suggestionsElement.classList.remove('active');
         }
     });
-}
-
-let map = tt.map({
-    key: 'ZUPTa4pAyMBVSiucNojSQx84q9u7PIw4',
-    container: 'map',
-    center: [-122.9046, 49.1949],
-    zoom: 9
-});
-
-
-function drawRoute(from, to) {
-    tt.services.calculateRoute({
-            key: 'ZUPTa4pAyMBVSiucNojSQx84q9u7PIw4',
-            traffic: false,
-            locations: [from, to]
-        })
-        .then((response) => {
-            const geojson = response.toGeoJson();
-            if (map.getSource('route')) {
-                map.getSource('route').setData(geojson);
-            } else {
-                map.addSource('route', {
-                    type: 'geojson',
-                    data: geojson
-                });
-                map.addLayer({
-                    id: 'route',
-                    type: 'line',
-                    source: 'route',
-                    paint: {
-                        'line-color': 'gray',
-                        'line-width': 3
-                    }
-                });
-            }
-
-            // Zoom to fit the route on the map
-            const coordinates = geojson.features[0].geometry.coordinates;
-            const bounds = coordinates.reduce((bounds, coord) => {
-                return bounds.extend(coord);
-            }, new tt.LngLatBounds(coordinates[0], coordinates[0]));
-            map.fitBounds(bounds, {
-                padding: 30
-            });
-
-
-            // set the marker on the routing map
-            addMarker(from, 'start-icon');
-            addMarker(to, 'end-icon');
-        })
-        .catch((error) => {
-            console.error('Error calculating the route:', error);
-        });
-
-}
-
-
-//add start and end point icon to the routing map
-function addMarker(position, iconClass) {
-    const existingMarker = document.getElementById(iconClass);
-    if (existingMarker) {
-        existingMarker.remove();
-    }
-
-    const markerElement = document.createElement('div');
-    markerElement.className = 'custom-icon ' + iconClass;
-    markerElement.id = iconClass;
-
-    new tt.Marker({
-            element: markerElement
-        })
-        .setLngLat([position.lng, position.lat])
-        .addTo(map);
 }
 
 
@@ -309,9 +243,4 @@ switchButton.addEventListener("click", () => {
     const tempPosition = fromLocation;
     fromLocation = toLocation;
     toLocation = tempPosition;
-
-    // Redraw the route 
-    if (fromLocation && toLocation) {
-        drawRoute(fromLocation, toLocation);
-    }
 });
