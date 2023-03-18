@@ -14,12 +14,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;800&display=swap" rel="stylesheet">
 
-
-    <!-- tomtom -->
-    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/maps/maps-web.min.js"></script>
-    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/services/services-web.min.js"></script>
-    <link rel="stylesheet" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/maps/maps.css">
-
     <!-- firebase -->
     <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
@@ -28,10 +22,18 @@
 
     <!-- css&js -->
     <link rel="stylesheet" href="/ride-along/rider-details2.0/pages/globalstyle.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../page2/style.css">
     <script src="action.js" defer></script>
     <script src="/ride-along/rider-details2.0/pages/globalaction.js" defer></script>
-    <title>Document</title>
+    <title>Driver Info</title>
+
+    <style>
+        #price{
+            color:rgb(203, 68, 82);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+    </style>
 </head>
 
 <body>
@@ -60,38 +62,70 @@
 
     <main>
         <div id="rider-page4">
-            <div class="available-driver-cards">
-                <div class="driver-info">
-                    <img src="https://www.seekpng.com/png/full/356-3562377_personal-user.png"
-                        alt="portrait photo of the driver">
-                    <p id="driver-name">Driver 2</p>
+            <div class="from-to-search">
+                <div class="dotDeco">
+                    <p>•</p><span>..........</span><i class="fa-sharp fa-solid fa-location-dot"></i>
                 </div>
-                <div class="ride-info">
-                    <div class="luggage-allow">
-                        <p>Allowed</p>
-                        <p>Not allowed</p>
-                    </div>
-                    <div class="pet-allow">
-                        <p>Allowed</p>
-                        <p>Not allowed</p>
-                    </div>
-                    <div class="price">
-                        <p>$10</p>
-                    </div>
-                    <div class="route">
-                        <h3>Trip Description</h3>
-                        <p>Pickup Point:</p>
-                        <p>End Point:</p>
-                    </div>
-                    <div class="vehicle-info">
-                        <h3>Vehicle Details</h3>
-                        <p class="car-model">Eco Sport</p>
-                        <p class="car-color">Red</p>
-                        <p class="car-plate">License Plate</p>
+                <div class="inputbox" style="position: relative;">
+                    <div class="inputs-wrapper">
+                        <input type="text" name="text" id="fromlocation" readonly>
+                        <input type="text" name="text" id="tolocation" readonly>
                     </div>
                 </div>
-                <button id="requestRide2"><a href="/pages/page5/page5.html">Requested to Book</a></button>
             </div>
+
+            <div class="divident-line"></div>
+
+            <div class="ride-schedule">
+                <label for="date">Ride Schedule</label>
+                <input type="date" id="date" name="date" readonly>
+                <input type="time" id="time" name="time" readonly>
+            </div>
+
+            <div class="divident-line"></div>
+
+            <h3>Trip Preferences</h3>
+            <div class="trip-preferences">
+                <div class="numLuggage">
+                    <label for="luggages">Luggage allowed</label>
+                    <span id="luggages"></span>
+                </div>
+                <div class="numPassenger">
+                    <label for="passenger-number">No. of seats offer</label>
+                    <input type="number" id="passenger-number" name="passenger-number" readonly>
+                </div>
+                <div class="rider-pets">
+                    <label for="pets">Pets allowed</label>
+                    <span id="pets"></span>
+                </div>
+                <div class="price">
+                    <label for="pets">Price</label>
+                    <span id="price"></span>
+                </div>
+            </div>
+
+            <div class="divident-line"></div>
+
+            <h3>Trip description</h3>
+            <div class="trip-description">
+                <textarea name="" id="trip_description" cols="37" rows="4" readonly></textarea>
+            </div>
+
+            <div class="divident-line"></div>
+
+            <h3>Vehicle details</h3>
+            <div class="vehicle-details">
+
+                <div class="vehicle">
+                    <img id="vehicle-photo">
+                    <p id="car-name"><i class="fa-solid fa-car-rear"></i></p>
+                    <p id="car-color"></p>
+                    <p id="car-number"></p>
+                </div>
+            </div>
+
+
+            <button id="requestRide2">Requested to Book</button>
         </div>
     </main>
     <footer>

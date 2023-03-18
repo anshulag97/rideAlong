@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/ride-along/rider-details2.0/pages/globalstyle.css">
+
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+    
+    <script type="module" src="action.js" defer></script>
+    <script src="/ride-along/rider-details2.0/pages/globalaction.js" defer></script>
+    <style>
+        .confirm div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-flow: column nowrap;
+            padding: 10% 30px;
+        }
+
+        #mytripButton,
+        #closeButton {
+            width: 300px;
+            height: 63px;
+            border-radius: 10px;
+            border: none;
+            margin-top: 35px;
+            font-size: 20px;
+            background-color: rgb(95, 105, 255);
+            color: white;
+            box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+        }
+
+        #mytripButton:hover,
+        #closeButton:hover {
+            background-color: rgb(203, 68, 82);
+        }
+
+        #mytripspan {
+            color: rgb(95, 105, 255);
+        }
+    </style>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyA0l9LZ3lYZWsSyPFTsxRACc2ltACy2hsI",
+            authDomain: "ridealong-683df.firebaseapp.com",
+            databaseURL: "https://ridealong-683df-default-rtdb.firebaseio.com",
+            projectId: "ridealong-683df",
+            storageBucket: "ridealong-683df.appspot.com",
+            messagingSenderId: "553276766158",
+            appId: "1:553276766158:web:1c8d10708b75961cae5d9f",
+            measurementId: "G-CW67ZBW2B9"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const storage = firebase.storage();
+        const auth = firebase.auth();
+        const arrayUnion = firebase.firestore.FieldValue.arrayUnion;
+
+
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const document_id = urlSearchParams.get('doc-id');
+        document.addEventListener("DOMContentLoaded", () => {
+            const mytripButton = document.getElementById("mytripButton");
+            mytripButton.addEventListener("click", () => {
+                window.location.href = `../page5/page5.html?doc-id=${document_id}`;
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <header>
+        <a href="#rider-page1" id="back-button" class="back-button">
+            <i class="fa-solid fa-left-long"></i>
+            <span>Confirmation</span>
+        </a>
+
+        <a href="#menu" id="menu-button">
+            <i class="fa-solid fa-bars"></i>
+            <span class="visually-hidden">Menu</span>
+        </a>
+    </header>
+
+    <nav id="menu">
+        <ul>
+            <li><a href="#">USERNAME</a></li>
+            <li><a href="#">TRIPS</a></li>
+            <li><a href="#">REQUEST</a></li>
+            <li><a href="#">MESSAGES</a></li>
+            <li><a href="#">SAFETY</a></li>
+            <li><a href="#">CONTACT US</a></li>
+        </ul>
+    </nav>
+
+    <div class="confirm">
+        <div>
+            <h2>Thank you for booking!</h2>
+            <div>Please head on to <span id="mytripspan">My Trip</span> to check your trip status</div>
+            <button id="mytripButton">My Trip</button>
+            <button id="closeButton">Close</button>
+        </div>
+    </div>
+
+    <footer>
+        <p> &copy; 2023 RideAlong. All Right Reserved</p>
+    </footer>
+</body>
+
+</html>

@@ -98,11 +98,21 @@
     margin-left: 20px;
 }
 
-.trip-preferences {
+.trip-preferences, .vehicle {
     background-color: rgb(225, 225, 225);
     margin: 20px 45px 20px 45px;
     border-radius: 10px;
     padding: 15px;
+}
+
+.trip-description {
+    margin: 20px 45px 20px 45px;
+    border-radius: 10px;
+}
+
+.trip-description textarea{
+    width: 95%;
+    padding: 15px; 
 }
 
 #rider-page2 h3 {
@@ -132,7 +142,7 @@
     margin-left: 15px;
 }
 
-#rider-post-ride-submit {
+#rider-post-ride-submit, #driver-post-ride-submit {
     width: 360px;
     height: 62px;
     border: none;
@@ -147,6 +157,12 @@
 .rider-pets {
     display: grid;
     grid-template-columns: 1fr auto auto;
+}
+
+.trip-preferences .price{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
 }
 
 .rider-pets button {
@@ -164,7 +180,8 @@
     margin-bottom: 10px;
 }
 
-#rider-post-ride-submit.enabled:hover {
+#rider-post-ride-submit.enabled:hover,
+#driver-post-ride-submit.enabled:hover{
     background-color: rgb(203, 68, 82) !important;
 }
 
@@ -222,3 +239,73 @@
     background-color: white;
 }
 
+.price input {
+    background-color: #E1E1E1;
+    border: 1px solid #898a8b;
+    height: 90%;
+    width: 30%;
+    border-radius: 10px;
+    padding: .5rem .8rem;
+    font-size: 12px;
+}
+
+.trip-description textarea {
+    background-color: #30303034;
+    border-radius: 10px;
+    padding: .5rem;
+}
+
+.add-vehicle {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: .5rem;
+    justify-content: flex-end;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    align-self: center;
+}
+
+.vehicle {
+    grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr;
+    gap: .2rem;
+    background-color: rgb(225, 225, 225);
+}
+
+.vehicle img {
+    grid-row: 1/3;
+}
+
+.vehicle p:nth-of-type(1) {
+    text-align: baseline;
+}
+
+.vehicle p:nth-of-type(3) {
+    grid-column: span 2;
+}
+
+#driver_licence, #driver_label {
+    justify-self: left;
+}
+
+.checkDriverLicense{
+    margin: 20px 45px 20px 45px;
+}
+
+/* Rider Page 4 CSS rules */
+#rider-page4{
+    padding: 30px 15px;
+}
+
+#requestRide2{
+    display: block;
+    margin: 40px auto 50px auto;
+    text-align: center;
+}

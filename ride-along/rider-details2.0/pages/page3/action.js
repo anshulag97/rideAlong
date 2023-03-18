@@ -39,11 +39,11 @@ docRef.get().then((doc) => {
         // Set the input values
         document.getElementById('fromlocation').value = lastTrip.fromLocationAddress;
         document.getElementById('tolocation').value = lastTrip.toLocationAddress;
-        document.getElementById('date').value = lastTrip.date; 
-        document.getElementById('time').value = lastTrip.time; 
+        document.getElementById('date').value = lastTrip.date;
+        document.getElementById('time').value = lastTrip.time;
 
 
-
+        // draw the map
         drawRoute(fromLocationObj, toLocationObj);
 
         function drawRoute(fromLocationObj, toLocationObj) {
@@ -92,8 +92,148 @@ docRef.get().then((doc) => {
                     console.error('Error calculating the route:', error);
                 });
         }
+
+
+        db.collection('driver-details').get().then((querySnapshot) => {
+            const matchingTrips = [];
+
+            if (querySnapshot.empty) {
+                console.log('No driver details found.');
+            } else {
+                querySnapshot.forEach((driverDoc) => {
+                    const driverTripDetails = driverDoc.data().trip_details;
+                
+                    if (Array.isArray(driverTripDetails)) {
+                        driverTripDetails.forEach((driverTrip, originalIndex) => { 
+                
+                            if (driverTrip.time === lastTrip.time &&
+                                driverTrip.fromLocationAddress === lastTrip.fromLocationAddress &&
+                                driverTrip.toLocationAddress === lastTrip.toLocationAddress) {
+                                matchingTrips.push({
+                                    trip: driverTrip,
+                                    driverId: driverDoc.id,
+                                    originalIndex: originalIndex 
+                                });
+                            }
+                        });
+                    }
+                });
+                
+
+                console.log("Matching trips:", );
+                
+                matchingTrips.forEach((matchedTrip, originalIndex) => {
+                    console.log("Original index in driver's trip details array:", matchedTrip.originalIndex);
+                    const trip = matchedTrip.trip;
+                    const driverId = matchedTrip.driverId;
+                    const indexTrip = matchedTrip.originalIndex;
+                    
+
+                    if (driverId) {
+                        db.collection('driver-details').doc(driverId).get().then((driverDoc) => {
+                            if (driverDoc.exists) {
+                                const driverData = driverDoc.data();
+                                driverData.driverId = driverId;
+                                console.log("Driver Data:", driverData);
+                                const driverPhotoElement = createAvailableDriverCard(driverData, trip, indexTrip);
+                                loadDriverPhoto(driverId, driverPhotoElement);
+                            } else {}
+                        }).catch((error) => {
+                            console.error("Error getting document:", error);
+                        });
+                    } else {
+                        console.log("No driver ID found in the trip");
+                    }
+                });
+            }
+        });
+
+
     }
 })
+
+function loadDriverPhoto(driverId, driverPhotoElement) {
+    const photoRef = storage.ref(`images/${driverId}image.png`);
+    photoRef
+        .getDownloadURL()
+        .then((photoURL) => {
+            driverPhotoElement.src = photoURL;
+        })
+        .catch((error) => {
+            console.error("Error loading driver photo:", error);
+        });
+}
+
+//creating driver info card
+function createAvailableDriverCard(driverData, trip, indexTrip) {
+    console.log("Creating card for index:", indexTrip);
+    const availableDriversContainer = document.getElementById('available-drivers-container');
+
+    const card = document.createElement('div');
+    card.className = 'available-driver-cards';
+
+    const driverInfo = document.createElement('div');
+    driverInfo.className = 'driver-info';
+    card.appendChild(driverInfo)
+
+    const driverPhotoElement = document.createElement('img');
+    driverPhotoElement.className = 'driver-photo';
+    driverInfo.appendChild(driverPhotoElement);
+
+    const driverName = document.createElement('span');
+    driverName.className = 'driver-name';
+    driverName.textContent = driverData.name;
+    driverInfo.appendChild(driverName);
+
+    const rating = document.createElement('div');
+    rating.className = 'rating';
+    for (let i = 0; i < 5; i++) {
+        const star = document.createElement('span');
+        star.className = 'fa fa-star';
+        if (i < driverData.rating) {
+            star.classList.add('checked');
+        }
+        rating.appendChild(star);
+    }
+    driverInfo.appendChild(rating);
+
+    const driverPreference = document.createElement('div');
+    driverPreference.className = 'driver-preference';
+    if (trip.petChecked === true) {
+        const petIcon = document.createElement('i');
+        petIcon.className = 'fa-solid fa-dog';
+        driverPreference.appendChild(petIcon);
+    }
+    if (trip.luggageAllow === true) {
+        const luggageIcon = document.createElement('i');
+        luggageIcon.className = 'fa-solid fa-suitcase';
+        driverPreference.appendChild(luggageIcon);
+    }
+    if (trip.passengerNum > 1) {
+        const groupIcon = document.createElement('i');
+        groupIcon.className = 'fa-solid fa-user-group';
+        driverPreference.appendChild(groupIcon);
+    }
+    card.appendChild(driverPreference);
+
+    const riderFee = document.createElement('span');
+    riderFee.className = 'rider-fee';
+    riderFee.textContent = `$${trip.ridePrice}`;
+    driverPreference.appendChild(riderFee);
+
+    const selectButton = document.createElement('button');
+    selectButton.className = 'select-driver-button';
+    selectButton.textContent = 'Select';
+    selectButton.addEventListener('click', () => {
+        window.location.href = `../page4/page4.html?doc-id=${document_id}&driver-id=${driverData.driverId}&trip-index=${indexTrip}`;
+    });
+    card.appendChild(selectButton);
+
+    availableDriversContainer.appendChild(card);
+    return driverPhotoElement;
+}
+
+
 
 
 function addMarker(position, iconClass) {
@@ -112,6 +252,3 @@ function addMarker(position, iconClass) {
         .setLngLat([position.lng, position.lat])
         .addTo(map);
 }
-
-
-

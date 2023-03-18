@@ -28,17 +28,17 @@
 
     <!-- css&js -->
     <link rel="stylesheet" href="/ride-along/rider-details2.0/pages/globalstyle.css">
-    <link rel="stylesheet" href="../page2/style.css">
+    <link rel="stylesheet" href="/ride-along/rider-details2.0/pages/page2/style.css">
     <link rel="stylesheet" href="style.css">
     <script src="action.js" defer></script>
     <script src="/ride-along/rider-details2.0/pages/globalaction.js" defer></script>
-    <title>Document</title>
+    <title>Trip Preview</title>
 </head>
 <body>
     <header>
         <a href="#rider-page1" id="back-button" class="back-button">
             <i class="fa-solid fa-left-long"></i>
-            <span>Available</span>
+            <span>Trip Preview</span>
         </a>
 
         <a href="#menu" id="menu-button">
@@ -60,8 +60,8 @@
 
     <main>
 
-        <div id="rider-page3">
-
+        <div id="driver-page3">
+            <div id='map' class='map' style="height: 400px; width: 100%;"></div>
             <div class="from-to-search">
                 <div class="dotDeco">
                     <p>•</p><span>..........</span><i class="fa-sharp fa-solid fa-location-dot"></i>
@@ -74,38 +74,44 @@
                 </div>
             </div>
 
+
             <div class="ride-schedule">
-                <input type="date" id="date" name="date" readonly>
-                <input type="time" id="time" name="time" readonly>
+                <h3>Ride Schedule</h3>
+                <div class="date-time">
+                    <input type="date" id="date" name="date" readonly>
+                    <input type="time" id="time" name="time" readonly>
+                </div>
+                <div class="seats-price">
+                    <input type="text" id="seats" name="seats" readonly>
+                    <input type="number" id="price" name="price" readonly>
+                </div>
             </div>
 
-            <div class="sort-by">
-                <span>Sort by:</span>
-                <button id="sort-by-price">Price</button>
-                <button id="sort-by-rating">Rating</button>
+            <div class="divident-line"></div>
+
+
+            <div class="trip-description">
+                <h3>Trip description</h3>
+                <textarea name="" id="trip_description" cols="37" rows="4" readonly></textarea>
             </div>
 
-            <div id='map' class='map' style="height: 400px; width: 100%;"></div>
+            <div class="divident-line"></div>
 
-            <div id="available-drivers-container"></div>
+            <div class="booked">
+                <p>Booked Seats</p>
+                <i class="fa-solid fa-right-long"></i>
+            </div>
 
-            <!-- <div class="available-driver-cards">
-                <div class="driver-info">
-                    <img id="driver-photo">
-                    <p id="driver-name"></p>
-                    <div class="rating"></div>
+            <div class="driver-info">
+                <div class="driver-info2">
+                    <img id="driverphoto"></img>
+                    <p id="drivername"></p>
                 </div>
-                <div class="ride-info">
-                    <div class="driver-preference">
-                        <i class="fa-solid fa-dog" id="petIcon"></i>
-                        <i class="fa-solid fa-suitcase" id="luggageIcon"></i>
-                        <i class="fa-solid fa-user-group" id="seatIcon"></i>
-                    </div>
-                    <div class="rider-fee"></div>
-                </div>
-                <button id="requestRide">Select</button>
-            </div> -->
+                <i class="fa-solid fa-right-long"></i>
+            </div>
         </div>
+
+        <button id="viewrequest">View Request</button>
     </main>
     <footer>
         <p> &copy; 2023 RideAlong. All Right Reserved</p>

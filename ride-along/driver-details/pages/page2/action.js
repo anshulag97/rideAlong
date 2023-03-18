@@ -37,22 +37,6 @@ minusBtn2.addEventListener("click", () => {
     }
 });
 
-// adjust the number of luggage
-const plusBtn1 = document.querySelector(".plus-btn1");
-const minusBtn1 = document.querySelector(".minus-btn1");
-const luggageNum = document.getElementById("luggage-number");
-
-plusBtn1.addEventListener("click", () => {
-    luggageNum.value = parseInt(luggageNum.value) + 1;
-});
-
-minusBtn1.addEventListener("click", () => {
-    if (parseInt(luggageNum.value) > 0) {
-        luggageNum.value = parseInt(luggageNum.value) - 1;
-    }
-});
-
-
 //when date and time has been selected, the background color changes
 const dateInput = document.getElementById("date");
 const timeInput = document.getElementById("time");
@@ -71,11 +55,27 @@ timeInput.addEventListener("change", function () {
     }
 });
 
+//when price is entered, change the style
+const ridePrice = document.getElementById("price");
+ridePrice.addEventListener("input", () => {
+    if (ridePrice.value) {
+        ridePrice.style.backgroundColor = "white";
+        ridePrice.style.color = "rgb(203, 68, 82)";
+        ridePrice.style.fontSize = "1rem";
+        ridePrice.style.fontWeight = "700";
+    } else {
+        ridePrice.style.backgroundColor = ""; 
+    }
+});
+
+
 //everything must be checked before click the submit button
 const fromLocationInput = document.getElementById('fromlocation');
 const toLocationInput = document.getElementById('tolocation');
-const riderPostRideSubmit = document.getElementById("rider-post-ride-submit");
+const driverPostRideSubmit = document.getElementById("driver-post-ride-submit");
 const petChecked = document.getElementById("pets");
+const tripDescription = document.getElementById("trip_description");
+const luggageChecked = document.getElementById("luggages");
 
 function updateSubmitButton() {
     if (
@@ -83,16 +83,16 @@ function updateSubmitButton() {
         toLocationInput.value &&
         dateInput.value &&
         timeInput.value &&
-        luggageNum.value &&
-        passengerNum.value
+        passengerNum.value &&
+        ridePrice.value
     ) {
-        riderPostRideSubmit.style.backgroundColor = "rgb(95, 105, 255)";
-        riderPostRideSubmit.classList.add("enabled");
-        riderPostRideSubmit.disabled = false;
+        driverPostRideSubmit.style.backgroundColor = "rgb(95, 105, 255)";
+        driverPostRideSubmit.classList.add("enabled");
+        driverPostRideSubmit.disabled = false;
     } else {
-        riderPostRideSubmit.style.backgroundColor = "gray";
-        riderPostRideSubmit.classList.remove("enabled");
-        riderPostRideSubmit.disabled = true;
+        driverPostRideSubmit.style.backgroundColor = "gray";
+        driverPostRideSubmit.classList.remove("enabled");
+        driverPostRideSubmit.disabled = true;
     }
 }
 
@@ -101,17 +101,16 @@ fromLocationInput.addEventListener("input", updateSubmitButton);
 toLocationInput.addEventListener("input", updateSubmitButton);
 dateInput.addEventListener("change", updateSubmitButton);
 timeInput.addEventListener("change", updateSubmitButton);
-luggageNum.addEventListener("input", updateSubmitButton);
 passengerNum.addEventListener("input", updateSubmitButton);
-
+ridePrice.addEventListener("input", updateSubmitButton);
 updateSubmitButton();
 
 
 
 let arrTemp = [];
 
-riderPostRideSubmit.addEventListener("click", function () {
-    if (!riderPostRideSubmit.disabled) {
+driverPostRideSubmit.addEventListener("click", function () {
+    if (!driverPostRideSubmit.disabled) {
         const tempObj = {
             fromLocation: fromLocation.position,
             toLocation: toLocation.position,
@@ -119,16 +118,18 @@ riderPostRideSubmit.addEventListener("click", function () {
             toLocationAddress: toLocation.displayText,
             date: dateInput.value,
             time: timeInput.value,
-            luggageNum: luggageNum.value,
+            luggageAllow: luggageChecked.checked,
             passengerNum: passengerNum.value,
-            petChecked: petChecked.checked
+            petChecked: petChecked.checked,
+            ridePrice: ridePrice.value,
+            tripDescription: tripDescription.value
         };
 
         arrTemp.push(tempObj);
 
         console.log(arrTemp);
 
-        const docRef = firebase.firestore().doc(`rider-details/${document_id}`);
+        const docRef = firebase.firestore().doc(`driver-details/${document_id}`);
 
         docRef.update({
             trip_details: arrayUnion(tempObj)
@@ -244,5 +245,3 @@ switchButton.addEventListener("click", () => {
     fromLocation = toLocation;
     toLocation = tempPosition;
 });
-
-

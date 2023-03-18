@@ -57,7 +57,7 @@ offerRideButton.addEventListener('click', async (e) => {
     if (documentData.exists()) {
         const isDriver = documentData.get('is_Driver');
         console.log(`The driver for document ${document_id} is ${isDriver}`);
-        window.location.href = `../post-ride.html?doc-id=${document_id}`
+        window.location.href = `/ride-along/driver-details/pages/page2/page2.html?doc-id=${document_id}`
     } else {
         console.log(`No driver details found with ID ${document_id}`);
         alert("Please Login as Driver");
