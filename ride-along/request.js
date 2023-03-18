@@ -185,12 +185,22 @@ for (let i = 0; i < tempArr.length; i++) {
       e.preventDefault();
       console.log(docArr[i]);
       await setDoc(doc(db,"rider-details",docArr[i]),{
-        trip_details :{
-          requested_driver : ""
-        }    
+        
+        trip_details: {}    
             },{
             merge: true
         })
+
+        await setDoc(doc(db,"rider-details",docArr[i]),{
+        
+          trip_details :{
+            requested_driver : "",
+            ride_approved : "false",
+  
+          }    
+              },{
+              merge: true
+          })
         rider_id = docArr[i];
         alert("Request Declined!");
         location.reload();

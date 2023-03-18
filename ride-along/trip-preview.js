@@ -33,6 +33,9 @@ const dataDriver = docSnapDriver.data();
 const docRider = doc(db, "rider-details", rider_id);
 const docSnapRider = await getDoc(docRider);
 const dataRider = docSnapRider.data();
+
+let fromLocationInput = "";
+let toLocationInput = "";
   
 const div = document.createElement("div");
   div.classList.add("trip-details");
@@ -89,6 +92,8 @@ const div = document.createElement("div");
     console.error(error);
   });
 
+  fromLocationInput = dataDriver.trip_details.origin_detail;
+  toLocationInput = dataDriver.trip_details.destination_detail;
   div.innerHTML = `<br><br><br>
 
   <input type="submit" id="start-ride" value="Start Ride" >
@@ -195,4 +200,146 @@ if (docSnapp.exists()) {
 }
     
   window.location.href = `./trip-completed.html?doc-id=${document_id}`;
-})
+});
+
+
+console.log(fromLocationInput);
+console.log(toLocationInput);
+const key = "ZUPTa4pAyMBVSiucNojSQx84q9u7PIw4";
+let fromLocation = "";
+let toLocation = "";
+
+fetch(`https://api.tomtom.com/search/2/geocode/${encodeURIComponent(fromLocationInput)}.json?key=${key}`)
+  .then(response => response.json())
+  .then(data => {
+    // extract the latitude and longitude from the API response
+    console.log("POSITION");
+    fromLocation = data.results[0].position;
+    console.log(fromLocation);
+    if (fromLocation && toLocation) {
+      drawRoute(fromLocation, toLocation);
+  }
+  })
+  .catch(error => console.error(error));
+
+
+  fetch(`https://api.tomtom.com/search/2/geocode/${encodeURIComponent(toLocationInput)}.json?key=${key}`)
+  .then(response => response.json())
+  .then(data => {
+    // extract the latitude and longitude from the API response
+    console.log("POSITION");
+    toLocation = data.results[0].position;
+    console.log(toLocation);
+    if (fromLocation && toLocation) {
+      drawRoute(fromLocation, toLocation);
+  }
+  })
+  .catch(error => console.error(error));
+
+
+let map = tt.map({
+  key: 'ZUPTa4pAyMBVSiucNojSQx84q9u7PIw4',
+  container: 'map',
+  center: [-122.9046, 49.1949],
+  zoom: 9
+});
+
+
+function drawRoute(from, to) {
+  console.log(from);
+  console.log(to);
+  tt.services.calculateRoute({
+          key: 'ZUPTa4pAyMBVSiucNojSQx84q9u7PIw4',
+          traffic: false,
+          locations: [from, to]
+      })
+      .then((response) => {
+          const geojson = response.toGeoJson();
+          if (map.getSource('route')) {
+              map.getSource('route').setData(geojson);
+          } else {
+              map.addSource('route', {
+                  type: 'geojson',
+                  data: geojson
+              });
+              map.addLayer({
+                  id: 'route',
+                  type: 'line',
+                  source: 'route',
+                  paint: {
+                      'line-color': 'gray',
+                      'line-width': 3
+                  }
+              });
+          }
+
+          // Zoom to fit the route on the map
+          const coordinates = geojson.features[0].geometry.coordinates;
+          const bounds = coordinates.reduce((bounds, coord) => {
+              return bounds.extend(coord);
+          }, new tt.LngLatBounds(coordinates[0], coordinates[0]));
+          map.fitBounds(bounds, {
+              padding: 30
+          });
+
+
+          // set the marker on the routing map
+          addMarker(from, 'start-icon');
+          addMarker(to, 'end-icon');
+      })
+      .catch((error) => {
+          console.error('Error calculating the route:', error);
+      });
+
+}
+
+
+//add start and end point icon to the routing map
+function addMarker(position, iconClass) {
+  const existingMarker = document.getElementById(iconClass);
+  if (existingMarker) {
+      existingMarker.remove();
+  }
+
+  const markerElement = document.createElement('div');
+  markerElement.className = 'custom-icon ' + iconClass;
+  markerElement.id = iconClass;
+
+  new tt.Marker({
+          element: markerElement
+      })
+      .setLngLat([position.lng, position.lat])
+      .addTo(map);
+}
+
+// //switch button hover or click action
+// const switchButton = document.getElementById("switch-button");
+// const switchButtonImage = switchButton.querySelector("img");
+
+// switchButton.addEventListener("mouseover", () => {
+//     switchButtonImage.src = "/ride-along/rider-details2.0/icon/Group 1509-blue.svg";
+// });
+
+// switchButton.addEventListener("mouseout", () => {
+//     switchButtonImage.src = "/ride-along/rider-details2.0/icon/Group 1509-gray.svg";
+// });
+
+// switchButton.addEventListener("click", () => {
+//     switchButtonImage.src = "/ride-along/rider-details2.0/icon/Group 1509-blue.svg";
+//     const fromLocationInput = document.getElementById("fromlocation");
+//     const toLocationInput = document.getElementById("tolocation");
+
+//     // Swap the input values
+//     const tempLocation = fromLocationInput.value;
+//     fromLocationInput.value = toLocationInput.value;
+//     toLocationInput.value = tempLocation;
+
+//     const tempPosition = fromLocation;
+//     fromLocation = toLocation;
+//     toLocation = tempPosition;
+
+//     // Redraw the route 
+//     if (fromLocation && toLocation) {
+//         drawRoute(fromLocation, toLocation);
+//     }
+// });

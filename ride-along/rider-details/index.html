@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.23.0/maps/maps.css" />
+    <!-- <link href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.23.0/maps/maps.css" />
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.23.0/maps/maps-web.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
@@ -23,7 +23,29 @@
     <link rel='stylesheet' type='text/css' href='./routing.css' />
     <link rel='stylesheet' type='text/css'
         href='https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.2.0//SearchBox.css' />
-    <script src='https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.2.0//SearchBox-web.js'></script>
+    <script src='https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.2.0//SearchBox-web.js'></script> -->
+
+    <!-- fontawesome & google font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;800&display=swap" rel="stylesheet">
+
+
+    <!-- tomtom -->
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/maps/maps-web.min.js"></script>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/services/services-web.min.js"></script>
+    <link rel="stylesheet" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/maps/maps.css">
+
+    <!-- css&js -->
+    <link rel="stylesheet" href="/ride-along/rider-details2.0/pages/globalstyle.css">
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="action.js" defer></script>
+    <script src="/ride-along/rider-details2.0/pages/globalaction.js" defer></script>
+
+
 </head>
 
 <body>
@@ -72,13 +94,26 @@
                 <div class="dotDeco">
                     <p>•</p><span>..........</span><i class="fa-sharp fa-solid fa-location-dot"></i>
                 </div>
-                <div class="inputbox">
+                <!-- <div class="inputbox">
                     <input type="text" name="text" id="fromlocation" placeholder="Enter the start location">
                     <input type="text" name="text" id="tolocation" placeholder="Enter the destination">
+                </div> -->
+                <div class="inputbox" style="position: relative;">
+                    <div class="inputs-wrapper">
+                        <input type="text" name="text" id="fromlocation" placeholder="Enter the start location">
+                        <input type="text" name="text" id="tolocation" placeholder="Enter the destination">
+                    </div>
+                    <div id="fromlocation-suggestions" class="location-suggestions"></div>
+                    <div id="tolocation-suggestions" class="location-suggestions"></div>
+                    <button id="switch-button" class="switch-button">
+                        <img src="/ride-along/rider-details2.0/icon/Group 1509-gray.svg" alt="Switch locations" />
+                    </button>
                 </div>
             </div>
 
-            <div class="quick-location">
+            <div id='map' class='map' style="height: 400px; width: 100%;"></div>
+
+            <!-- <div class="quick-location">
                 <div class="home-location">
                     <i class="fa-sharp fa-solid fa-house"></i>
                     <span>Home</span>
@@ -91,7 +126,7 @@
                     <i class="fa-sharp fa-solid fa-location-dot"></i>
                     <span>Suggested location</span>
                 </div>
-            </div>
+            </div> -->
 
             <div class="divident-line"></div>
 
@@ -130,6 +165,7 @@
             <div class="rider-post-ride-submit">
                 <button id="rider-post-ride-submit">Find a ride</button>
             </div>
+            <a href="/icon/flag-checkered-solid.svg"></a>
         </div>
     </div>
 
@@ -144,7 +180,7 @@
             <button id="sort-by-rating">Rating</button>
         </div>
 
-        <div id='map' class='map'></div>
+        <div id='map1' class='map' style="height: 400px; width: 100%;"></div>
 
         <div id="available" class="available-driver-cards">
 

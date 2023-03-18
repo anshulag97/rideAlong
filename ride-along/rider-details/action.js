@@ -19,6 +19,7 @@ const db = getFirestore(app);
 var storage =  getStorage(app);
 const auth = getAuth(app);
 
+
 const urlSearchParams = new URLSearchParams(window.location.search);
 const document_id = urlSearchParams.get('doc-id');
 
@@ -38,9 +39,8 @@ const menuButton = document.getElementById('menu-button');
 const menu = document.getElementById('menu');
 
 menuButton.addEventListener('click', function () {
-    menu.classList.toggle('visible');
+    menu.classList.remove('nonvisible');
 })
-
 
 // get the buttons and pages
 const findRide = document.getElementById("findRidebutton");
@@ -69,6 +69,74 @@ requestPage.addEventListener('click',(e)=>{
     e.preventDefault();
     window.location.href = `../request.html?doc-id=${document_id}`;
 })
+
+// let intervalId = setInterval(async ()=>{
+//     let driver_email = "";
+//     const docRef = doc(db, "driver-details", document_id);
+//         const documentData = await getDoc(docRef);
+//         console.log(documentData);
+//         if (documentData.exists()) {
+//             driver_email = documentData.data().email;
+//             console.log(driver_email);
+    
+//             let querySnapshot = await getDocs(collection(db, 'rider-details'));
+//         querySnapshot.forEach(async (document) => {
+    
+//             if(document.data().trip_details.notified == true){
+//                 clearInterval(intervalId);
+//             }
+//             else{
+//                 console.log(document.data().trip_details.requested_driver);
+//           if(document.data().trip_details.requested_driver === driver_email && document.data().trip_details.notified_driver != true){
+//             console.log(document.data().name);
+//             alert("You have a new request");
+//             await setDoc(doc(db,"rider-details",document.id),{
+//                 trip_details: {
+//                     notified_driver : true
+//                 }    
+//                     },{
+//                     merge: true
+//                 })
+//           }
+//           else{
+//            console.log("Emaildid not match or already notified")
+//           }     
+//             } 
+//         });
+//             } else {
+//            console.log(" Not a driver");
+    
+//            const docRef = doc(db, "rider-details", document_id);
+//     const document = await getDoc(docRef);
+
+//     if(document.data().trip_details.ride_approved == "true" && document.data().trip_details.notified_rider != true){
+//                console.log(document.data().name);
+//                alert("Your request is aproved.");
+//                await setDoc(doc(db,"rider-details",document.id),{
+//                    trip_details: {
+//                        notified_rider : true
+//                    }    
+//                        },{
+//                        merge: true
+//                    })
+//              } else if(document.data().trip_details.ride_approved == "false" && document.data().trip_details.notified_rider != true){
+//                 console.log(document.data().name);
+//                alert("Your request is Declined.");
+//                await setDoc(doc(db,"rider-details",document.id),{
+//                    trip_details: {
+//                        notified_rider : true
+//                    }    
+//                        },{
+//                        merge: true
+//                    })
+//              }
+//              else{
+//               console.log("Emaildid not match or already notified")
+//              }
+
+//             }
+    
+//         },4000);
 
 offerRideButton.addEventListener('click',async (e)=>{
 
@@ -107,27 +175,27 @@ findrideButton.addEventListener("click", function () {
 //     riderPage3.classList.add("nonvisible");
 //     riderPage4.classList.remove("nonvisible");
 // });
-requestRide2.addEventListener("click", function () {
-    riderPage4.classList.add("nonvisible");
-    riderPage5.classList.remove("nonvisible");
-});
-startRide1.addEventListener("click", function () {
-    riderPage5.classList.add("nonvisible");
-    riderPage6.classList.remove("nonvisible");
-});
-startRide2.addEventListener("click", function () {
-    riderPage6.classList.add("nonvisible");
-    riderPage7.classList.remove("nonvisible");
-    initMap();
-});
-endRide.addEventListener("click", function () {
-    riderPage7.classList.add("nonvisible");
-    riderPage8.classList.remove("nonvisible");
-});
-endrideSubmit.addEventListener("click", function () {
-    riderPage8.classList.add("nonvisible");
-    riderPage1.classList.remove("nonvisible");
-});
+// requestRide2.addEventListener("click", function () {
+//     riderPage4.classList.add("nonvisible");
+//     riderPage5.classList.remove("nonvisible");
+// });
+// startRide1.addEventListener("click", function () {
+//     riderPage5.classList.add("nonvisible");
+//     riderPage6.classList.remove("nonvisible");
+// });
+// startRide2.addEventListener("click", function () {
+//     riderPage6.classList.add("nonvisible");
+//     riderPage7.classList.remove("nonvisible");
+//     initMap();
+// });
+// endRide.addEventListener("click", function () {
+//     riderPage7.classList.add("nonvisible");
+//     riderPage8.classList.remove("nonvisible");
+// });
+// endrideSubmit.addEventListener("click", function () {
+//     riderPage8.classList.add("nonvisible");
+//     riderPage1.classList.remove("nonvisible");
+// });
 
 backButton1.addEventListener("click", function () {
     riderPage1.classList.remove("nonvisible");
@@ -173,65 +241,37 @@ minusBtn1.addEventListener("click", () => {
 });
 
 
-//show the map
-window.addEventListener('load', () => {
-    initMap();
-});
-
-function initMap() {
-    let center = [4, 44.4]
-    const map = tt.map({
-        key: "ZUPTa4pAyMBVSiucNojSQx84q9u7PIw4",
-        container: "map",
-        center: center,
-        zoom: 15
-    });
-
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            let pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
-
-            map.setCenter(pos);
-
-            const marker = new tt.Marker({
-                position: pos,
-                draggable: false,
-                element: document.createElement('div.mapmarker')
-            });
-
-            marker.addTo(map);
-
-        }, (error) => {
-            console.log(error);
-            if (error.code == error.PERMISSION_DENIED) {
-                window.alert("geolocation permission denied");
-            }
-        });
-    } else {
-        window.alert = "This browser does not support geolocation";
-    }
-}
-
 
 // get the find a ride requirements
-let fromLocation = document.getElementById("fromlocation");
-let toLocation = document.getElementById("tolocation");
-let rideDate = document.getElementById("date");
-let rideTime = document.getElementById("time");
+let fromLocationInput = document.getElementById("fromlocation");
+let toLocationInput = document.getElementById("tolocation");
+let dateInput = document.getElementById("date");
+let timeInput = document.getElementById("time");
 let petChecked = document.getElementById("pets");
 let requestrideArray = [];
+
+dateInput.addEventListener("change", function () {
+    if (dateInput.value) {
+        dateInput.style.backgroundColor = "rgb(95, 105, 255)";
+        dateInput.style.color = "white";
+    }
+});
+
+timeInput.addEventListener("change", function () {
+    if (timeInput.value) {
+        timeInput.style.backgroundColor = "rgb(95, 105, 255)";
+        timeInput.style.color = "white";
+    }
+});
 
 
 // create city class
 class Ride {
-    constructor(fromLocation, toLocation, rideDate, rideTime, luggageNum, passengerNum, petChecked) {
+    constructor(fromLocation, toLocation, dateInput, timeInput, luggageNum, passengerNum, petChecked) {
         this.fromLocation = fromLocation;
         this.toLocation = toLocation;
-        this.rideDate = rideDate;
-        this.rideTime = rideTime;
+        this.dateInput = dateInput;
+        this.timeInput = timeInput;
         this.luggageNum = luggageNum;
         this.passengerNum = passengerNum;
         this.petChecked = petChecked
@@ -241,7 +281,7 @@ let tempArr = [];
 let imageArr = [];
 var link= "";
 async function submitRideRequest() {
-    const ride = new Ride(fromLocation.value, toLocation.value, rideDate.value, rideTime.value, luggageNum.value, passengerNum.value, petChecked.checked ? true : false);
+    const ride = new Ride(fromLocationInput.value, toLocationInput.value, dateInput.value, timeInput.value, luggageNum.value, passengerNum.value, petChecked.checked ? true : false);
     requestrideArray.push(ride);
     console.log(requestrideArray);
 
@@ -259,7 +299,7 @@ async function submitRideRequest() {
         console.log("in Else");
         origin_temp = doc.data().trip_details.origin_detail;
         destination_temp = doc.data().trip_details.destination_detail;
-        if(fromLocation.value == origin_temp && toLocation.value == destination_temp){
+        if(fromLocationInput.value == origin_temp && toLocationInput.value == destination_temp){
             console.log(doc.data().trip_details);
             tempArr.push(doc.data());
             imageArr.push(doc.id);
@@ -269,7 +309,7 @@ async function submitRideRequest() {
     });
 
     console.log(tempArr);
-    console.log(tempArr[0].trip_details.price);
+    // console.log(tempArr[0].trip_details.price);
 
     for(let i =0; i<tempArr.length;i++){
 
@@ -365,10 +405,10 @@ async function submitRideRequest() {
         try {
             await setDoc(doc(db, "rider-details", document_id), {
                 trip_details: {
-                  origin_detail: fromLocation.value,
-                  destination_detail: toLocation.value,
-                  date: rideDate.value,
-                  time: rideTime.value,
+                  origin_detail: fromLocationInput.value,
+                  destination_detail: toLocationInput.value,
+                  date: dateInput.value,
+                  time: timeInput.value,
                   luggage: luggageNum.value,
                   passengers: passengerNum.value,
                   pet: petChecked.checked,
@@ -398,3 +438,218 @@ async function submitRideRequest() {
 
 
 }
+
+
+
+
+
+//start and end point search and map routing 
+document.addEventListener('DOMContentLoaded', () => {
+    const fromLocationSuggestions = document.getElementById('fromlocation-suggestions');
+    handleLocationInput(fromLocationInput, fromLocationSuggestions, (position) => {
+        fromLocation = position;
+        if (fromLocation && toLocation) {
+            drawRoute(fromLocation, toLocation);
+        }
+    });
+
+    const toLocationSuggestions = document.getElementById('tolocation-suggestions');
+    handleLocationInput(toLocationInput, toLocationSuggestions, (position) => {
+        toLocation = position;
+        if (fromLocation && toLocation) {
+            drawRoute(fromLocation, toLocation);
+        }
+    });
+});
+
+let fromLocation = null;
+let toLocation = null;
+
+function handleLocationInput(inputElement, suggestionsElement, setLocation) {
+    inputElement.addEventListener('input', (event) => {
+        const query = event.target.value;
+
+        if (query.length < 3) {
+            suggestionsElement.innerHTML = '';
+            suggestionsElement.classList.remove('active');
+            return;
+        }
+
+        tt.services.fuzzySearch({
+                key: 'ZUPTa4pAyMBVSiucNojSQx84q9u7PIw4',
+                query: query,
+                countrySet: 'CA'
+            })
+            .then((response) => {
+                suggestionsElement.innerHTML = '';
+
+                response.results.forEach((result) => {
+                    const suggestion = document.createElement('div');
+                    let displayText = result.address.freeformAddress;
+                    if (result.poi && result.poi.name) {
+                        displayText = result.poi.name + ', ' + displayText;
+                    }
+                    suggestion.textContent = displayText;
+                    suggestion.addEventListener('click', () => {
+                        inputElement.value = displayText;
+                        suggestionsElement.innerHTML = '';
+                        suggestionsElement.classList.remove('active');
+                        setLocation(result.position);
+                    });
+
+                    suggestionsElement.appendChild(suggestion);
+                });
+
+                if (response.results.length > 0) {
+                    suggestionsElement.classList.add('active');
+                } else {
+                    suggestionsElement.classList.remove('active');
+                }
+            });
+    });
+
+    document.addEventListener('click', (event) => {
+        if (event.target !== inputElement) {
+            suggestionsElement.innerHTML = '';
+            suggestionsElement.classList.remove('active');
+        }
+    });
+}
+
+let map = tt.map({
+    key: 'ZUPTa4pAyMBVSiucNojSQx84q9u7PIw4',
+    container: 'map',
+    center: [-122.9046, 49.1949],
+    zoom: 9
+});
+
+let map1 = tt.map({
+    key: 'ZUPTa4pAyMBVSiucNojSQx84q9u7PIw4',
+    container: 'map1',
+    center: [-122.9046, 49.1949],
+    zoom: 9
+});
+console.log(map1);
+
+function drawRoute(from, to) {
+    tt.services.calculateRoute({
+            key: 'ZUPTa4pAyMBVSiucNojSQx84q9u7PIw4',
+            traffic: false,
+            locations: [from, to]
+        })
+        .then((response) => {
+            const geojson = response.toGeoJson();
+            if (map.getSource('route')) {
+                map.getSource('route').setData(geojson);
+                map1.getSource('route').setData(geojson);
+            } else {
+                map.addSource('route', {
+                    type: 'geojson',
+                    data: geojson
+                });
+                map.addLayer({
+                    id: 'route',
+                    type: 'line',
+                    source: 'route',
+                    paint: {
+                        'line-color': 'gray',
+                        'line-width': 3
+                    }
+                });
+
+                map1.addSource('route', {
+                    type: 'geojson',
+                    data: geojson
+                });
+                map1.addLayer({
+                    id: 'route',
+                    type: 'line',
+                    source: 'route',
+                    paint: {
+                        'line-color': 'gray',
+                        'line-width': 3
+                    }
+                });
+            }
+
+            // Zoom to fit the route on the map
+            const coordinates = geojson.features[0].geometry.coordinates;
+            const bounds = coordinates.reduce((bounds, coord) => {
+                return bounds.extend(coord);
+            }, new tt.LngLatBounds(coordinates[0], coordinates[0]));
+            map.fitBounds(bounds, {
+                padding: 30
+            });
+
+            map1.fitBounds(bounds, {
+                padding: 30
+            });
+
+
+            // set the marker on the routing map
+            addMarker(from, 'start-icon');
+            addMarker(to, 'end-icon');
+        })
+        .catch((error) => {
+            console.error('Error calculating the route:', error);
+        });
+
+}
+
+
+//add start and end point icon to the routing map
+function addMarker(position, iconClass) {
+    const existingMarker = document.getElementById(iconClass);
+    if (existingMarker) {
+        existingMarker.remove();
+    }
+
+    const markerElement = document.createElement('div');
+    markerElement.className = 'custom-icon ' + iconClass;
+    markerElement.id = iconClass;
+
+    new tt.Marker({
+            element: markerElement
+        })
+        .setLngLat([position.lng, position.lat])
+        .addTo(map);
+
+        new tt.Marker({
+            element: markerElement
+        })
+        .setLngLat([position.lng, position.lat])
+        .addTo(map1);
+}
+
+
+//switch button hover or click action
+const switchButton = document.getElementById("switch-button");
+const switchButtonImage = switchButton.querySelector("img");
+
+switchButton.addEventListener("mouseover", () => {
+    switchButtonImage.src = "/ride-along/rider-details2.0/icon/Group 1509-blue.svg";
+});
+
+switchButton.addEventListener("mouseout", () => {
+    switchButtonImage.src = "/ride-along/rider-details2.0/icon/Group 1509-gray.svg";
+});
+
+switchButton.addEventListener("click", () => {
+    switchButtonImage.src = "/ride-along/rider-details2.0/icon/Group 1509-blue.svg";
+    const fromLocationInput = document.getElementById("fromlocation");
+    const toLocationInput = document.getElementById("tolocation");
+
+    // Swap the input values
+    const tempLocation = fromLocationInput.value;
+    fromLocationInput.value = toLocationInput.value;
+    toLocationInput.value = tempLocation;
+
+    const tempPosition = fromLocation;
+    fromLocation = toLocation;
+    toLocation = tempPosition;
+
+    // Redraw the route 
+    if (fromLocation && toLocation) {
+        drawRoute(fromLocation, toLocation);
+    }
+});

@@ -8,6 +8,12 @@
         <link rel="stylesheet" href="./post-ride.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <script type="module" src="./post-ride.js" defer></script>
+
+        <!-- tomtom -->
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/maps/maps-web.min.js"></script>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/services/services-web.min.js"></script>
+    <link rel="stylesheet" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/maps/maps.css">
+
     </head>
     <body>
         <header>
@@ -21,12 +27,27 @@
         <main>
             <div class="destination-enter">
                 <form action="#">
-                    <div class="enter-location">
+                    <!-- <div class="enter-location">
                         <input type="text" id="origin" placeholder="Enter the origin location">
                         <input type="text" id="destination" placeholder="Enter the destination">
+                    </div> -->
+
+                    <div class="inputbox" style="position: relative;">
+                        <div class="inputs-wrapper">
+                            <input type="text" name="text" id="fromlocation" placeholder="Enter the start location">
+                            <input type="text" name="text" id="tolocation" placeholder="Enter the destination">
+                        </div>
+                        <div id="fromlocation-suggestions" class="location-suggestions"></div>
+                        <div id="tolocation-suggestions" class="location-suggestions"></div>
+                        <button id="switch-button" class="switch-button">
+                            <img src="/ride-along/rider-details2.0/icon/Group 1509-gray.svg" alt="Switch locations" />
+                        </button>
                     </div>
-                    
-                    <div class="home">
+
+
+                    <div id='map' class='map' style="height: 400px; width: 100%;"></div>
+
+                    <!-- <div class="home">
                         <i class="fa-solid fa-house"></i>
                         <p>Home</p>
                     </div>
@@ -37,7 +58,7 @@
                     <div class="location">
                         <i class="fa-solid fa-location-dot"></i>
                         <p>Suggested location</p>
-                    </div>
+                    </div> -->
 
                     <div class="ride-schedule">
                         <h2>Ride Schedule</h2>

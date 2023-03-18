@@ -60,7 +60,10 @@ submit.addEventListener('click', (event) => {
           }
         }
         console.log("document id",document_id);
+        // window.location.href = `./rider-details2.0/pages/page1/page1.html?doc-id=${document_id}`;
         window.location.href = `./rider-details/index.html?doc-id=${document_id}`;
+
+
       })
       .catch((error) => {
         const errorMessageText = error.message;
