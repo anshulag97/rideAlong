@@ -21,6 +21,12 @@ const auth = getAuth(app);
 
 const urlSearchParams = new URLSearchParams(window.location.search);
 const document_id = urlSearchParams.get('doc-id');
+
+const back = document.getElementById('back');
+back.addEventListener('click',()=>{
+  history.go(-1);
+});
+
 let user_email;
 const docRef = doc(db, "driver-details", document_id);
 const docSnap = await getDoc(docRef);
@@ -39,6 +45,7 @@ var link= "";
 const acceptButton = [];
 const declineButton = [];
 let querySnapshot = await getDocs(collection(db, 'rider-details'));
+
 
 // console.log(user_id);
 querySnapshot.forEach((doc) => {

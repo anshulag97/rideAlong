@@ -39,8 +39,33 @@ const menuButton = document.getElementById('menu-button');
 const menu = document.getElementById('menu');
 
 menuButton.addEventListener('click', function () {
-    menu.classList.remove('nonvisible');
+    console.log("button clicked");
+    // menu.classList.remove('nonvisible');
+    menu.classList.toggle('visible');
+});
+
+const myProfile = document.getElementById('profile-page');
+
+myProfile.addEventListener('click',(e)=>{
+    e.preventDefault();
+    window.location.href = `../my-profile.html?doc-id=${document_id}`;
 })
+
+const safety = document.getElementById('safety-page');
+
+safety.addEventListener('click',(e)=>{
+    e.preventDefault();
+    window.location.href = `../safety.html?doc-id=${document_id}`;
+})
+
+const contact = document.getElementById('contact-page');
+
+contact.addEventListener('click',(e)=>{
+    e.preventDefault();
+    window.location.href = `../contact.html?doc-id=${document_id}`;
+})
+
+
 
 // get the buttons and pages
 const findRide = document.getElementById("findRidebutton");
