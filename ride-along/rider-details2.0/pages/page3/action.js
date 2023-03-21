@@ -152,6 +152,70 @@ docRef.get().then((doc) => {
     }
 })
 
+
+
+function addMarker(position, iconClass) {
+    const existingMarker = document.getElementById(iconClass);
+    if (existingMarker) {
+        existingMarker.remove();
+    }
+
+    const markerElement = document.createElement('div');
+    markerElement.className = 'custom-icon ' + iconClass;
+    markerElement.id = iconClass;
+
+    new tt.Marker({
+            element: markerElement
+        })
+        .setLngLat([position.lng, position.lat])
+        .addTo(map);
+}
+
+
+function addBlueDotMarker(position) {
+    const blueDotMarkerElement = document.createElement('div');
+    blueDotMarkerElement.className = 'blue-dot-marker';
+
+    const blueDotMarker = new tt.Marker({
+        element: blueDotMarkerElement
+    }).setLngLat([position.longitude, position.latitude]).addTo(map);
+
+    return blueDotMarker;
+}
+
+
+function updateLocation(position) {
+    const newPosition = {
+        longitude: position.coords.longitude,
+        latitude: position.coords.latitude
+    };
+
+    if (!blueDotMarker) {
+        blueDotMarker = addBlueDotMarker(newPosition);
+    } else {
+        blueDotMarker.setLngLat([newPosition.longitude, newPosition.latitude]);
+    }
+}
+
+
+let blueDotMarker;
+
+if ('geolocation' in navigator) {
+    const watchOptions = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+    };
+
+    navigator.geolocation.watchPosition(updateLocation, (error) => {
+        console.error('Error watching position:', error);
+    }, watchOptions);
+} else {
+    console.error('Geolocation not available');
+}
+
+
+
 function loadDriverPhoto(driverId, driverPhotoElement) {
     const photoRef = storage.ref(`images/${driverId}image.png`);
     photoRef
@@ -234,21 +298,3 @@ function createAvailableDriverCard(driverData, trip, indexTrip) {
 }
 
 
-
-
-function addMarker(position, iconClass) {
-    const existingMarker = document.getElementById(iconClass);
-    if (existingMarker) {
-        existingMarker.remove();
-    }
-
-    const markerElement = document.createElement('div');
-    markerElement.className = 'custom-icon ' + iconClass;
-    markerElement.id = iconClass;
-
-    new tt.Marker({
-            element: markerElement
-        })
-        .setLngLat([position.lng, position.lat])
-        .addTo(map);
-}

@@ -136,3 +136,10 @@ span.checked {
     width: 80px; 
     height: 80px; 
 }
+
+.blue-dot-marker {
+    background-color: blue;
+    border-radius: 50%;
+    height: 15px;
+    width: 15px;
+  }
