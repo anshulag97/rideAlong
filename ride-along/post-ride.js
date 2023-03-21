@@ -101,6 +101,19 @@ minusBtn2.addEventListener("click", () => {
     }
 });
 
+// Validate field function
+function validate_field(field){
+    if(field === null || field === ''){
+      return false
+    }else{
+        return true
+    }
+  };
+
+
+
+
+
 const fromLocationInput = document.getElementById('fromlocation');
 const toLocationInput = document.getElementById('tolocation');
 const submit = document.getElementById('submit');
@@ -114,31 +127,56 @@ const pet = document.getElementById('pets').checked;
 const price = document.getElementById('price').value;
 const description = document.getElementById('description').value;
 
-console.log(document_id);
-
-try {
-  await setDoc(doc(db, "driver-details", document_id), {
-    
-      trip_details: {
-        origin_detail: fromLocationInput.value,
-        destination_detail: toLocationInput.value,
-        date: date,
-        time: time,
-        luggage: luggage,
-        passengers: passengers,
-        pet: pet,
-        price: price,
-        description: description
+    if(validate_field(fromLocationInput.value) == false) {
+        alert('Please enter the start location');
+        return
     }
-  }, {
-    merge: true
-  });
-  alert("Ride Posted Successfully !");
-    console.log("Document successfully updated!");
-   } 
-   catch (error) {
-    console.error("Error updating document: ", error);
-  }
+
+    if(validate_field(toLocationInput.value) == false) {
+        alert('Please enter the destination');
+        return
+    }
+
+    if(validate_field(date) == false) {
+        alert('Please enter date');
+        return
+    }
+
+    if(validate_field(time) == false) {
+        alert('Please enter time');
+        return
+    }
+
+    if(validate_field(price) == false) {
+        alert('Please enter price');
+        return
+    }
+
+    try {
+    await setDoc(doc(db, "driver-details", document_id), {
+        
+        trip_details: {
+            origin_detail: fromLocationInput.value,
+            destination_detail: toLocationInput.value,
+            date: date,
+            time: time,
+            luggage: luggage,
+            passengers: passengers,
+            pet: pet,
+            price: price,
+            description: description
+        }
+    }, {
+        merge: true
+    });
+    alert("Ride Posted Successfully !");
+        console.log("Document successfully updated!");
+    } 
+    catch (error) {
+        console.error("Error updating document: ", error);
+    }
+
+
 });
 
 
