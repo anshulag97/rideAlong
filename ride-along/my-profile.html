@@ -13,17 +13,27 @@
 </head>
 <body>
 
-    <input type="button" value="back" id="back">
-
-    <h1>My Profile</h1>
-
     <header>
-        <div class="header-title">
-            <i class="fa-sharp fa-solid fa-arrow-left"></i>
-            <h3>My Account</h3>
-        </div>
-        <i class="fa-solid fa-bars"></i>
+        <a href="#rider-page1" id="back-button1" class="back-button">
+            <i class="fa-solid fa-left-long"></i>
+            <span>My Profile</span>
+        </a>
+        <a href="#menu" id="menu-button">
+            <i class="fa-solid fa-bars"></i>
+            <span class="visually-hidden">Menu</span>
+        </a>
     </header>
+
+    <nav id="menu">
+        <ul>
+            <li id="profile-page"><a href="#">My Profile</a></li>
+            <li id="trips-page"><a href="#">Trips</a></li>
+            <li id="request-page"><a>Request</a></li>
+            <!-- <li><a href="#">MESSAGES</a></li> -->
+            <li id="safety-page"><a href="#">Safety</a></li>
+            <li id="contact-page"><a href="#">Contact Us</a></li>
+        </ul>
+    </nav>
 
     <main>
         <div class="photo-email">

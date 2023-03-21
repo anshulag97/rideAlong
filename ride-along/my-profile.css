@@ -8,13 +8,12 @@ max-width: 100%;
 height: auto;
 }
 header {
-    background-color: #162EAC;
-    color: white;
-    display: flex;
-    justify-content: space-between;
+    background-color: rgb(22, 46, 172);
+    height: 48px;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
     align-items: center;
-    padding: 1rem 1rem;
-    margin-bottom: 1rem;
+    padding: 0 20px;
 }
 
 .header-title {
@@ -110,4 +109,112 @@ footer{
     background-color: #D9D9D9;
     width: 100%;
     text-align: center;
+}
+
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+#menu-button{
+    background-color: rgb(95, 105, 255);
+    height: 24px;
+    padding: 6px 10px 0 10px;
+    line-height: 0;
+    border-radius: 5px;
+    justify-self: end;
+    grid-column: 2/3;
+}
+
+#menu-button:hover{
+    background-color: rgb(203, 68, 82);
+}
+
+#menu-button i{
+    color:white;
+    font-size: 1.2rem;
+}
+
+#menu{
+    background-color: rgba(22, 47, 172, 0.539);
+    position: fixed;
+    top: 48px;
+    height: 100%;
+    right: -100%;
+    width: 50%;
+    transition: right 0.4s ease;
+    z-index: 98;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    backdrop-filter: blur(7px) brightness(90%);
+}
+
+#menu.visible {
+    right: 0;
+}
+
+#menu a{
+    color:white;
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+}
+
+#menu li{
+    display: block;
+    width: 100%;
+}
+
+#menu ul{
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+    align-items: center;
+    padding: 0;
+}
+
+#menu ul li a:hover{
+    background-color: rgb(203, 68, 82);
+}
+
+.back-button i, .back-button span{
+    background-color: rgb(95, 105, 255);
+    height: 24px;
+    line-height: 1.5;
+    color:white;
+    font-size: 1.2rem;
+}
+
+.back-button i{
+    border-radius: 5px;
+    padding: 1px 5px 5px 5px;
+}
+
+.back-button span{
+    border-radius: 10px;
+    padding: 2px 25px 5px 25px;
+    font-weight: 500;
+}
+
+.back-button{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    justify-self: start;
+}
+
+.back-button:hover i,
+.back-button:hover span{
+    background-color: rgb(203, 68, 82);
+}
+
+a{
+    text-decoration: none;
 }
