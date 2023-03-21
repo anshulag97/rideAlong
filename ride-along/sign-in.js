@@ -71,3 +71,18 @@ submit.addEventListener('click', (event) => {
       });
   }
 });
+
+
+// Password Toggle 
+const passwordInput = document.getElementById("password");
+const passBtnHide = document.getElementById("password_hide");
+
+passBtnHide.addEventListener("click", function() {
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";
+    passBtnHide.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+  } else {
+    passwordInput.type = "password";
+    passBtnHide.innerHTML = '<i class="fa-solid fa-eye"></i>';
+  }
+});

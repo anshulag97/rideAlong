@@ -252,19 +252,10 @@ function addMarker(position, iconClass) {
 
 //switch button hover or click action
 const switchButton = document.getElementById("switch-button");
-const switchButtonImage = switchButton.querySelector("img");
-
-switchButton.addEventListener("mouseover", () => {
-  switchButtonImage.src = "/ride-along/rider-details2.0/icon/Group 1509-blue.svg";
-});
-
-switchButton.addEventListener("mouseout", () => {
-  switchButtonImage.src = "/ride-along/rider-details2.0/icon/Group 1509-gray.svg";
-});
 
 switchButton.addEventListener("click", (e) => {
   e.preventDefault();
-  switchButtonImage.src = "/ride-along/rider-details2.0/icon/Group 1509-blue.svg";
+  
   const fromLocationInput = document.getElementById("fromlocation");
   const toLocationInput = document.getElementById("tolocation");
 

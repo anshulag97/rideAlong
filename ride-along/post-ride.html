@@ -10,9 +10,14 @@
         <script type="module" src="./post-ride.js" defer></script>
 
         <!-- tomtom -->
-    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/maps/maps-web.min.js"></script>
-    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/services/services-web.min.js"></script>
-    <link rel="stylesheet" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/maps/maps.css">
+        <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/maps/maps-web.min.js"></script>
+        <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/services/services-web.min.js"></script>
+        <link rel="stylesheet" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/maps/maps.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     </head>
     <body>
@@ -27,20 +32,16 @@
         <main>
             <div class="destination-enter">
                 <form action="#">
-                    <!-- <div class="enter-location">
-                        <input type="text" id="origin" placeholder="Enter the origin location">
-                        <input type="text" id="destination" placeholder="Enter the destination">
-                    </div> -->
 
-                    <div class="inputbox" style="position: relative;">
-                        <div class="inputs-wrapper">
+                    <div class="inputbox">
+                        <div class="enter-location">
                             <input type="text" name="text" id="fromlocation" placeholder="Enter the start location">
                             <input type="text" name="text" id="tolocation" placeholder="Enter the destination">
                         </div>
                         <div id="fromlocation-suggestions" class="location-suggestions"></div>
                         <div id="tolocation-suggestions" class="location-suggestions"></div>
                         <button id="switch-button" class="switch-button">
-                            <img src="/ride-along/rider-details2.0/icon/Group 1509-gray.svg" alt="Switch locations" />
+                            <i class="fa-solid fa-arrow-down-up-across-line"></i>
                         </button>
                     </div>
 
@@ -64,7 +65,6 @@
                         <h2>Ride Schedule</h2>
                         <input type="date" id="date" placeholder="Departure Date">
                         <input type="time" id="time" placeholder="Time">
-                        <!-- <input type="text" placeholder="ADD RETURN TRIP"> -->
                     </div>
 
                     <div class="trip-preferences">
