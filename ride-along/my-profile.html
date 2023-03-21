@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,11 +12,12 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./my-profile.css">
 </head>
+
 <body>
 
-    <input type="button" value="back" id="back">
+    <!-- <input type="button" value="back" id="back"> -->
 
-    <h1>My Profile</h1>
+    <!-- <h1>My Profile</h1> -->
 
     <header>
         <div class="header-title">
@@ -27,41 +29,44 @@
 
     <main>
         <div class="photo-email">
-            <img src="https://picsum.photos/200/200" alt="profile-picture" class="profile-pic" id="picture">
-            <button id="update-image">update</button>
-            <p id="user-name">Dynamic Name</p>
+            <div>
+                <img src="https://picsum.photos/200/200" alt="profile-picture" class="profile-pic" id="picture">
+                <p id="user-name">Dynamic Name</p>
+            </div>
+            <button id="update-image">change portrait</button>
         </div>
 
         <div id="image-div" style="display: none;">
-        <input type="submit" id="capture-btn" value="Start Camera">
-        <input type="submit" id="snap-btn" value="Snap">
-        <video id="cameraFeed" width="400" height="400" autoplay></video>
-        <canvas id="captured-img"  width="400" height="300" src="" alt="Captured Image"></canvas>
-    </div>
-
-
+            <input type="submit" id="capture-btn" value="Start Camera">
+            <input type="submit" id="snap-btn" value="Snap">
+            <video id="cameraFeed" width="400" height="400" autoplay></video>
+            <canvas id="captured-img" width="400" height="300" src="" alt="Captured Image"></canvas>
+        </div>
         <div class="details">
             <div class="common-details">
+                <h3>Your Information</h3>
                 <ul>
-                    <h3>Your Information</h3>
-                    <li><input type="text" id="email" value="E-Mail" disabled></li>
-                    <li><input type="text" id="name" value="Name" disabled>  <button id="update-name">update</button></li>
-                   </ul>
+                    <li><i class="fa-solid fa-envelope"></i><input type="text" id="email" value="E-Mail" disabled></li>
+                    <li><i class="fa-solid fa-user"></i><input type="text" id="name" value="Name" disabled></li>
+                </ul>
+                <button id="update-name">Update</button>
             </div>
             <div id="vehicle-details">
                 <h3>Car Info</h3>
                 <ul>
-                    <li><input type="text" id="car-model" value="Car Model" disabled><button id="update-car-model">update</button></li>
-                    <li><input type="text" id="car-name" value="Car Name" disabled><button id="update-car-name">update</button></li>
-                    <li><input type="text" id="car-number" value="Car Number" disabled><button id="update-car-number">update</button></li>
+                    <li><i class="fa-solid fa-truck-pickup"></i><input type="text" id="car-model" value="Car Model" disabled></li>
+                    <li><i class="fa-solid fa-car"></i><input type="text" id="car-name" value="Car Name" disabled></li>
+                    <li><i class="fa-solid fa-hashtag"></i><input type="text" id="car-number" value="Car Number" disabled></li>
                 </ul>
+                <button id="update-car-model">Update</button>
             </div>
             <div class="common-details">
+                <h3>Emergency Contacts</h3>
                 <ul>
-                    <h3>Emergency Contacts</h3>
-                    <li><input type="text" id="emergency-name" value="Name" disabled> <button id="update-emergency-name">update</button></li>
-                    <li><input type="text" id="emergency-phone" value="Phone" disabled>  <button id="update-emergency-phone">update</button></li>
+                    <li><i class="fa-solid fa-address-card"></i><input type="text" id="emergency-name" value="Name" disabled></li>
+                    <li><i class="fa-solid fa-phone"></i><input type="text" id="emergency-phone" value="Phone" disabled></li>
                 </ul>
+                <button id="update-emergency-phone">Update</button>
             </div>
         </div>
 
@@ -75,4 +80,5 @@
         <p>@2023 RideAlong. All Rights Reserved</p>
     </footer>
 </body>
+
 </html>

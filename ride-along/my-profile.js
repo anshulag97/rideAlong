@@ -45,9 +45,7 @@ const emergency_phone = document.getElementById('emergency-phone');
 const update_image = document.getElementById('update-image');
 const update_name = document.getElementById('update-name');
 const update_car_model = document.getElementById('update-car-model');
-const update_car_name = document.getElementById('update-car-name');
-const update_car_number = document.getElementById('update-car-number');
-const update_emergency_name = document.getElementById('update-emergency-name');
+// const update_emergency_name = document.getElementById('update-emergency-name');
 const update_emergency_phone = document.getElementById('update-emergency-phone');
 
 
@@ -133,27 +131,16 @@ update_name.addEventListener('click',()=>{
 
 update_car_model.addEventListener('click',()=>{
   car_model.removeAttribute('disabled');
-  car_model.focus();
-});
-
-update_car_name.addEventListener('click',()=>{
   car_name.removeAttribute('disabled');
-  car_name.focus();
-});
-
-update_car_number.addEventListener('click',()=>{
   car_number.removeAttribute('disabled');
-  car_number.focus();
-});
-
-update_emergency_name.addEventListener('click',()=>{
-  emergency_name.removeAttribute('disabled');
-  emergency_name.focus();
+  car_model.focus();
 });
 
 update_emergency_phone.addEventListener('click',()=>{
   emergency_phone.removeAttribute('disabled');
+  emergency_name.removeAttribute('disabled');
   emergency_phone.focus();
+  emergency_name.focus();
 });
 
 let dataURL ="";
