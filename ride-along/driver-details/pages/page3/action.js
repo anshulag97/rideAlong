@@ -1,4 +1,3 @@
-
 const firebaseConfig = {
     apiKey: "AIzaSyA0l9LZ3lYZWsSyPFTsxRACc2ltACy2hsI",
     authDomain: "ridealong-683df.firebaseapp.com",
@@ -38,18 +37,18 @@ docRef.get().then((doc) => {
         const lastTrip = tripDetails[tripDetails.length - 1];
         const fromLocationObj = lastTrip.fromLocation;
         const toLocationObj = lastTrip.toLocation;
-        
 
-        const ridePrice= document.getElementById('price');
+
+        const ridePrice = document.getElementById('price');
         ridePrice.setAttribute('type', 'text');
-        
+
         // Set the input values
         document.getElementById('fromlocation').value = lastTrip.fromLocationAddress;
         document.getElementById('tolocation').value = lastTrip.toLocationAddress;
-        document.getElementById('date').value = lastTrip.date; 
-        document.getElementById('time').value = lastTrip.time; 
+        document.getElementById('date').value = lastTrip.date;
+        document.getElementById('time').value = lastTrip.time;
         document.getElementById('seats').value = lastTrip.passengerNum + ' seats';
-        document.getElementById('price').value = '$' + lastTrip.ridePrice + ' per seat';        
+        document.getElementById('price').value = '$' + lastTrip.ridePrice + ' per seat';
         document.getElementById('trip_description').value = lastTrip.tripDescription;
         document.getElementById('drivername').textContent = driverName;
 
@@ -130,17 +129,21 @@ const driverPhoto = document.getElementById("driverphoto");
 function loadDriverPhoto(photoId) {
     const photoRef = storage.ref(`images/${document_id}image.png`);
     photoRef
-      .getDownloadURL()
-      .then((photoURL) => {
-        driverPhoto.src = photoURL;
-      })
-      .catch((error) => {
-        console.error("Error loading driver photo:", error);
-      });
-  }
+        .getDownloadURL()
+        .then((photoURL) => {
+            driverPhoto.src = photoURL;
+        })
+        .catch((error) => {
+            console.error("Error loading driver photo:", error);
+        });
+}
 
 
-  loadDriverPhoto(document_id);
+loadDriverPhoto(document_id);
 
 
+const viewrequest = document.getElementById("viewrequest");
 
+viewrequest.addEventListener("click", () => {
+    window.location.href = `../page4/page4.html?doc-id=${document_id}`;
+});

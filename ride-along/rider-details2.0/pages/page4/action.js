@@ -41,7 +41,6 @@ db.collection('driver-details').doc(driverId).get().then((driverDoc) => {
         driverData = driverDoc.data();
         console.log("Driver Data:", driverData);
 
-        // Now, retrieve the trip data
         if (Array.isArray(driverData.trip_details) && driverData.trip_details[tripId]) {
             tripData = driverData.trip_details[tripId];
             carData = driverData.car_details
@@ -74,7 +73,7 @@ function displayDriverAndTripInfo(carData, tripData) {
     tripData.car_number = carData.car_number;
     // tripData.car_color = carData.car_color;
     tripData.driver_name = driverData.name;
-    tripData.driver_uid = driverData.uid;
+    tripData.driver_id = driverId;
     // tripData.driver_review = driverData.review
 
 }
@@ -82,20 +81,81 @@ function displayDriverAndTripInfo(carData, tripData) {
 const requestRide2 = document.getElementById("requestRide2");
 
 requestRide2.addEventListener("click", () => {
-    // Check if tripsubmit array exists in the document and create one if it doesn't
     docRef.get().then((doc) => {
         if (doc.exists) {
             let data = doc.data();
             if (!data.tripsubmit) {
                 data.tripsubmit = [];
             }
-            // Add tripData to the tripsubmit array
+            
             data.tripsubmit.push(tripData);
 
-            // Update the document with the new tripsubmit array
             docRef.update({ tripsubmit: data.tripsubmit })
                 .then(() => {
                     console.log("Trip data submitted.");
+                    // Fetch rider's name from rider_details collection
+                    db.collection('rider-details').doc(document_id).get().then((riderDoc) => {
+                        if (riderDoc.exists) {
+                            const riderName = riderDoc.data().name;
+
+                            // Update driver-details collection
+                            const driverRef = db.collection('driver-details').doc(driverId);
+                            driverRef.get().then((driverDoc) => {
+                                if (driverDoc.exists) {
+                                    let driverData = driverDoc.data();
+                                    if (!driverData.trip_details) {
+                                        console.error("No trip_details array found in driver-details collection.");
+                                        return;
+                                    }
+
+                                    let tripUpdated = false;
+                                    for (let index = 0; index < driverData.trip_details.length; index++) {
+                                        const trip = driverData.trip_details[index];
+                                        if (trip.fromLocationAddress === tripData.fromLocationAddress &&
+                                            trip.toLocationAddress === tripData.toLocationAddress &&
+                                            trip.time === tripData.time &&
+                                            trip.date === tripData.date) {
+                                            let application = {
+                                                riderId: document_id,
+                                                riderName: riderName,
+                                                application_status: 'pending'
+                                            };
+                
+                                            if (!driverData.trip_details[index].applications) {
+                                                driverData.trip_details[index].applications = [];
+                                            }
+                
+                                            driverData.trip_details[index].applications.push(application);
+                                            tripUpdated = true;
+                                        }
+                                    }
+
+                                    if (!tripUpdated) {
+                                        console.error("No matching trip found.");
+                                        return;
+                                    }
+
+                                    driverRef.update({ trip_details: driverData.trip_details })
+                                        .then(() => {
+                                            console.log("Trip application updated in driver-details collection.");
+                                        })
+                                        .catch((error) => {
+                                            console.error("Error updating trip application in driver-details collection:", error);
+                                        });
+                                } else {
+                                    console.error("Driver document not found");
+                                }
+                            }).catch((error) => {
+                                console.error("Error getting driver document:", error);
+                            });
+
+                        } else {
+                            console.error("Rider document not found");
+                        }
+                    }).catch((error) => {
+                        console.error("Error getting rider document:", error);
+                    });
+
                     window.location.href = `../page4/confirm.html?doc-id=${document_id}&driver-id=${driverData.driverId}&trip-index=${tripId}`;
                 })
                 .catch((error) => {

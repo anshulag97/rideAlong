@@ -26,6 +26,7 @@ docRef.get().then((doc) => {
     if (doc.exists) {
         let data = doc.data();
         let tripArray = data.tripsubmit;
+        console.log(tripArray)
         
         // Iterate through the tripArray and create available-driver-cards elements
         tripArray.forEach((trip) => {
@@ -49,26 +50,33 @@ docRef.get().then((doc) => {
             let fromLocation = document.createElement("input");
             fromLocation.type = "text";
             fromLocation.id = "fromlocation";
-            fromLocation.value = trip.fromlocation; // Assuming trip object has fromlocation property
-            
+            fromLocation.value = trip.fromLocationAddress; 
+
             let toLocation = document.createElement("input");
             toLocation.type = "text";
             toLocation.id = "tolocation";
-            toLocation.value = trip.tolocation; // Assuming trip object has tolocation property
+            toLocation.value = trip.toLocationAddress; 
             
             inputbox.appendChild(fromLocation);
             inputbox.appendChild(toLocation);
             fromToSearch.appendChild(inputbox);
             card.appendChild(fromToSearch);
 
-            // Create driver-info element
+            // driver-info element
             let driverInfo = document.createElement("div");
             driverInfo.className = "driver-info";
             
+            let driverInfo2 = document.createElement("div");
+            driverInfo2.className = "driver-info2";
+
+            let driverContainer = document.createElement("div");
+            driverContainer.className = "driverContainer";
+            
             let driverPhoto = document.createElement("img");
             driverPhoto.id = "driver-photo";
-            driverPhoto.src = trip.driver_photo; // Assuming trip object has driver_photo property
-            
+            const driverId = trip.driver_id;
+            loadDriverPhoto(driverId, driverPhoto);
+
             let driverName = document.createElement("p");
             driverName.id = "driver-name";
             driverName.innerText = trip.driver_name; // Assuming trip object has driver_name property
@@ -78,13 +86,16 @@ docRef.get().then((doc) => {
             driverProfile.innerText = "Profile";
             
             driverInfo.appendChild(driverPhoto);
-            driverInfo.appendChild(driverName);
-            driverInfo.appendChild(driverProfile);
-            card.appendChild(driverInfo);
+            driverInfo2.appendChild(driverName);
+            driverInfo2.appendChild(driverProfile);
+            driverContainer.appendChild(driverInfo);
+            driverContainer.appendChild(driverInfo2);
+            card.appendChild(driverContainer);
 
             // Create startRide1 button element
             let startRide1 = document.createElement("button");
             startRide1.id = "startRide1";
+            startRide1.textContent = 'Select';
             card.appendChild(startRide1);
 
             // Append the available-driver-cards element to the rider-page5 container
@@ -96,3 +107,16 @@ docRef.get().then((doc) => {
 }).catch((error) => {
     console.error("Error getting document:", error);
 });
+
+
+function loadDriverPhoto(driverId, driverPhoto) {
+    const photoRef = storage.ref(`images/${driverId}image.png`);
+    photoRef
+        .getDownloadURL()
+        .then((photoURL) => {
+            driverPhoto.src = photoURL;
+        })
+        .catch((error) => {
+            console.error("Error loading driver photo:", error);
+        });
+}
