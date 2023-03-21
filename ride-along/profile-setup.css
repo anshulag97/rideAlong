@@ -1,51 +1,138 @@
+html {
+    overflow-x: hidden;
+}
+
 body{
-    height: 100vh;
     margin: 0;
     padding: 0;
-
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    justify-content: space-between;
+    font-family: 'Poppins', sans-serif;
 }
-header{
-    width: 100%;
+
+header {
+    padding: 1.5rem;
     text-align: center;
-    margin: 1rem;
+    text-align: left;
+    margin-bottom: 2rem;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.516);
 }
 
-main{
-    font-size: 1rem;
+header .logo {
+    max-width: 100%;
+    height: auto;
 }
 
-.wrapper{
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    justify-content: center;
+main {
+    max-width: 90%;
+    margin: auto;
 }
 
-.wrapper i{
-    padding: 5rem;
-    border: 1px solid black;
-    margin-bottom: 1rem;
-    border-radius: 90%;
+.app-wrapper h1 {
+    text-align: center;
+    margin-bottom: 2.5rem;
 }
 
-input{
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-    width: 150px;
+.app-wrapper h2 {
+    font-weight: 600;
+    margin-bottom: 0;
 }
 
-#submit{
+.app-wrapper p {
+    font-size: .9rem;
+    color: rgb(0, 0, 0, 60%);
+}
+
+.app-wrapper ul {
+    padding: 0;
+}
+
+.app-wrapper ul li {
+    list-style-type: none;
+    font-size: .9rem;
+    color: rgb(0, 0, 0, 60%);
+    font-weight: 600;
+    margin-bottom: 9px;
+}
+
+.app-wrapper ul li i {
+    color: #5D6FF7;
+    margin-right: 8px;
+}
+
+input {
+    display: block;
+    margin-top: 2rem;
+    background-color: #ffffff;
+    color: black;
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    box-shadow: 0 0 5px 1px rgb(219, 215, 215);
+    border: none;
+    width: 100%;
+    outline: none;
+}
+
+input:hover {
     background-color: #162EAC;
     color: white;
 }
 
+#uploadPicture {
+    background-color: #162EAC;
+    color: white;
+}
+
+#uploadPicture:hover {
+    background-color: #576ddb;
+}
+
+.image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#imageInput {
+    width: unset;
+}
+
+.image i {
+    display: none;
+}
+
+
 footer{
+    margin-top: 2rem;
     background-color: #D9D9D9;
     width: 100%;
     text-align: center;
+    padding: .5rem;
+}
+
+@media screen and (min-width: 800px) {
+    header .logo,
+    .image img {
+        display: block;
+        object-fit: contain;
+    }
+
+    main {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+    }
+
+    .app-wrapper {
+        width: 70%;
+        margin: auto;
+    }
+
+    .image i {
+        display: block;
+        font-size: 25rem;
+        color: grey;
+    }
 }

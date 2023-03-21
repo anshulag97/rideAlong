@@ -24,8 +24,6 @@ console.log(document_id);
 
 const upload = document.getElementById('uploadPicture');
 const imageInput = document.getElementById('imageInput');
-const ename = document.getElementById('ename').value;
-const ephone = document.getElementById('ephone').value;
 const submit = document.getElementById('submit');
 const dataURL = "";
 upload.addEventListener('click',(event)=>{
@@ -48,6 +46,34 @@ upload.addEventListener('click',(event)=>{
 submit.addEventListener('click', async (e)=>{
 
   e.preventDefault();
+
+  const fName = document.getElementById('fname').value;
+  const lName = document.getElementById('lname').value;
+  const ename = document.getElementById('ename').value;
+  const ephone = document.getElementById('ephone').value;
+
+  if(validate_field(fName) == false) {
+    alert('Please enter your First Name');
+    return
+  }
+
+  if(validate_field(lName) ==  false) {
+    alert('Please enter your Last Name');
+    return
+  }
+
+  if(validate_field(ename) == false) {
+    alert('Please enter emergency contact details');
+    return
+  }
+
+  if(validate_field(ephone) == false) {
+    alert('Please enter emergency contact details');
+    return
+  }
+
+
+
   const docRef = doc(db, "driver-details", document_id);
 const docSnap = await getDoc(docRef);
 if (docSnap.exists()) {
@@ -76,3 +102,10 @@ else{
 window.location.href = `./profile-completed.html?doc-id=${document_id}`;
 })
   
+function validate_field(field){
+  if(field === null || field === ''){
+    return false
+  }else{
+      return true
+  }
+}

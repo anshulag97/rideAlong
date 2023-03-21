@@ -1,0 +1,94 @@
+body{
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    overflow-x: hidden;
+    max-width: 90%;
+    margin: auto;
+}
+
+.demo {
+    background-color: #eeeeee;
+    border-radius: 21px;
+    padding: 12px;
+}
+
+img {
+    max-width: 35%;
+    margin: auto;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.time {
+    margin-bottom: .5rem;
+    margin-top: .5rem;
+}
+
+.enter-location {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+}
+
+.enter-location div:nth-of-type(1) {
+    background-color: white;
+    padding: 1rem 1rem;
+    border: 1px solid #545454;
+    border-radius: 15px 15px 0 0;
+    max-width: 100%;
+}
+
+.enter-location div:nth-of-type(2) {
+    background-color: white;
+    padding: 1rem 1rem;
+    border: 1px solid #545454;
+    border-radius: 0 0 15px 15px;
+    max-width: 100%;
+}
+
+.inputbox {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.rider-detailss {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+
+.rider-info {
+    margin-left: 1rem;
+}
+
+.name {
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 2px;
+}
+
+.btns {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    gap: .5rem;
+}
+
+.btns input {
+    background-color: #5F69FF;
+    color: white;
+    border: none;
+    font-size: 16px;
+    padding: .5rem 2rem;
+    border-radius: 10px;
+    max-width: 50%;
+}

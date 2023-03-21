@@ -41,6 +41,22 @@ submit.addEventListener('click',async(e)=>{
     const car_Number = document.getElementById("car-number").value
     const car_Model = document.getElementById("car-model").value
 
+    if(validate_field(car_Name) == false) {
+      alert('Please enter all the details');
+      return
+    }
+
+    if(validate_field(car_Number) == false) {
+      alert('Please enter all the details');
+      return
+    }
+
+    if(validate_field(car_Model) == false) {
+      alert('Please enter all the details');
+      return
+    }
+
+
    await setDoc(doc(db,"driver-details",document_id),{
     car_details: {
         car_name: car_Name,
@@ -55,3 +71,11 @@ submit.addEventListener('click',async(e)=>{
     location.href = `./profile-setup.html?id=${user_id}`;
 
 })
+
+function validate_field(field){
+  if(field === null || field === ''){
+     return false
+  }else{
+      return true
+  }
+}

@@ -5,49 +5,67 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Setup</title>
+
     <link rel="stylesheet" href="./profile-setup.css">
     <script type ="module" src="./profile-setup.js" defer></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <header>
-        <i style="display: block; text-align: left;">Back</i>
-        <h1>Profile Setup : 2</h1>
+        <div class="logo">
+            <img src="./images/ridealong-logo.png" alt="ridealong logo">
+        </div>
     </header>
 
     <main>
-        <div class="wrapper">
+
+        <div class="app-wrapper">
+            <h1>Profile Setup : 2</h1>
+            
             <h2>Add a Profile Picture</h2>
             <p>
                 Please add a picture for identification so other members can easily recognize you.
             </p>
-
             <p>
                 Please follow these Guidelines :
             </p>
-
-            <nav>
-                <ul>
-                    <li>Clearly show your face.</li>
-                    <li>No sunglasses.</li>
-                    <li>Nogroup image.</li>
-                </ul>
-            </nav>
-
-
-            <input type="submit" id="capture-btn" value="Start Camera">
+            <ul>
+                <li>
+                    <i class="fa-sharp fa-solid fa-circle-check"></i>
+                    Clearly show your face
+                </li>
+                <li>
+                    <i class="fa-sharp fa-solid fa-circle-check"></i>
+                    No sunglasses
+                </li>
+                <li>
+                    <i class="fa-sharp fa-solid fa-circle-check"></i>
+                    No group image
+                </li>
+            </ul>
+            <!-- <form> -->
+            <input type="submit" id="capture-btn" value="Take a Selfie">
             <input type="submit" id="snap-btn" value="Snap">
-            <video id="cameraFeed" width="400" height="400" autoplay></video>
-            <canvas id="captured-img"  width="400" height="300" src="" alt="Captured Image"></canvas>
-
+            
             <form id="uploadForm" enctype="multipart/form-data" method="post"></form>
             <input type="file" id="imageInput" accept="image/*">
             <input type="submit" id="uploadPicture" value="Upload Picture" />
             </form>
+            
         </div>
 
-        <img src=""  id="putImage" alt="">
+        <div id="canvas-div" class="image">
+            <video id="cameraFeed" width="350" height="350" autoplay></video>
+            <canvas id="captured-img"  width="350" height="250" src="" alt="Captured Image"></canvas>
+            <img src=""  id="putImage" alt="">
+        </div>
 
     </main>
+
     <footer>
         <p>@2023 RideAlong. All Rights Reserved</p>
     </footer>
