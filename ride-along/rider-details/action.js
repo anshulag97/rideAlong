@@ -55,14 +55,14 @@ const safety = document.getElementById('safety-page');
 
 safety.addEventListener('click',(e)=>{
     e.preventDefault();
-    window.location.href = `../safety.html?doc-id=${document_id}`;
+    window.location.href = `../security/index.html?doc-id=${document_id}`;
 })
 
 const contact = document.getElementById('contact-page');
 
 contact.addEventListener('click',(e)=>{
     e.preventDefault();
-    window.location.href = `../contact.html?doc-id=${document_id}`;
+    window.location.href = `../contact us/index.html?doc-id=${document_id}`;
 })
 
 

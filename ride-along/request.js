@@ -22,10 +22,51 @@ const auth = getAuth(app);
 const urlSearchParams = new URLSearchParams(window.location.search);
 const document_id = urlSearchParams.get('doc-id');
 
-const back = document.getElementById('back');
-back.addEventListener('click',()=>{
-  history.go(-1);
+const menuButton = document.getElementById('menu-button');
+const menu = document.getElementById('menu');
+
+menuButton.addEventListener('click', function () {
+    console.log("button clicked");
+    // menu.classList.remove('nonvisible');
+    menu.classList.toggle('visible');
 });
+
+const backButton1 = document.getElementById("back-button1");
+
+backButton1.addEventListener("click", function () {
+    // backButton1.classList.add("visually-hidden");
+    history.go(-1);
+});
+
+
+const myProfile = document.getElementById('profile-page');
+
+myProfile.addEventListener('click',(e)=>{
+    e.preventDefault();
+    window.location.href = `./my-profile.html?doc-id=${document_id}`;
+})
+
+const safety = document.getElementById('safety-page');
+
+safety.addEventListener('click',(e)=>{
+    e.preventDefault();
+    window.location.href = `./security/index.html?doc-id=${document_id}`;
+})
+
+const contact = document.getElementById('contact-page');
+
+contact.addEventListener('click',(e)=>{
+    e.preventDefault();
+    window.location.href = `./contact us/index.html?doc-id=${document_id}`;
+})
+
+const requestPage = document.getElementById('request-page');
+
+requestPage.addEventListener('click',(e)=>{
+    e.preventDefault();
+    window.location.href = `./request.html?doc-id=${document_id}`;
+})
+
 
 let user_email;
 const docRef = doc(db, "driver-details", document_id);
@@ -109,22 +150,34 @@ for (let i = 0; i < tempArr.length; i++) {
 
   if(tempArr[i].trip_details.ride_approved == "true"){
 
-    div.innerHTML = `<br><br><br>
+    div.innerHTML = `
+    <p class='time'>Date: ${tempArr[i].trip_details.date}</p>
+    <p class='time'>Time: ${tempArr[i].trip_details.time}</p>
+    <div class='enter=location'>
+      <div class="fromLocation">${tempArr[i].trip_details.origin_detail}</div>
+      <div class="toLocation">${tempArr[i].trip_details.destination_detail}</div>
+    </div>
 
-    <img id="image-${i}" src="${link}" alt="" style="height:100px">
-    <p>Rider Name: ${tempArr[i].name}</p>
-    <p>Origin: ${tempArr[i].trip_details.origin_detail}</p>
-    <p>Destination: ${tempArr[i].trip_details.destination_detail}</p>
-    <p>Date: ${tempArr[i].trip_details.date}</p>
-    <p>Time: ${tempArr[i].trip_details.time}</p>
-    <p>Luggage: ${tempArr[i].trip_details.luggage}</p>
-    <p>Passengers: ${tempArr[i].trip_details.passengers}</p>
-    <p>Pet: ${tempArr[i].trip_details.pet}</p>
-    <p>Price: ${tempArr[i].trip_details.price}</p>
-    <p>Description: ${tempArr[i].trip_details.description}</p>
+    <div class="rider-detailss">
+      <img id="image-${i}" src="${link}" alt="rider-image">
+      <div class="rider-info">
+          <p class="name">${tempArr[i].name}</p>
+          <div class="misc-details">
+              <p class="luggage">Luggage: ${tempArr[i].trip_details.luggage}</p>
+              <p class="passengers">Passenger(s): ${tempArr[i].trip_details.passengers}</p>
+              <p class="pets">Pets: ${tempArr[i].trip_details.pet}</p>
+          </div>
+      </div>
+    </div>
 
-    <input type="button" value="Already Accepted" id="accepted" disabled>
-    <input type="submit" id="trip-preview-${i}" value="Trip Preview">
+    <div class="btns">
+      <input type="button" value="Already Accepted" id="accepted" disabled></button>
+
+      <input type="submit" id="trip-preview-${i}" value="Trip Preview">
+    </div>
+
+    
+    
   `;
 
   availableRider.appendChild(div);
@@ -140,23 +193,32 @@ for (let i = 0; i < tempArr.length; i++) {
   })
   }
   else{
-  div.innerHTML = `<br><br><br>
+  div.innerHTML = `
 
-  <img id="image-${i}" src="${link}" alt="" style="height:100px">
-  <p>Rider Name: ${tempArr[i].name}</p>
-    <p>Origin: ${tempArr[i].trip_details.origin_detail}</p>
-    <p>Destination: ${tempArr[i].trip_details.destination_detail}</p>
-    <p>Date: ${tempArr[i].trip_details.date}</p>
-    <p>Time: ${tempArr[i].trip_details.time}</p>
-    <p>Luggage: ${tempArr[i].trip_details.luggage}</p>
-    <p>Passengers: ${tempArr[i].trip_details.passengers}</p>
-    <p>Pet: ${tempArr[i].trip_details.pet}</p>
-    <p>Price: ${tempArr[i].trip_details.price}</p>
-    <p>Description: ${tempArr[i].trip_details.description}</p>
+  <p class='time'>Date: ${tempArr[i].trip_details.date}</p>
+    <p class='time'>Time: ${tempArr[i].trip_details.time}</p>
+    <div class='enter-location'>
+      <div class="fromLocation">${tempArr[i].trip_details.origin_detail}</div>
+      <div class="toLocation">${tempArr[i].trip_details.destination_detail}</div>
+    </div>
 
+    <div class="rider-detailss">
+      <img id="image-${i}" src="${link}" alt="rider-image">
+      <div class="rider-info">
+          <p class="name">${tempArr[i].name}</p>
+          <div class="misc-details">
+              <p class="luggage">Luggage: ${tempArr[i].trip_details.luggage}</p>
+              <p class="passengers">Passenger(s): ${tempArr[i].trip_details.passengers}</p>
+              <p class="pets">Pets: ${tempArr[i].trip_details.pet}</p>
+          </div>
+      </div>
+    </div>
 
-    <input type="button" value="Accept" id="accept-${i}">
-    <input type="button" value="Decline" id="decline-${i}">
+    <div class="btns">
+      <input type="button" value="Accept" id="accept-${i}">
+
+      <input type="button" value="Decline" id="decline-${i}">
+    </div>
   `;
 
   availableRider.appendChild(div);

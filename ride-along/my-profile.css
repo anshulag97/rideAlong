@@ -8,13 +8,12 @@ max-width: 100%;
 height: auto;
 }
 header {
-    background-color: #162EAC;
-    color: white;
-    display: flex;
-    justify-content: space-between;
+    background-color: rgb(22, 46, 172);
+    height: 48px;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
     align-items: center;
-    padding: 1rem 1rem;
-    margin-bottom: 1rem;
+    padding: 0 20px;
 }
 
 .header-title {
