@@ -1,7 +1,30 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
-import { getStorage, uploadBytes, getMetadata, ref , getDownloadURL } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-storage.js";
-import { getFirestore, getDoc, getDocs, setDoc, collection, doc, addDoc, query, where } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js"
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+import {
+  getStorage,
+  uploadBytes,
+  getMetadata,
+  ref,
+  getDownloadURL
+} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-storage.js";
+import {
+  getFirestore,
+  getDoc,
+  getDocs,
+  setDoc,
+  collection,
+  doc,
+  addDoc,
+  query,
+  where
+} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js"
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyA0l9LZ3lYZWsSyPFTsxRACc2ltACy2hsI",
@@ -36,65 +59,65 @@ const dataRider = docSnapRider.data();
 
 let fromLocationInput = "";
 let toLocationInput = "";
-  
+
 const div = document.createElement("div");
-  div.classList.add("trip-details");
-  div.id = "trip-details"
-  const tripPreview = document.getElementById('trip-preview');
+div.classList.add("trip-details");
+div.id = "trip-details"
+const tripPreview = document.getElementById('trip-preview');
 
-  const path_driver = `images/${document_id}image.png`;
-      console.log(path_driver);
-      const storageRef = ref(storage , path_driver);
-      console.log(storageRef);
+const path_driver = `images/${document_id}image.png`;
+console.log(path_driver);
+const storageRef = ref(storage, path_driver);
+console.log(storageRef);
 
-    getDownloadURL(storageRef)
-    .then((url) => {
-        console.log(url);
-        getMetadata(storageRef)
-        .then((metadata) => {
-            const data = JSON.parse(metadata.customMetadata.metadata);
-            link = data.link;
-       console.log(link);
-       const image_driver = document.getElementById(`image-driver`);     
-       image_driver.setAttribute('src' , link);
-    })
-  .catch((error) => {
-    console.log("Uh-oh, an error occurred!")
-  });
-     
+getDownloadURL(storageRef)
+  .then((url) => {
+    console.log(url);
+    getMetadata(storageRef)
+      .then((metadata) => {
+        const data = JSON.parse(metadata.customMetadata.metadata);
+        link = data.link;
+        console.log(link);
+        const image_driver = document.getElementById(`image-driver`);
+        image_driver.setAttribute('src', link);
+      })
+      .catch((error) => {
+        console.log("Uh-oh, an error occurred!")
+      });
+
   })
   .catch((error) => {
     console.error(error);
   });
 
-  const path_rider = `images/${rider_id}image.png`;
-      console.log(path_rider);
-      const storageReff = ref(storage , path_rider);
-      console.log(storageReff);
+const path_rider = `images/${rider_id}image.png`;
+console.log(path_rider);
+const storageReff = ref(storage, path_rider);
+console.log(storageReff);
 
-    getDownloadURL(storageReff)
-    .then((url) => {
-        console.log(url);
-        getMetadata(storageReff)
-        .then((metadata) => {
-            const data = JSON.parse(metadata.customMetadata.metadata);
-            link = data.link;
-       console.log(link);
-       const image_rider = document.getElementById(`image-rider`);     
-       image_rider.setAttribute('src' , link);
-    })
-  .catch((error) => {
-    console.log("Uh-oh, an error occurred!")
-  });
-     
+getDownloadURL(storageReff)
+  .then((url) => {
+    console.log(url);
+    getMetadata(storageReff)
+      .then((metadata) => {
+        const data = JSON.parse(metadata.customMetadata.metadata);
+        link = data.link;
+        console.log(link);
+        const image_rider = document.getElementById(`image-rider`);
+        image_rider.setAttribute('src', link);
+      })
+      .catch((error) => {
+        console.log("Uh-oh, an error occurred!")
+      });
+
   })
   .catch((error) => {
     console.error(error);
   });
 
-  fromLocationInput = dataDriver.trip_details.origin_detail;
-  toLocationInput = dataDriver.trip_details.destination_detail;
-  div.innerHTML = `<br><br><br>
+fromLocationInput = dataDriver.trip_details.origin_detail;
+toLocationInput = dataDriver.trip_details.destination_detail;
+div.innerHTML = `<br><br><br>
 
   <input type="submit" id="start-ride" value="Start Ride" >
    <input type="submit" id="end-ride" value="End Ride" disabled></input>
@@ -129,20 +152,20 @@ const div = document.createElement("div");
     <p>Rider Name: ${dataRider.name}</p>
   
     `;
-  tripPreview.appendChild(div);
+tripPreview.appendChild(div);
 
 
 const start = document.getElementById('start-ride');
 const end = document.getElementById('end-ride');
 const trip_details = document.getElementById('trip-details')
 
-start.addEventListener('click',(e)=>{
+start.addEventListener('click', (e) => {
   e.preventDefault();
 
-  
+
   end.removeAttribute("disabled");
-  
-  start.setAttribute("disabled" , true);
+
+  start.setAttribute("disabled", true);
 
 
   const div = document.createElement("div");
@@ -155,50 +178,93 @@ start.addEventListener('click',(e)=>{
   tripPreview.insertBefore(div, trip_details);
 
   const sos = document.getElementById('sos');
-  sos.addEventListener('click', (e)=>{
+  sos.addEventListener('click', (e) => {
     e.preventDefault();
     console.log("SOS Clicked");
     const emergencyNumber = "+1-6047796246";
     window.open("tel:" + emergencyNumber);
   });
+
+  function addBlueDotMarker(position) {
+    const blueDotMarkerElement = document.createElement('div');
+    blueDotMarkerElement.className = 'blue-dot-marker';
+
+    const blueDotMarker = new tt.Marker({
+      element: blueDotMarkerElement
+    }).setLngLat([position.longitude, position.latitude]).addTo(map);
+
+    return blueDotMarker;
+  }
+
+
+  function updateLocation(position) {
+    const newPosition = {
+      longitude: position.coords.longitude,
+      latitude: position.coords.latitude
+    };
+
+    if (!blueDotMarker) {
+      blueDotMarker = addBlueDotMarker(newPosition);
+    } else {
+      blueDotMarker.setLngLat([newPosition.longitude, newPosition.latitude]);
+    }
+  }
+
+
+  let blueDotMarker;
+
+  if ('geolocation' in navigator) {
+    const watchOptions = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+
+    navigator.geolocation.watchPosition(updateLocation, (error) => {
+      console.error('Error watching position:', error);
+    }, watchOptions);
+  } else {
+    console.error('Geolocation not available');
+  }
+
 })
 
 
-end.addEventListener('click',async ()=>{
+end.addEventListener('click', async () => {
 
   // FLUSH TRIP DETAILS : For Rider and Driver
   const docRef = doc(db, "driver-details", document_id);
-const docSnap = await getDoc(docRef);
-if (docSnap.exists()) {
-  await setDoc(doc(db,"driver-details",document_id),{
-    trip_details: {}    
-        },{
-        merge: true
+  const docSnap = await getDoc(docRef);
+  if (docSnap.exists()) {
+    await setDoc(doc(db, "driver-details", document_id), {
+      trip_details: {}
+    }, {
+      merge: true
     })
-} else{
-  await setDoc(doc(db,"rider-details",document_id),{
-    trip_details: {}    
-        },{
-        merge: true
+  } else {
+    await setDoc(doc(db, "rider-details", document_id), {
+      trip_details: {}
+    }, {
+      merge: true
     })
-}
+  }
 
-const docReff = doc(db, "rider-details", rider_id);
-const docSnapp = await getDoc(docReff);
-if (docSnapp.exists()) {
-  await setDoc(doc(db,"rider-details",rider_id),{
-    trip_details: {}    
-        },{
-        merge: true
+  const docReff = doc(db, "rider-details", rider_id);
+  const docSnapp = await getDoc(docReff);
+  if (docSnapp.exists()) {
+    await setDoc(doc(db, "rider-details", rider_id), {
+      trip_details: {}
+    }, {
+      merge: true
     })
-} else{
-  await setDoc(doc(db,"driver-details",rider_id),{
-    trip_details: {}    
-        },{
-        merge: true
+  } else {
+    await setDoc(doc(db, "driver-details", rider_id), {
+      trip_details: {}
+    }, {
+      merge: true
     })
-}
-    
+  }
+
   window.location.href = `./trip-completed.html?doc-id=${document_id}`;
 });
 
@@ -218,12 +284,12 @@ fetch(`https://api.tomtom.com/search/2/geocode/${encodeURIComponent(fromLocation
     console.log(fromLocation);
     if (fromLocation && toLocation) {
       drawRoute(fromLocation, toLocation);
-  }
+    }
   })
   .catch(error => console.error(error));
 
 
-  fetch(`https://api.tomtom.com/search/2/geocode/${encodeURIComponent(toLocationInput)}.json?key=${key}`)
+fetch(`https://api.tomtom.com/search/2/geocode/${encodeURIComponent(toLocationInput)}.json?key=${key}`)
   .then(response => response.json())
   .then(data => {
     // extract the latitude and longitude from the API response
@@ -232,7 +298,7 @@ fetch(`https://api.tomtom.com/search/2/geocode/${encodeURIComponent(fromLocation
     console.log(toLocation);
     if (fromLocation && toLocation) {
       drawRoute(fromLocation, toLocation);
-  }
+    }
   })
   .catch(error => console.error(error));
 
@@ -249,47 +315,47 @@ function drawRoute(from, to) {
   console.log(from);
   console.log(to);
   tt.services.calculateRoute({
-          key: 'ZUPTa4pAyMBVSiucNojSQx84q9u7PIw4',
-          traffic: false,
-          locations: [from, to]
-      })
-      .then((response) => {
-          const geojson = response.toGeoJson();
-          if (map.getSource('route')) {
-              map.getSource('route').setData(geojson);
-          } else {
-              map.addSource('route', {
-                  type: 'geojson',
-                  data: geojson
-              });
-              map.addLayer({
-                  id: 'route',
-                  type: 'line',
-                  source: 'route',
-                  paint: {
-                      'line-color': 'gray',
-                      'line-width': 3
-                  }
-              });
+      key: 'ZUPTa4pAyMBVSiucNojSQx84q9u7PIw4',
+      traffic: false,
+      locations: [from, to]
+    })
+    .then((response) => {
+      const geojson = response.toGeoJson();
+      if (map.getSource('route')) {
+        map.getSource('route').setData(geojson);
+      } else {
+        map.addSource('route', {
+          type: 'geojson',
+          data: geojson
+        });
+        map.addLayer({
+          id: 'route',
+          type: 'line',
+          source: 'route',
+          paint: {
+            'line-color': 'gray',
+            'line-width': 3
           }
+        });
+      }
 
-          // Zoom to fit the route on the map
-          const coordinates = geojson.features[0].geometry.coordinates;
-          const bounds = coordinates.reduce((bounds, coord) => {
-              return bounds.extend(coord);
-          }, new tt.LngLatBounds(coordinates[0], coordinates[0]));
-          map.fitBounds(bounds, {
-              padding: 30
-          });
-
-
-          // set the marker on the routing map
-          addMarker(from, 'start-icon');
-          addMarker(to, 'end-icon');
-      })
-      .catch((error) => {
-          console.error('Error calculating the route:', error);
+      // Zoom to fit the route on the map
+      const coordinates = geojson.features[0].geometry.coordinates;
+      const bounds = coordinates.reduce((bounds, coord) => {
+        return bounds.extend(coord);
+      }, new tt.LngLatBounds(coordinates[0], coordinates[0]));
+      map.fitBounds(bounds, {
+        padding: 30
       });
+
+
+      // set the marker on the routing map
+      addMarker(from, 'start-icon');
+      addMarker(to, 'end-icon');
+    })
+    .catch((error) => {
+      console.error('Error calculating the route:', error);
+    });
 
 }
 
@@ -298,7 +364,7 @@ function drawRoute(from, to) {
 function addMarker(position, iconClass) {
   const existingMarker = document.getElementById(iconClass);
   if (existingMarker) {
-      existingMarker.remove();
+    existingMarker.remove();
   }
 
   const markerElement = document.createElement('div');
@@ -306,10 +372,10 @@ function addMarker(position, iconClass) {
   markerElement.id = iconClass;
 
   new tt.Marker({
-          element: markerElement
-      })
-      .setLngLat([position.lng, position.lat])
-      .addTo(map);
+      element: markerElement
+    })
+    .setLngLat([position.lng, position.lat])
+    .addTo(map);
 }
 
 // //switch button hover or click action

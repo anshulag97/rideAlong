@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.23.0/maps/maps.css" />
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.23.0/maps/maps-web.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;800&display=swap" rel="stylesheet">
+    <script type="module" src="action.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+
+
+    <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.23.0/maps/maps.css'>
+    <link rel='stylesheet' type='text/css' href='./index.css' />
+    <link rel='stylesheet' type='text/css' href='./routing.css' />
+    <link rel='stylesheet' type='text/css'
+        href='https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.2.0//SearchBox.css' />
+    <script src='https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.2.0//SearchBox-web.js'></script> -->
+
+    <!-- fontawesome & google font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;800&display=swap" rel="stylesheet">
+
+
+    <!-- tomtom -->
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/maps/maps-web.min.js"></script>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/services/services-web.min.js"></script>
+    <link rel="stylesheet" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/maps/maps.css">
+
+    <!-- css&js -->
+    <!-- <link rel="stylesheet" href="/ride-along/rider-details2.0/pages/globalstyle.css"> -->
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="action.js" defer></script>
+    <!-- <script src="/ride-along/rider-details2.0/pages/globalaction.js" defer></script> -->
+
+
+</head>
+
+<body>
+    <header>
+        <a href="#rider-page1" id="back-button1" class="back-button visually-hidden">
+            <i class="fa-solid fa-left-long"></i>
+            <span>Find a ride</span>
+        </a>
+
+        <a href="#rider-page2" id="back-button2" class="back-button visually-hidden">
+            <i class="fa-solid fa-left-long"></i>
+            <span>Available</span>
+        </a>
+
+        <a href="#menu" id="menu-button">
+            <i class="fa-solid fa-bars"></i>
+            <span class="visually-hidden">Menu</span>
+        </a>
+    </header>
+
+    <nav id="menu">
+        <ul>
+            <li id="home-page"><a href="#">Home</a></li>
+            <li id="profile-page"><a href="#">My Profile</a></li>
+            <li id="trips-page"><a href="#">Trips</a></li>
+            <li id="request-page"><a>Request</a></li>
+            <!-- <li><a href="#">MESSAGES</a></li> -->
+            <li id="safety-page"><a href="#">Safety</a></li>
+            <li id="contact-page"><a href="#">Contact Us</a></li>
+            <li id="sign-out-page"><a href="#">Sign Out</a></li>
+            
+        </ul>
+    </nav>
+
+    <div class="page" id="rider-page1">
+        <div>
+            <div class="icon">
+                <img src="icon/Group 36749.png" alt="product icon">
+                <p>Ride, Share, Save</p>
+            </div>
+            <button id="findRidebutton">Find A Ride</button>
+            <button id="offerRidebutton">Offer A Ride</button>
+        </div>
+    </div>
+
+    <div class="page nonvisible" id="rider-page2">
+        <div class="rider-box">
+            <div class="from-to-search">
+                <div class="dotDeco">
+                    <p>•</p><span>..........</span><i class="fa-sharp fa-solid fa-location-dot"></i>
+                </div>
+                <!-- <div class="inputbox">
+                    <input type="text" name="text" id="fromlocation" placeholder="Enter the start location">
+                    <input type="text" name="text" id="tolocation" placeholder="Enter the destination">
+                </div> -->
+                <div class="inputbox" style="position: relative;">
+                    <div class="inputs-wrapper">
+                        <input type="text" name="text" id="fromlocation" placeholder="Enter the start location">
+                        <input type="text" name="text" id="tolocation" placeholder="Enter the destination">
+                    </div>
+                    <div id="fromlocation-suggestions" class="location-suggestions"></div>
+                    <div id="tolocation-suggestions" class="location-suggestions"></div>
+                    <button id="switch-button" class="switch-button">
+                        <img src="/ride-along/rider-details2.0/icon/Group 1509-gray.svg" alt="Switch locations" />
+                    </button>
+                </div>
+            </div>
+
+            <div id='map' class='map' style="height: 400px; width: 100%;"></div>
+
+            <!-- <div class="quick-location">
+                <div class="home-location">
+                    <i class="fa-sharp fa-solid fa-house"></i>
+                    <span>Home</span>
+                </div>
+                <div class="work-location">
+                    <i class="fa-sharp fa-solid fa-briefcase"></i>
+                    <span>Work</span>
+                </div>
+                <div class="suggested-location">
+                    <i class="fa-sharp fa-solid fa-location-dot"></i>
+                    <span>Suggested location</span>
+                </div>
+            </div> -->
+
+            <div class="divident-line"></div>
+
+            <div class="ride-schedule">
+                <label for="date">Ride Schedule</label>
+                <input type="date" id="date" name="date">
+                <input type="time" id="time" name="time">
+            </div>
+
+            <div class="divident-line"></div>
+
+            <h3>Trip Preferences</h3>
+            <div class="trip-preferences">
+                <div class="numluggage">
+                    <label for="luggage-number">No. of luggage</label>
+                    <div class="input-group">
+                        <button type="button" class="minus-btn1">-</button>
+                        <input type="number" id="luggage-number" name="luggage-number" min="0" max="100" value="1">
+                        <button type="button" class="plus-btn1">+</button>
+                    </div>
+                </div>
+                <div class="numPassenger">
+                    <label for="passenger-number">No. of passengers</label>
+                    <div class="input-group">
+                        <button type="button" class="minus-btn2">-</button>
+                        <input type="number" id="passenger-number" name="passenger-number" min="1" max="100" value="1">
+                        <button type="button" class="plus-btn2">+</button>
+                    </div>
+                </div>
+                <div class="rider-pets">
+                    <label for="pets">Pets</label>
+                    <input type="checkbox" id="pets" name="pets">
+                </div>
+            </div>
+
+            <div class="rider-post-ride-submit">
+                <button id="rider-post-ride-submit">Find a ride</button>
+            </div>
+            <a href="/icon/flag-checkered-solid.svg"></a>
+        </div>
+    </div>
+
+    <div class="page nonvisible" id="rider-page3">
+
+
+
+
+        <div class="sort-by">
+            <span>Sort by:</span>
+            <button id="sort-by-price">Price</button>
+            <button id="sort-by-rating">Rating</button>
+        </div>
+
+        <div id='map1' class='map' style="height: 400px; width: 100%;"></div>
+
+        <div id="available" class="available-driver-cards">
+
+        </div>
+        <!-- <div class="available-driver-cards">
+            <div class="driver-info">
+                <img src="https://www.seekpng.com/png/full/356-3562377_personal-user.png"
+                    alt="portrait photo of the driver">
+                <p id="driver-name">Driver 1</p>
+                <div class="rating">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star "></span>
+                </div>
+            </div>
+            <div class="ride-info">
+                <div class="rider-info-time">
+                    <p>Today at 9:00 AM</p>
+                    <i class="fa-sharp fa-solid fa-briefcase"></i>
+                </div>
+                <div class="rider-info-car-fee">
+                    <p id="car-brand">Eco sport</p>
+                    <i class="fa-solid fa-car-side"></i>
+                    <p id="ride-fee">$20</p>
+                </div>
+                <button class="requestRide">Request</button>
+            </div>
+        </div> -->
+
+        <!-- <div class="available-driver-cards">
+            <div class="driver-info">
+                <img src="https://www.seekpng.com/png/full/356-3562377_personal-user.png"
+                    alt="portrait photo of the driver">
+                <p id="driver-name">Driver 2</p>
+                <div class="rating">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                </div>
+            </div>
+            <div class="ride-info">
+                <div class="rider-info-time">
+                    <p>Today at 9:00 PM</p>
+                    <i class="fa-sharp fa-solid fa-briefcase"></i>
+                </div>
+                <div class="rider-info-car-fee">
+                    <p id="car-brand">Eco sport</p>
+                    <i class="fa-solid fa-car-side"></i>
+                    <p id="ride-fee">$10</p>
+                </div>
+                <button class="requestRide">Request</button>
+            </div>
+        </div> -->
+    </div>
+
+    <div class="page nonvisible" id="rider-page4">
+        <div class="available-driver-cards">
+            <div class="driver-info">
+                <img src="https://www.seekpng.com/png/full/356-3562377_personal-user.png"
+                    alt="portrait photo of the driver">
+                <p id="driver-name">Driver 2</p>
+            </div>
+            <div class="ride-info">
+                <div class="luggage-allow">
+                    <p>Allowed</p>
+                    <p>Not allowed</p>
+                </div>
+                <div class="pet-allow">
+                    <p>Allowed</p>
+                    <p>Not allowed</p>
+                </div>
+                <div class="price">
+                    <p>$10</p>
+                </div>
+                <div class="route">
+                    <h3>Trip Description</h3>
+                    <p>Pickup Point:</p>
+                    <p>End Point:</p>
+                </div>
+                <div class="vehicle-info">
+                    <h3>Vehicle Details</h3>
+                    <p class="car-model">Eco Sport</p>
+                    <p class="car-color">Red</p>
+                    <p class="car-plate">License Plate</p>
+                </div>
+            </div>
+            <button id="requestRide2">Requested to Book</button>
+        </div>
+    </div>
+
+    <div class="page nonvisible" id="rider-page5">
+        <div class="available-driver-cards">
+            <div class="ride-time">Feb 21, 2023 at 9:00PM</div>
+            <div class="from-to-search">
+                <div class="dotDeco">
+                    <p>•</p><span>..........</span><i class="fa-sharp fa-solid fa-location-dot"></i>
+                </div>
+                <div class="inputbox">
+                    <input type="text" name="text" id="fromlocation" placeholder="Enter the start location">
+                    <input type="text" name="text" id="tolocation" placeholder="Enter the destination">
+                </div>
+            </div>
+            <div class="driver-info">
+                <img src="https://www.seekpng.com/png/full/356-3562377_personal-user.png"
+                    alt="portrait photo of the driver">
+                <p id="driver-name">Driver 2</p>
+                <div class="driver-profile">Profile</div>
+                <div class="driver-review">Review</div>
+            </div>
+            <button id="startRide1">Start Ride</button>
+        </div>
+    </div>
+
+    <div class="page nonvisible" id="rider-page6">
+        <div class="available-driver-cards">
+            <div class="driver-info">
+                <img src="https://www.seekpng.com/png/full/356-3562377_personal-user.png"
+                    alt="portrait photo of the driver">
+                <p id="driver-name">Driver 2</p>
+            </div>
+            <div class="ride-info">
+                <div class="luggage-allow">
+                    <p>Allowed</p>
+                    <p>Not allowed</p>
+                </div>
+                <div class="pet-allow">
+                    <p>Allowed</p>
+                    <p>Not allowed</p>
+                </div>
+                <div class="price">
+                    <p>$10</p>
+                </div>
+                <div class="route">
+                    <h3>Trip Description</h3>
+                    <p>Pickup Point:</p>
+                    <p>End Point:</p>
+                </div>
+                <div class="vehicle-info">
+                    <h3>Vehicle Details</h3>
+                    <p class="car-model">Eco Sport</p>
+                    <p class="car-color">Red</p>
+                    <p class="car-plate">License Plate</p>
+                </div>
+            </div>
+            <button id="chat">Chat</button>
+            <button id="call">Call</button>
+            <button id="startRide2">Start Ride</button>
+            <button id="cancelRide">Cancel Ride</button>
+        </div>
+    </div>
+
+    <div class="page nonvisible" id="rider-page7">
+
+        <div id='map' class='map'></div>
+        
+        <div class="driveInProcess">
+            <div class="driver-info">
+                <img src="https://www.seekpng.com/png/full/356-3562377_personal-user.png"
+                    alt="portrait photo of the driver">
+                <p id="driver-name">Driver 2</p>
+            </div>
+            <button class="sosButton">SOS</button>
+            <div class="vehicle-info">
+                <h3>Vehicle Details</h3>
+                <p class="car-model">Eco Sport</p>
+                <p class="car-color">Red</p>
+                <p class="car-plate">License Plate</p>
+            </div>
+            <button id="endRide">End Ride</button>
+        </div>
+    </div>
+
+    <div class="page nonvisible" id="rider-page8">
+        <h2>Your ride is completed!</h2>
+        <div class="driver-info">
+            <img src="https://www.seekpng.com/png/full/356-3562377_personal-user.png"
+                alt="portrait photo of the driver">
+            <p id="driver-name">Driver 2</p>
+        </div>
+        <div class="endrating">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+        </div>
+        <form>
+            <label for=""></label>
+            <textarea name="message" rows="5" cols="50">Enter your message here...</textarea>
+        </form>
+        <button id="endrideSubmit">Submit</button>
+    </div>
+    <footer>
+        <p> &copy; 2023 RideAlong. All Right Reserved</p>
+    </footer>
+</body>

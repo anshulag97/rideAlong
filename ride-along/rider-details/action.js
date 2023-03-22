@@ -39,8 +39,33 @@ const menuButton = document.getElementById('menu-button');
 const menu = document.getElementById('menu');
 
 menuButton.addEventListener('click', function () {
-    menu.classList.remove('nonvisible');
+    console.log("button clicked");
+    // menu.classList.remove('nonvisible');
+    menu.classList.toggle('visible');
+});
+
+const myProfile = document.getElementById('profile-page');
+
+myProfile.addEventListener('click',(e)=>{
+    e.preventDefault();
+    window.location.href = `../my-profile.html?doc-id=${document_id}`;
 })
+
+const safety = document.getElementById('safety-page');
+
+safety.addEventListener('click',(e)=>{
+    e.preventDefault();
+    window.location.href = `../security/index.html?doc-id=${document_id}`;
+})
+
+const contact = document.getElementById('contact-page');
+
+contact.addEventListener('click',(e)=>{
+    e.preventDefault();
+    window.location.href = `../contact us/index.html?doc-id=${document_id}`;
+})
+
+
 
 // get the buttons and pages
 const findRide = document.getElementById("findRidebutton");
@@ -294,6 +319,7 @@ async function submitRideRequest() {
     //   console.log(doc.data().trip_posted.trip_details);
       if(doc.data().trip_details == undefined){
         console.log("hello")
+
       }
       else{
         console.log("in Else");
@@ -310,6 +336,17 @@ async function submitRideRequest() {
 
     console.log(tempArr);
     // console.log(tempArr[0].trip_details.price);
+    if(tempArr.length == 0){
+        const availableDriver = document.getElementById('available');
+        const div = document.createElement("div");
+        div.classList.add("no-driver");
+      
+        div.innerHTML = `
+        <h4 >No drivers found going along this route</h4>
+        <h4 >Try changing your locations</h4>`
+        availableDriver.appendChild(div);
+
+    }
 
     for(let i =0; i<tempArr.length;i++){
 
@@ -620,6 +657,49 @@ function addMarker(position, iconClass) {
         .setLngLat([position.lng, position.lat])
         .addTo(map1);
 }
+
+
+function addBlueDotMarker(position) {
+    const blueDotMarkerElement = document.createElement('div');
+    blueDotMarkerElement.className = 'blue-dot-marker';
+
+    const blueDotMarker = new tt.Marker({
+      element: blueDotMarkerElement
+    }).setLngLat([position.longitude, position.latitude]).addTo(map);
+
+    return blueDotMarker;
+  }
+
+
+  function updateLocation(position) {
+    const newPosition = {
+      longitude: position.coords.longitude,
+      latitude: position.coords.latitude
+    };
+
+    if (!blueDotMarker) {
+      blueDotMarker = addBlueDotMarker(newPosition);
+    } else {
+      blueDotMarker.setLngLat([newPosition.longitude, newPosition.latitude]);
+    }
+  }
+
+
+  let blueDotMarker;
+
+  if ('geolocation' in navigator) {
+    const watchOptions = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+
+    navigator.geolocation.watchPosition(updateLocation, (error) => {
+      console.error('Error watching position:', error);
+    }, watchOptions);
+  } else {
+    console.error('Geolocation not available');
+  }
 
 
 //switch button hover or click action

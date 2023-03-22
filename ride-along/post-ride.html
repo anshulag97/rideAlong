@@ -10,37 +10,52 @@
         <script type="module" src="./post-ride.js" defer></script>
 
         <!-- tomtom -->
-    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/maps/maps-web.min.js"></script>
-    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/services/services-web.min.js"></script>
-    <link rel="stylesheet" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/maps/maps.css">
+        <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/maps/maps-web.min.js"></script>
+        <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/services/services-web.min.js"></script>
+        <link rel="stylesheet" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/maps/maps.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     </head>
     <body>
         <header>
-            <div class="header-title">
-                <i class="fa-sharp fa-solid fa-arrow-left"></i>
-                <h3>Post a ride</h3>
-            </div>
-            <i class="fa-solid fa-bars"></i>
+            <a href="#rider-page1" id="back-button1" class="back-button">
+                <i class="fa-solid fa-left-long"></i>
+                <span>Post a ride</span>
+            </a>
+            <a href="#menu" id="menu-button">
+                <i class="fa-solid fa-bars"></i>
+                <span class="visually-hidden">Menu</span>
+            </a>
         </header>
+
+        <nav id="menu">
+            <ul>
+                <li id="profile-page"><a href="#">My Profile</a></li>
+                <li id="trips-page"><a href="#">Trips</a></li>
+                <li id="request-page"><a>Request</a></li>
+                <!-- <li><a href="#">MESSAGES</a></li> -->
+                <li id="safety-page"><a href="#">Safety</a></li>
+                <li id="contact-page"><a href="#">Contact Us</a></li>
+            </ul>
+        </nav>
 
         <main>
             <div class="destination-enter">
                 <form action="#">
-                    <!-- <div class="enter-location">
-                        <input type="text" id="origin" placeholder="Enter the origin location">
-                        <input type="text" id="destination" placeholder="Enter the destination">
-                    </div> -->
 
-                    <div class="inputbox" style="position: relative;">
-                        <div class="inputs-wrapper">
+                    <div class="inputbox">
+                        <div class="enter-location">
                             <input type="text" name="text" id="fromlocation" placeholder="Enter the start location">
                             <input type="text" name="text" id="tolocation" placeholder="Enter the destination">
                         </div>
                         <div id="fromlocation-suggestions" class="location-suggestions"></div>
                         <div id="tolocation-suggestions" class="location-suggestions"></div>
                         <button id="switch-button" class="switch-button">
-                            <img src="/ride-along/rider-details2.0/icon/Group 1509-gray.svg" alt="Switch locations" />
+                            <i class="fa-solid fa-arrow-down-up-across-line"></i>
                         </button>
                     </div>
 
@@ -64,17 +79,18 @@
                         <h2>Ride Schedule</h2>
                         <input type="date" id="date" placeholder="Departure Date">
                         <input type="time" id="time" placeholder="Time">
-                        <!-- <input type="text" placeholder="ADD RETURN TRIP"> -->
                     </div>
 
                     <div class="trip-preferences">
                         <h2>Trip preferences</h2>
                         <div class="trip-preference-input">
-                            Luggage
                             <div class="luggage">
-                                <button type="button" id="minus_btn1" class="minus-btn1">-</button>
-                                <input type="number" id="luggage-number" name="luggage-number" min="0" max="100" value="1">
-                                <button type="button" id="plus_btn1" class="plus-btn1">+</button>
+                                <label for="luggage-number">Luggage</label>
+                                <div class="input-group">
+                                    <button type="button" id="minus_btn1" class="minus-btn1">-</button>
+                                    <input type="number" id="luggage-number" name="luggage-number" min="0" max="100" value="1">
+                                    <button type="button" id="plus_btn1" class="plus-btn1">+</button>
+                                </div>
                             </div>
 
                             <!-- <div class="numluggage">
@@ -87,11 +103,11 @@
                             </div> -->
 
                             <div class="passengers">
-                                <h3>No of Passengers</h3>
+                                <label for="passenger-number">No. of passengers</label>
 
                                 <!-- Change the `data-field` of buttons and `name` of input field's for multiple plus minus buttons-->
                                 <div class="input-group plus-minus-input">
-                                    <label for="passenger-number">No. of passengers</label>
+                                    
                                     <div class="input-group">
                                         <button type="button" class="minus-btn2">-</button>
                                         <input type="number" id="passenger-number" name="passenger-number" min="1" max="100" value="1">
@@ -121,22 +137,15 @@
                         <div class="vehicle-details">
                             <h3>Vehicle details</h3>
 
-                            <div class="add-vehicle">
-                                <i class="fa fa-plus" aria-hidden="true"></i>
-                                <p>Add Vehicle</p>
-                            </div>
-
                             <div class="vehicle">
-                                <img src="./21_FRD_C10090220_ECOS_SE_AppPckg_34FrntPassDesertRvrSd_mj.webp" alt="">
+                                <img src="./images/vehicle.png" alt="">
                                 
-                                <p><i class="fa-duotone fa-steering-wheel"></i>Eco Sport</p>
-
-                                <p>Color: Red</p>
-
-                                <p>Licence Plate: VAN 123 4567</p>
+                                <div class="vehicle-info">
+                                    <p><i class="fa-duotone fa-steering-wheel"></i>Eco Sport</p>
+                                    <p>Color: Red</p>
+                                    <p>Licence Plate: VAN 123 4567</p>
+                                </div>
                             </div>
-                            <input type="checkbox" id="driver_licence">
-                            <label id="driver_label"for="driver_licence">Driver Licence Uploaded</label>
                         </div>
                         </div>
                     <button type="submit" id="submit">Offer a Ride</button>

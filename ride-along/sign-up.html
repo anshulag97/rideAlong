@@ -5,48 +5,95 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    
     <script type ="module" src="./index.js"></script>
+    
+    <link rel="manifest" href="./pwa.webmanifest">
+    <script>
+        // does the browser support service workers?
+        if ('serviceWorker' in navigator) {
+          // fires when the service worker is ready
+          navigator.serviceWorker.ready.then(reg => {
+            // we have an active service worker working for us
+            console.log(`Service Worker ready (Scope: ${reg.scope})`);
+            // do something interesting, if you want...
+    
+          });
+          // then register our service worker
+          navigator.serviceWorker.register('./service-worker.js', { scope: '/' })
+            .then(function (reg) {
+              // display a success message
+              console.log(`Service Worker Registration (Scope: ${reg.scope})`);
+            })
+            .catch(function (error) {
+              // display an error message
+              console.log(`Service Worker Error ](${error})`);
+            });
+        } else {
+          // happens when the app isn't served over a TLS connection (HTTPS)
+          console.warn('Service Worker not available');
+        }
+    </script>
+
     <link rel="stylesheet" href="./sign-up.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+    
     <header>
-        <h1 class="title">Create an Account</h1>
-        <p>Already have an account ? <a href="./sign-in.html">Sign In</a></p>
+        <div class="logo">
+            <img src="./images/ridealong-logo.png" alt="ridealong logo">
+        </div>
     </header>
     <main>
 
-<form>
-    <label for="name">Name</label>
-    <input type="text" id="name" placeholder="Your Name" required>
-    
-    <label for="email">Email</label>
-    <input type="email" id="email" placeholder="example@gmail.com" required>
-    
-    <label for="password">Password</label>
-    <input type="password" id="password" placeholder="must be 8 characters" minlength="8" autocomplete="on" required>
-    
-    <div class="checkbox">
-        <input type="checkbox" id="driver-checkbox">
-        <label for="driver-checkbox">Driver?</label>
-    </div>
-    <div class="terms">
-        <input type="checkbox" id="terms-conditions" class="check-box" required/>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;I accept the terms and privacy policy</p>
-    </div>
-    
-    <button id="submit" >Sign Up</button>
-</form>
-</div>
-
-        <div class="register">
-            <h2>Or Register with</h2>
-            <div class="icons">
-                <i>Google</i>
-                <i>Microsoft</i>
-                <i>Apple</i>
+        <div class="app-wrapper">
+            <div class="create-ac">
+                <h1 class="title">Create an Account</h1>
+                <p class="para">Already have an account ? <a href="./sign-in.html">Sign In</a></p>
             </div>
+            <form>
+                <label for="name">Name*</label>
+                <input type="text" id="name" placeholder="Your Name" required>
             
+                <label for="email">Email*</label>
+                <input type="email" id="email" placeholder="example@gmail.com" required>
+            
+                <div class="password-container">
+                    <label for="password">Password*</label>
+                    <input type="password" id="password" placeholder="must be 8 characters" minlength="8" autocomplete="on" required>
+            
+                    <button type="button" class="password-btn password-hide pb-toggle" id="password_hide">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+            
+                <div class="checkbox">
+                    <input type="checkbox" id="driver-checkbox">
+                    <label for="driver-checkbox">Driver?</label>
+                </div>
+                <div class="terms checkbox">
+                    <input type="checkbox" id="terms-conditions" class="check-box" required/>
+                    <label for="terms-conditions">I accept the terms and privacy policy?</label>
+                </div>
+            
+                <button id="submit" >Sign Up</button>
+            </form>
+
+            <div class="register">
+                <h2>Or sign up with</h2>
+                <div class="icons">
+                    <i class="fa-brands fa-google"></i>
+                    <i class="fa-brands fa-microsoft"></i>
+                    <i class="fa-brands fa-apple"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="image">
+            <img src="./images/paul-hanaoka-D-qq7W751vs-unsplash.jpg" alt="image of car driving">
         </div>
     </main>
     <footer>

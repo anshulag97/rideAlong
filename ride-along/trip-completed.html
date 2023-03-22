@@ -1,30 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./trip-completed.css">
     <title>Trip Completed.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;800&display=swap" rel="stylesheet">
 </head>
+
 <body>
+    <header>
+        <a href="#rider-page1" id="back-button1" class="back-button">
+            <span>Home</span>
+        </a>
 
-    <h1>Your trip is completed!</h1>
-    <h2>Thank you for using RideAlong.</h2>
+        <a href="#menu" id="menu-button">
+            <i class="fa-solid fa-bars"></i>
+            <span class="visually-hidden">Menu</span>
+        </a>
+    </header>
+
+    <nav id="menu">
+        <ul>
+            <li id="profile-page"><a href="#">My Profile</a></li>
+            <li id="trips-page"><a href="#">Trips</a></li>
+            <li id="request-page"><a>Request</a></li>
+            <!-- <li><a href="#">MESSAGES</a></li> -->
+            <li id="safety-page"><a href="#">Safety</a></li>
+            <li id="contact-page"><a href="#">Contact Us</a></li>
+        </ul>
+    </nav>
 
 
-    <h3>Please give your feedback.</h3>
-    <textarea name="feedback" id="feedback"></textarea>
-    <input type="submit" id="submit" value="submit">
-    
+    <main>
+        <h1>Your Trip is Completed!</h1>
+        <h2>Thank you for using <span>RideAlong.<span></span></h2>
+
+
+        <h3>Please feel free to leave your feedback.</h3>
+        <textarea name="feedback" id="feedback"></textarea>
+        <input type="submit" id="submit" value="Submit">
+
+    </main>
+    <footer>
+        <p> &copy; 2023 RideAlong. All Right Reserved</p>
+    </footer>
 </body>
 
 <script>
-const urlSearchParams = new URLSearchParams(window.location.search);
-const document_id = urlSearchParams.get('doc-id');
-const submit = document.getElementById('submit');
-submit.addEventListener('click',()=>{
-    window.location.href = `./sign-in.html`;
-})
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const document_id = urlSearchParams.get('doc-id');
+    const submit = document.getElementById('submit');
+    submit.addEventListener('click', () => {
+        window.location.href = `./sign-in.html`;
+    })
 
 </script>
+
 </html>

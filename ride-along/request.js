@@ -21,6 +21,53 @@ const auth = getAuth(app);
 
 const urlSearchParams = new URLSearchParams(window.location.search);
 const document_id = urlSearchParams.get('doc-id');
+
+const menuButton = document.getElementById('menu-button');
+const menu = document.getElementById('menu');
+
+menuButton.addEventListener('click', function () {
+    console.log("button clicked");
+    // menu.classList.remove('nonvisible');
+    menu.classList.toggle('visible');
+});
+
+const backButton1 = document.getElementById("back-button1");
+
+backButton1.addEventListener("click", function () {
+    // backButton1.classList.add("visually-hidden");
+    history.go(-1);
+});
+
+
+const myProfile = document.getElementById('profile-page');
+
+myProfile.addEventListener('click',(e)=>{
+    e.preventDefault();
+    window.location.href = `./my-profile.html?doc-id=${document_id}`;
+})
+
+const safety = document.getElementById('safety-page');
+
+safety.addEventListener('click',(e)=>{
+    e.preventDefault();
+    window.location.href = `./security/index.html?doc-id=${document_id}`;
+})
+
+const contact = document.getElementById('contact-page');
+
+contact.addEventListener('click',(e)=>{
+    e.preventDefault();
+    window.location.href = `./contact us/index.html?doc-id=${document_id}`;
+})
+
+const requestPage = document.getElementById('request-page');
+
+requestPage.addEventListener('click',(e)=>{
+    e.preventDefault();
+    window.location.href = `./request.html?doc-id=${document_id}`;
+})
+
+
 let user_email;
 const docRef = doc(db, "driver-details", document_id);
 const docSnap = await getDoc(docRef);
@@ -39,6 +86,7 @@ var link= "";
 const acceptButton = [];
 const declineButton = [];
 let querySnapshot = await getDocs(collection(db, 'rider-details'));
+
 
 // console.log(user_id);
 querySnapshot.forEach((doc) => {
@@ -102,22 +150,34 @@ for (let i = 0; i < tempArr.length; i++) {
 
   if(tempArr[i].trip_details.ride_approved == "true"){
 
-    div.innerHTML = `<br><br><br>
+    div.innerHTML = `
+    <p class='time'>Date: ${tempArr[i].trip_details.date}</p>
+    <p class='time'>Time: ${tempArr[i].trip_details.time}</p>
+    <div class='enter=location'>
+      <div class="fromLocation">${tempArr[i].trip_details.origin_detail}</div>
+      <div class="toLocation">${tempArr[i].trip_details.destination_detail}</div>
+    </div>
 
-    <img id="image-${i}" src="${link}" alt="" style="height:100px">
-    <p>Rider Name: ${tempArr[i].name}</p>
-    <p>Origin: ${tempArr[i].trip_details.origin_detail}</p>
-    <p>Destination: ${tempArr[i].trip_details.destination_detail}</p>
-    <p>Date: ${tempArr[i].trip_details.date}</p>
-    <p>Time: ${tempArr[i].trip_details.time}</p>
-    <p>Luggage: ${tempArr[i].trip_details.luggage}</p>
-    <p>Passengers: ${tempArr[i].trip_details.passengers}</p>
-    <p>Pet: ${tempArr[i].trip_details.pet}</p>
-    <p>Price: ${tempArr[i].trip_details.price}</p>
-    <p>Description: ${tempArr[i].trip_details.description}</p>
+    <div class="rider-detailss">
+      <img id="image-${i}" src="${link}" alt="rider-image">
+      <div class="rider-info">
+          <p class="name">${tempArr[i].name}</p>
+          <div class="misc-details">
+              <p class="luggage">Luggage: ${tempArr[i].trip_details.luggage}</p>
+              <p class="passengers">Passenger(s): ${tempArr[i].trip_details.passengers}</p>
+              <p class="pets">Pets: ${tempArr[i].trip_details.pet}</p>
+          </div>
+      </div>
+    </div>
 
-    <input type="button" value="Already Accepted" id="accepted" disabled>
-    <input type="submit" id="trip-preview-${i}" value="Trip Preview">
+    <div class="btns">
+      <input type="button" value="Already Accepted" id="accepted" disabled></button>
+
+      <input type="submit" id="trip-preview-${i}" value="Trip Preview">
+    </div>
+
+    
+    
   `;
 
   availableRider.appendChild(div);
@@ -130,28 +190,35 @@ for (let i = 0; i < tempArr.length; i++) {
   console.log(docArr[i]);
   console.log(rider_id[i]);  
   window.location.href = `./trip-preview.html?doc-id=${document_id}&rider-id=${docArr[i]}`;
-  
-  
   })
   }
   else{
-  div.innerHTML = `<br><br><br>
+  div.innerHTML = `
 
-  <img id="image-${i}" src="${link}" alt="" style="height:100px">
-  <p>Rider Name: ${tempArr[i].name}</p>
-    <p>Origin: ${tempArr[i].trip_details.origin_detail}</p>
-    <p>Destination: ${tempArr[i].trip_details.destination_detail}</p>
-    <p>Date: ${tempArr[i].trip_details.date}</p>
-    <p>Time: ${tempArr[i].trip_details.time}</p>
-    <p>Luggage: ${tempArr[i].trip_details.luggage}</p>
-    <p>Passengers: ${tempArr[i].trip_details.passengers}</p>
-    <p>Pet: ${tempArr[i].trip_details.pet}</p>
-    <p>Price: ${tempArr[i].trip_details.price}</p>
-    <p>Description: ${tempArr[i].trip_details.description}</p>
+  <p class='time'>Date: ${tempArr[i].trip_details.date}</p>
+    <p class='time'>Time: ${tempArr[i].trip_details.time}</p>
+    <div class='enter-location'>
+      <div class="fromLocation">${tempArr[i].trip_details.origin_detail}</div>
+      <div class="toLocation">${tempArr[i].trip_details.destination_detail}</div>
+    </div>
 
+    <div class="rider-detailss">
+      <img id="image-${i}" src="${link}" alt="rider-image">
+      <div class="rider-info">
+          <p class="name">${tempArr[i].name}</p>
+          <div class="misc-details">
+              <p class="luggage">Luggage: ${tempArr[i].trip_details.luggage}</p>
+              <p class="passengers">Passenger(s): ${tempArr[i].trip_details.passengers}</p>
+              <p class="pets">Pets: ${tempArr[i].trip_details.pet}</p>
+          </div>
+      </div>
+    </div>
 
-    <input type="button" value="Accept" id="accept-${i}">
-    <input type="button" value="Decline" id="decline-${i}">
+    <div class="btns">
+      <input type="button" value="Accept" id="accept-${i}">
+
+      <input type="button" value="Decline" id="decline-${i}">
+    </div>
   `;
 
   availableRider.appendChild(div);
@@ -318,123 +385,3 @@ if(data.trip_details.ride_approved == "true"){
       availableDriver.appendChild(div);
   }
 }
-
-
-    // const driverDetailsRef = collection(db, 'driver-details');
-    // const driverDetailsSnapshot = await getDoc(doc(driverDetailsRef, document_id));
-    
-    // if (driverDetailsSnapshot.exists()) {
-    //   const newCollectionRef = collection(db, 'trip-accepted');
-    //   const newDocRef = await addDoc(newCollectionRef, { driver: driverDetailsSnapshot.data() });
-    //   console.log('New document added with ID: ', newDocRef.id);
-    //   alert("Ride Accepted!")
-    //   console.log(user_email)
-    //   const tripDocId = newDocRef.id;
-    // } else {
-    //   console.log('No such document!');
-    // }
-    
-    // const riderDetailsRef = collection(db, 'rider-details');
-    // const q = query(riderDetailsRef, where('email', '==', 'sunny@gmail.com'));
-    // console.log(q);
-    // const riderDetailsSnapshot = await getDocs(q);
-    // console.log(riderDetailsSnapshot.docs);
-    // if(riderDetailsSnapshot.size===1){
-    //   console.log("helo")
-    //   const riderDetailsDoc = riderDetailsSnapshot[0];
-    //   const docRef = doc(db, "trip-accepted", 'HjR11Or3y3MbBqKhvjU0' );
-    //   const tripRef = await getDoc(docRef);
-    //   console.log(tripRef);
-    //   if(tripRef.exists()){
-        
-    //     await setDoc(tripRef,{rider: riderDetailsDoc.data()},{merge:true});
-    //     console.log("Proof of concept working")
-    //   }else(
-    //     console.log("no-rider-found")
-    //   )
-
-
-    // }else{
-    //   console.log("error")
-    // }
-    // console.log(q)
-    
-    // if (riderDetailsSnapshot.exists()) {
-      //   const tripRef = collection(db, 'trip-accepted');
-      //   const tripQuery = query(tripRef, where('email', '==', user_email));
-      //   const tripSnapshot = await getDoc(tripQuery);
-      
-      //   if (!tripSnapshot.empty) {
-        //     const tripDoc = tripSnapshot.docs[0];
-        //     const tripDocRef = doc(db, 'trip-accepted', tripDoc.id); // Create a DocumentReference object
-        //     await setDoc(tripDocRef, { rider: riderDetailsSnapshot.data() }, { merge: true }); // Pass the DocumentReference object to setDoc()
-        //   } else {
-          //     console.log('No trip found for rider!');
-          //   }
-          // } else {
-            //   console.log('No such document!');
-            // }
-            
-            //  const riderDetailsRef = collection(db,'rider-details');
-            //  const q = query(riderDetailsRef,where('requested_driver','==',user_email))
-            //  const riderDetailsSnapshot = await getDoc(q);
-            //  if(riderDetailsSnapshot.exists()){
-              //    const tripRef = collection(db,'trip-accepted');
-              //    const tripQuery = query(tripRef,where('email','==',user_email))
-              //    const tripSnapshot = await getDoc(tripQuery)
-              //    setDoc(tripSnapshot,{ rider: riderDetailsSnapshot.data()},{merge:true});
-              
-              //  }else{
-                //   console.log('error')
-                //  }
-                
-                // const driverDetailsRef = collection(db, 'driver-details');
-                // const driverDetailsSnapshot = await getDoc(doc(driverDetailsRef, document_id));
-            
-                // if (driverDetailsSnapshot.exists()) {
-                //   const newCollectionRef = collection(db, 'trip-accepted');
-                //   const driver = new Map();
-                //   for (const [key, value] of Object.entries(driverDetailsSnapshot.data())) {
-                //     driver.set(key, value);
-                //   }
-                //   const driverObject = Object.fromEntries(driver);
-                //   const newDocRef = await addDoc(newCollectionRef, driverObject);
-                //   console.log('New document added with ID: ', newDocRef.id);
-                //   alert("Ride Accepted!")
-                // } else {
-                //   console.log('No such document!');
-                // }
-            
-                // const db = getFirestore();
-              
-              
-              //    const requestDriver = document.getElementById(`request-driver-${i}`);
-
-  // requestDriver.addEventListener('click',async (e)=>{
-
-  //     e.preventDefault();
-  //     console.log("Request Clicked");
-
-  //     console.log(tempArr[i].email);
-  //     try {
-  //         await setDoc(doc(db, "rider-details", document_id), {
-  //             trip_details: {
-  //               origin_detail: fromLocation.value,
-  //               destination_detail: toLocation.value,
-  //               date: rideDate.value,
-  //               time: rideTime.value,
-  //               luggage: luggageNum.value,
-  //               passengers: passengerNum.value,
-  //               pet: petChecked.checked,
-  //               requested_driver: tempArr[i].email
-  //            }
-  //         }, {
-  //           merge: true
-  //         });
-  //           console.log("Document successfully updated!");
-  //          } catch (error) {
-  //           console.error("Error updating document: ", error);
-  //         }
-
-  // })
-  

@@ -26,6 +26,53 @@ const plusBtn1 = document.getElementById("plus_btn1");
 const minusBtn1 = document.querySelector("#minus_btn1");
 const luggageNum = document.getElementById("luggage-number");
 
+const menuButton = document.getElementById('menu-button');
+const menu = document.getElementById('menu');
+
+menuButton.addEventListener('click', function () {
+    console.log("button clicked");
+    // menu.classList.remove('nonvisible');
+    menu.classList.toggle('visible');
+});
+
+const backButton1 = document.getElementById("back-button1");
+
+backButton1.addEventListener("click", function () {
+    // backButton1.classList.add("visually-hidden");
+    history.go(-1);
+});
+
+
+const myProfile = document.getElementById('profile-page');
+
+myProfile.addEventListener('click',(e)=>{
+    e.preventDefault();
+    window.location.href = `./my-profile.html?doc-id=${document_id}`;
+})
+
+const safety = document.getElementById('safety-page');
+
+safety.addEventListener('click',(e)=>{
+    e.preventDefault();
+    window.location.href = `./security/index.html?doc-id=${document_id}`;
+})
+
+const contact = document.getElementById('contact-page');
+
+contact.addEventListener('click',(e)=>{
+    e.preventDefault();
+    window.location.href = `./contact us/index.html?doc-id=${document_id}`;
+})
+
+const requestPage = document.getElementById('request-page');
+
+requestPage.addEventListener('click',(e)=>{
+    e.preventDefault();
+    window.location.href = `./request.html?doc-id=${document_id}`;
+})
+
+
+
 plusBtn1.addEventListener("click", (e) => {
     e.preventDefault();
     luggageNum.value = parseInt(luggageNum.value) + 1;
@@ -54,9 +101,23 @@ minusBtn2.addEventListener("click", () => {
     }
 });
 
+// Validate field function
+function validate_field(field){
+    if(field === null || field === ''){
+      return false
+    }else{
+        return true
+    }
+  };
+
+
+
+
+
 const fromLocationInput = document.getElementById('fromlocation');
 const toLocationInput = document.getElementById('tolocation');
 const submit = document.getElementById('submit');
+
 submit.addEventListener('click',async(e)=>{
 e.preventDefault();
 const date = document.getElementById('date').value;
@@ -67,31 +128,57 @@ const pet = document.getElementById('pets').checked;
 const price = document.getElementById('price').value;
 const description = document.getElementById('description').value;
 
-console.log(document_id);
-
-try {
-  await setDoc(doc(db, "driver-details", document_id), {
-    
-      trip_details: {
-        origin_detail: fromLocationInput.value,
-        destination_detail: toLocationInput.value,
-        date: date,
-        time: time,
-        luggage: luggage,
-        passengers: passengers,
-        pet: pet,
-        price: price,
-        description: description
+    if(validate_field(fromLocationInput.value) == false) {
+        alert('Please enter the start location');
+        return
     }
-  }, {
-    merge: true
-  });
-  alert("Ride Posted Successfully !");
-    console.log("Document successfully updated!");
-   } 
-   catch (error) {
-    console.error("Error updating document: ", error);
-  }
+
+    if(validate_field(toLocationInput.value) == false) {
+        alert('Please enter the destination');
+        return
+    }
+
+    if(validate_field(date) == false) {
+        alert('Please enter date');
+        return
+    }
+
+    if(validate_field(time) == false) {
+        alert('Please enter time');
+        return
+    }
+
+    if(validate_field(price) == false) {
+        alert('Please enter price');
+        return
+    }
+
+    try {
+    await setDoc(doc(db, "driver-details", document_id), {
+        
+        trip_details: {
+            origin_detail: fromLocationInput.value,
+            destination_detail: toLocationInput.value,
+            date: date,
+            time: time,
+            luggage: luggage,
+            passengers: passengers,
+            pet: pet,
+            price: price,
+            description: description
+        }
+    }, {
+        merge: true
+    });
+    alert("Ride Posted Successfully !");
+        console.log("Document successfully updated!");
+        window.location.href = `./rider-details/index.html?doc-id=${document_id}`;
+    } 
+    catch (error) {
+        console.error("Error updating document: ", error);
+    }
+
+
 });
 
 
@@ -252,19 +339,10 @@ function addMarker(position, iconClass) {
 
 //switch button hover or click action
 const switchButton = document.getElementById("switch-button");
-const switchButtonImage = switchButton.querySelector("img");
-
-switchButton.addEventListener("mouseover", () => {
-  switchButtonImage.src = "/ride-along/rider-details2.0/icon/Group 1509-blue.svg";
-});
-
-switchButton.addEventListener("mouseout", () => {
-  switchButtonImage.src = "/ride-along/rider-details2.0/icon/Group 1509-gray.svg";
-});
 
 switchButton.addEventListener("click", (e) => {
   e.preventDefault();
-  switchButtonImage.src = "/ride-along/rider-details2.0/icon/Group 1509-blue.svg";
+  
   const fromLocationInput = document.getElementById("fromlocation");
   const toLocationInput = document.getElementById("tolocation");
 

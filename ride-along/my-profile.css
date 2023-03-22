@@ -1,0 +1,282 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+img {
+max-width: 100%;
+height: auto;
+}
+header {
+    background-color: rgb(22, 46, 172);
+    height: 48px;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    align-items: center;
+    padding: 0 20px;
+}
+
+.header-title {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+.header-title i, .header-title h3, header > i {
+    background-color: #5F69FF;
+    padding: .2rem 1rem;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+.header-title i {
+    border-radius: 7px;
+    padding: .3rem .4rem;
+}
+
+header > i {
+    border-radius: 5px;
+    padding: .3rem .5rem;
+}
+
+main {
+    text-align: center;
+    max-width: 80%;
+    margin: auto;
+}
+
+.photo-email{
+    /* background-color: red; */
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    padding: .5rem;
+}
+
+#update-image, #update-name, #update-car-model, #update-emergency-phone {
+    background-color: #162EAC;
+    color: white;
+    width: 60%;
+    padding: 10px 0;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    text-transform: capitalize;
+}
+
+.profile-pic{
+    border-radius: 50%;
+    width: 50%;
+}
+
+#user-name{
+    padding-top: 0.2rem;
+    font-size: 2rem;
+}
+ul{
+    margin: .4rem 0;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: .4rem;
+
+}
+
+.display-none{
+    display: none;
+}
+
+li{
+    list-style-type: none;
+
+}
+
+input{
+    width: 95%;
+}
+
+.details{
+  display: grid;
+  gap: 2rem;
+    
+}
+
+input[type="button"]{
+    width: 300px;
+    height: 63px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 35px;
+    font-size: 20px;
+    background-color: rgb(95, 105, 255);
+    color:white;
+    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+}
+
+input[type="button"]:hover{
+    background-color: rgb(203, 68, 82);
+    cursor: pointer;
+}
+
+.details .common-details, #vehicle-details{
+    background-color: #D8DADC;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+
+.details{
+    margin: 30px 0;
+}
+
+ul li{
+    height: 2rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin: 10px 0;
+}
+
+ul li input{
+    height: 2rem;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+ul li i{
+    width: 30px;
+    justify-self: center;
+    color: #162EAC;
+}
+
+.buttons{
+    margin-bottom: 70px;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    background-color: rgb(49, 48, 53);
+    color:white;
+    width: 100%;
+    height: 41px;
+    display: flex;
+    align-items: center;
+}
+
+footer p{
+    font-weight: 300;
+    margin-left: 8%;
+}
+
+
+#menu-button{
+    background-color: rgb(95, 105, 255);
+    height: 24px;
+    padding: 6px 10px 0 10px;
+    line-height: 0;
+    border-radius: 5px;
+    justify-self: end;
+    grid-column: 2/3;
+}
+
+#menu-button:hover{
+    background-color: rgb(203, 68, 82);
+}
+
+#menu-button i{
+    color:white;
+    font-size: 1.2rem;
+}
+
+#menu{
+    background-color: rgba(22, 47, 172, 0.539);
+    position: fixed;
+    top: 48px;
+    height: 100%;
+    right: -100%;
+    width: 50%;
+    transition: right 0.4s ease;
+    z-index: 98;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    backdrop-filter: blur(7px) brightness(90%);
+}
+
+#menu.visible {
+    right: 0;
+}
+
+#menu a{
+    color:white;
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+}
+
+#menu li{
+    display: block;
+    width: 100%;
+}
+
+#menu ul{
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+    align-items: center;
+}
+
+#menu ul li a:hover{
+    background-color: rgb(203, 68, 82);
+}
+
+.back-button i, .back-button span{
+    background-color: rgb(95, 105, 255);
+    height: 24px;
+    line-height: 1.5;
+    color:white;
+    font-size: 1.2rem;
+}
+
+.back-button i{
+    border-radius: 5px;
+    padding: 1px 5px 5px 5px;
+}
+
+.back-button span{
+    border-radius: 10px;
+    padding: 2px 25px 5px 25px;
+    font-weight: 500;
+}
+
+.back-button{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    justify-self: start;
+}
+
+.back-button:hover i,
+.back-button:hover span{
+    background-color: rgb(203, 68, 82);
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style-type: none;
+}
+
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
