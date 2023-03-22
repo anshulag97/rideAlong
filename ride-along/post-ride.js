@@ -117,6 +117,7 @@ function validate_field(field){
 const fromLocationInput = document.getElementById('fromlocation');
 const toLocationInput = document.getElementById('tolocation');
 const submit = document.getElementById('submit');
+
 submit.addEventListener('click',async(e)=>{
 e.preventDefault();
 const date = document.getElementById('date').value;
@@ -171,6 +172,7 @@ const description = document.getElementById('description').value;
     });
     alert("Ride Posted Successfully !");
         console.log("Document successfully updated!");
+        window.location.href = `./rider-details/index.html?doc-id=${document_id}`;
     } 
     catch (error) {
         console.error("Error updating document: ", error);
