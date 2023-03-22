@@ -647,6 +647,49 @@ function addMarker(position, iconClass) {
 }
 
 
+function addBlueDotMarker(position) {
+    const blueDotMarkerElement = document.createElement('div');
+    blueDotMarkerElement.className = 'blue-dot-marker';
+
+    const blueDotMarker = new tt.Marker({
+      element: blueDotMarkerElement
+    }).setLngLat([position.longitude, position.latitude]).addTo(map);
+
+    return blueDotMarker;
+  }
+
+
+  function updateLocation(position) {
+    const newPosition = {
+      longitude: position.coords.longitude,
+      latitude: position.coords.latitude
+    };
+
+    if (!blueDotMarker) {
+      blueDotMarker = addBlueDotMarker(newPosition);
+    } else {
+      blueDotMarker.setLngLat([newPosition.longitude, newPosition.latitude]);
+    }
+  }
+
+
+  let blueDotMarker;
+
+  if ('geolocation' in navigator) {
+    const watchOptions = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+
+    navigator.geolocation.watchPosition(updateLocation, (error) => {
+      console.error('Error watching position:', error);
+    }, watchOptions);
+  } else {
+    console.error('Geolocation not available');
+  }
+
+
 //switch button hover or click action
 const switchButton = document.getElementById("switch-button");
 const switchButtonImage = switchButton.querySelector("img");
