@@ -1,0 +1,81 @@
+body{
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+} 
+
+header {
+    padding: 1.5rem;
+    text-align: center;
+    text-align: left;
+    margin-bottom: 2rem;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.516);
+}
+
+header .logo {
+    max-width: 100%;
+    height: auto;
+}
+
+main {
+    max-width: 90%;
+    margin: auto;
+}
+
+.app-wrapper {
+    text-align: center;
+}
+
+.app-wrapper i {
+    color: #162EAC;
+    font-size: 5rem;
+}
+
+.app-wrapper h2 {
+    font-weight: 600;
+    font-size: 28px;
+}
+
+.app-wrapper p {
+    font-size: 16px;
+    color: rgb(0, 0, 0, 60%);
+}
+
+#submit{
+    margin-top: 4rem;
+    background-color: #162EAC;
+    color: white;
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 0 5px 1px rgb(219, 215, 215);
+    border: none;
+    width: 350px;
+}
+
+.image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: none;
+}
+
+footer{
+    margin-top: 2rem;
+    background-color: #D9D9D9;
+    width: 100%;
+    text-align: center;
+    padding: .5rem;
+    position: fixed;
+    bottom: 0;
+}

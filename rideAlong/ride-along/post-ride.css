@@ -1,0 +1,429 @@
+body{
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+}
+
+header {
+    background-color: rgb(22, 46, 172);
+    height: 48px;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    align-items: center;
+    padding: 0 20px;
+}
+
+.header-title {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.header-title i, .header-title h3, header > i {
+    background-color: #5F69FF;
+    padding: .2rem 1rem;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+.header-title i {
+    border-radius: 7px;
+    padding: .3rem .4rem;
+}
+
+header > i {
+    border-radius: 5px;
+    padding: .3rem .5rem;
+}
+
+.header-title h3 {
+    font-weight: 400;
+}
+
+a{
+    text-decoration: none;
+}
+
+main {
+    text-align: center;
+    max-width: 80%;
+    margin: auto;
+}
+
+.enter-location {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.enter-location input:nth-of-type(1) {
+    padding: 1rem;
+    border: 1px solid #545454;
+    border-radius: 15px 15px 0 0;
+    width: 100%;
+}
+
+.enter-location input:nth-of-type(2) {
+    padding: 1rem;
+    border: 1px solid #545454;
+    border-radius: 0 0 15px 15px;
+    width: 100%;
+}
+
+.inputbox {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+#switch-button {
+    background: none;
+    border: none;
+    position: absolute;
+    top: 28px;
+    right: 0;
+    background-color: #878383;
+    padding: .5rem;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#switch-button:hover {
+    background-color: #636262;
+}
+
+canvas {
+    border-radius: 15px;
+}
+
+#switch-button i {
+    display: block;
+    font-size: 1.5rem;
+    color: white;
+}
+
+h2, h3 {
+    font-weight: 500;
+}
+
+.home, .work, .location {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: .5rem;
+}
+
+.home i, .work i, .location i {
+    color: #CB4452;
+}
+
+.ride-schedule {
+    margin: 1rem;
+    padding: 1rem 0;
+    display: grid;
+    text-align: left;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    border-top: 1px solid #535353;
+    border-bottom: 1px solid #535353;
+}
+
+.ride-schedule input {
+    background-color: #E1E1E1;
+    border: 1px solid #C5C5C5;
+    padding: 1rem .5rem;
+    border-radius: 10px;
+}
+
+.ride-schedule input:nth-of-type(3) {
+    background-color: #F2F2F2;
+    border: 1px dotted #777777;
+    padding: .6rem .5rem;
+}
+
+.ride-schedule h2 {
+    grid-column: span 2;
+    margin: 0;
+}
+
+.ride-schedule input:nth-of-type(3) {
+    grid-column: span 2;
+}
+
+.trip-preferences {
+    text-align: left;
+}
+
+.trip-preference-input {
+    background-color: #aba8a82f;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.luggage {
+    border-bottom: 1px solid #C1C1C1;
+}
+
+.luggage ul li,
+.buttons ul li {
+    list-style-type: none;
+    background-color: #E1E1E1;
+    padding: .5rem .8rem;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+.luggage ul {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 0;
+    justify-content: space-between;
+}
+
+.passengers {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #C1C1C1;
+}
+
+.input-group {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.input-group input {
+    background-color: transparent;
+    border: none;
+    width: 15%;
+    text-align: center;
+}
+
+.input-group-button button {
+    border: none;
+}
+
+.pets {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.buttons ul li{
+    display: inline-block;
+}
+
+.price {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.price input {
+    background-color: #E1E1E1;
+    border: 1px solid #D8DADC;
+    height: 90%;
+    width: 30%;
+    border-radius: 10px;
+    padding: .5rem .8rem;
+    font-size: 12px;
+}
+
+.trip-description {
+    border-top: 1px solid #535353;
+    border-bottom: 1px solid #535353;
+    margin-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.trip-description textarea {
+    background-color: #30303034;
+    border-radius: 10px;
+    padding: .5rem;
+    width: 95%;
+    height: 100px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.vehicle {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: .2rem;
+    background-color: #D8D8D8;
+    border-radius: 10px;
+    padding: 1px 5px;
+}
+
+.vehicle-info {
+    grid-column: span 2;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #5B5B5B;
+    margin-right: 14px;
+}
+
+.vehicle p:nth-of-type(1) {
+    text-align: baseline;
+}
+
+.vehicle p:nth-of-type(3) {
+    grid-column: span 2;
+}
+
+
+#submit{
+    margin-top: 2rem;
+    background-color: #162EAC;
+    color: white;
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 5px 1px rgb(219, 215, 215);
+    border: none;
+    outline: none;
+    width: 300px;
+    margin-bottom: 1.5rem;
+}
+
+#submit:hover {
+    background-color: #2c4fffd3;
+}
+
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+#menu-button{
+    background-color: rgb(95, 105, 255);
+    height: 24px;
+    padding: 6px 10px 0 10px;
+    line-height: 0;
+    border-radius: 5px;
+    justify-self: end;
+    grid-column: 2/3;
+}
+
+#menu-button:hover{
+    background-color: rgb(203, 68, 82);
+}
+
+#menu-button i{
+    color:white;
+    font-size: 1.2rem;
+}
+
+#menu{
+    background-color: rgba(22, 47, 172, 0.539);
+    position: fixed;
+    top: 48px;
+    height: 100%;
+    right: -100%;
+    width: 50%;
+    transition: right 0.4s ease;
+    z-index: 98;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    backdrop-filter: blur(7px) brightness(90%);
+}
+
+#menu.visible {
+    right: 0;
+}
+
+#menu a{
+    color:white;
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+}
+
+#menu li{
+    display: block;
+    width: 100%;
+}
+
+#menu ul{
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+    align-items: center;
+    padding: 0;
+}
+
+#menu ul li a:hover{
+    background-color: rgb(203, 68, 82);
+}
+
+.back-button i, .back-button span{
+    background-color: rgb(95, 105, 255);
+    height: 24px;
+    line-height: 1.5;
+    color:white;
+    font-size: 1.2rem;
+}
+
+.back-button i{
+    border-radius: 5px;
+    padding: 1px 5px 5px 5px;
+}
+
+.back-button span{
+    border-radius: 10px;
+    padding: 2px 25px 5px 25px;
+    font-weight: 500;
+}
+
+.back-button{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    justify-self: start;
+}
+
+.back-button:hover i,
+.back-button:hover span{
+    background-color: rgb(203, 68, 82);
+}
+
+.custom-icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.start-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512'%3E%3C!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --%3E%3Cpath d='M32 144a144 144 0 1 1 288 0A144 144 0 1 1 32 144zM176 80c8.8 0 16-7.2 16-16s-7.2-16-16-16c-53 0-96 43-96 96c0 8.8 7.2 16 16 16s16-7.2 16-16c0-35.3 28.7-64 64-64zM144 480V317.1c10.4 1.9 21.1 2.9 32 2.9s21.6-1 32-2.9V480c0 17.7-14.3 32-32 32s-32-14.3-32-32z'/%3E%3C/svg%3E");
+}
+
+.end-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3C!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --%3E%3Cpath d='M32 0C49.7 0 64 14.3 64 32V48l69-17.2c38.1-9.5 78.3-5.1 113.5 12.5c46.3 23.2 100.8 23.2 147.1 0l9.6-4.8C423.8 28.1 448 43.1 448 66.1V345.8c0 13.3-8.3 25.3-20.8 30l-34.7 13c-46.2 17.3-97.6 14.6-141.7-7.4c-37.9-19-81.4-23.7-122.5-13.4L64 384v96c0 17.7-14.3 32-32 32s-32-14.3-32-32V400 334 64 32C0 14.3 14.3 0 32 0zM64 187.1l64-13.9v65.5L64 252.6V318l48.8-12.2c5.1-1.3 10.1-2.4 15.2-3.3V238.7l38.9-8.4c8.3-1.8 16.7-2.5 25.1-2.1l0-64c13.6 .4 27.2 2.6 40.4 6.4l23.6 6.9v66.7l-41.7-12.3c-7.3-2.1-14.8-3.4-22.3-3.8v71.4c21.8 1.9 43.3 6.7 64 14.4V244.2l22.7 6.7c13.5 4 27.3 6.4 41.3 7.4V194c-7.8-.8-15.6-2.3-23.2-4.5l-40.8-12v-62c-13-3.8-25.8-8.8-38.2-15c-8.2-4.1-16.9-7-25.8-8.8v72.4c-13-.4-26 .8-38.7 3.6L128 173.2V98L64 114v73.1zM320 335.7c16.8 1.5 33.9-.7 50-6.8l14-5.2V251.9l-7.9 1.8c-18.4 4.3-37.3 5.7-56.1 4.5v77.4zm64-149.4V115.4c-20.9 6.1-42.4 9.1-64 9.1V194c13.9 1.4 28 .5 41.7-2.6l22.3-5.2z'/%3E%3C/svg%3E");
+}
+
+#map {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+    margin: 20px 0;
+    border-radius: 10px;
+}
