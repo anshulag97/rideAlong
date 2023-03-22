@@ -319,6 +319,7 @@ async function submitRideRequest() {
     //   console.log(doc.data().trip_posted.trip_details);
       if(doc.data().trip_details == undefined){
         console.log("hello")
+
       }
       else{
         console.log("in Else");
@@ -335,6 +336,17 @@ async function submitRideRequest() {
 
     console.log(tempArr);
     // console.log(tempArr[0].trip_details.price);
+    if(tempArr.length == 0){
+        const availableDriver = document.getElementById('available');
+        const div = document.createElement("div");
+        div.classList.add("no-driver");
+      
+        div.innerHTML = `
+        <h4 >No drivers found going along this route</h4>
+        <h4 >Try changing your locations</h4>`
+        availableDriver.appendChild(div);
+
+    }
 
     for(let i =0; i<tempArr.length;i++){
 

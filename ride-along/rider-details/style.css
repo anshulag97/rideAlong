@@ -21,6 +21,16 @@ a {
 li {
     list-style-type: none;
 }
+.no-driver{
+    text-align: center;
+    padding: 1rem 0;
+}
+.driver-details {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+}
 
 /* ======= fixed header footer  ===========*/
 
